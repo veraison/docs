@@ -2,9 +2,11 @@ name: Data models checks
 
 on:
   push:
-    branches: [ main ]
+    paths:
+    - 'datamodels/**'
   pull_request:
-    branches: [ main ]
+    paths:
+    - 'datamodels/**'
 
 jobs:
   build:
