@@ -1,0 +1,21 @@
+name: Data models checks
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Install CDDL and CBOR diag tools
+      run: gem install cddl cbor-diag
+      
+    - name: Check the attestation results data model
+      run: make -C datamodels/attestation-results/grammar
