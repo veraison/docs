@@ -1,0 +1,23 @@
+name: API checks
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Install OpenAPI spec validator
+      run: pip install openapi-spec-validator
+      
+    - name: Check Verification challenge-response API
+      run: make -C api/challenge-response check
+
+    - name: Check Endorsement provisioning API
+      run: make -C api/endorsement-provisioning check
