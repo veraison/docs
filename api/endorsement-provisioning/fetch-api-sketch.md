@@ -4,36 +4,48 @@ Just a sketch of one possible design to kick off the discussion.
 
 ## Fetching a Trust Anchor
 
+* Request:
+
+```HTTP
+POST /endorsement-provisioning/v1/fetch
+Host: veraison.example
+Content-Type: application/vnd.veraison.trustanchor-id+json; profile=http://enacttrust.com/veraison/1.0.0
+
+{
+  "enacttrust-tpm.node-id": "2170bfcf-a08f-43b5-915b-d6e820164035"
+}
+```
+
+* Response:
+
 ```http
->> Request:
-  POST /endorsement-provisioning/v1/fetch
-  Host: veraison.example
-  Content-Type: application/vnd.veraison.trustanchor-id+json; profile=...
+HTTP/1.1 200 OK
+Content-Type: application/vnd.veraison.trustanchor+json; profile=http://enacttrust.com/veraison/1.0.0
 
-  ...JSON-ified id of the resource to fetch (see below)...
-
-<< Response:
-  HTTP/1.1 200 OK
-  Content-Type: application/vnd.veraison.trustanchor+json; profile=...
-
-  ...trust anchor (including meta) as JSON object...
+{ "TODO" }
 ```
 
 ## Fetching Software Components
 
+* Request:
+
 ```http
->> Request:
-  POST /endorsement-provisioning/v1/fetch
-  Host: veraison.example
-  Content-Type: application/vnd.veraison.swcomponent-id+json; profile=...
+POST /endorsement-provisioning/v1/fetch
+Host: veraison.example
+Content-Type: application/vnd.veraison.swcomponent-id+json; profile=http://arm.com/psa/iot/1
 
-  ...JSON-ified id of the resource to fetch (see below)...
+{
+  "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig=="
+}
+```
 
-<< Response:
-  HTTP/1.1 200 OK
-  Content-Type: application/vnd.veraison.swcomponent+json; profile=...
+* Response:
 
-  ...sw components as JSON array...
+```http
+HTTP/1.1 200 OK
+Content-Type: application/vnd.veraison.swcomponent+json; profile=http://arm.com/psa/iot/1
+
+[ { "TODO" }, { "TODO" } ]
 ```
 
 ## Software Component ID
