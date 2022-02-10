@@ -108,7 +108,7 @@ Content-Type: application/vnd.veraison.swcomponent+json; profile=http://arm.com/
     "id": {
       "type": "PSA_IOT",
       "parts": {
-       "psa.hw-model": "RoadRunner",
+        "psa.hw-model": "RoadRunner",
         "psa.hw-vendor": "ACME",
         "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig==",
         "psa.measurement-type": "PRoT",
@@ -119,6 +119,23 @@ Content-Type: application/vnd.veraison.swcomponent+json; profile=http://arm.com/
     "attributes": {
       "psa.measurement-desc": 1,
       "psa.measurement-value": "AmOCmYm2/ZVPcrqvL8ZLwuLwHWktTecphuqAj26ZgT8="
+    }
+  },
+  {
+    "id": {
+      "type": "PSA_IOT",
+      "parts": {
+        "psa.hw-model": "RoadRunner",
+        "psa.hw-vendor": "ACME",
+        "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig==",
+        "psa.measurement-type": "ARoT",
+        "psa.signer-id": "rLsRx+TaIXIFUjzkzhokWuGiOa48a/2eeHH35di66Gs=",
+        "psa.version": "0.1.4"
+      }
+    },
+    "attributes": {
+      "psa.measurement-desc": 1,
+      "psa.measurement-value": "o6XnFfDMV0pzw/m+u2vCTzL/1bZ7OHJEwskJ2neaFHg="
     }
   }
 ]
