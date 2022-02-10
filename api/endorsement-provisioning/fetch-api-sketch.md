@@ -1,4 +1,4 @@
-# Retrieval API
+# Fetch API
 
 Just a sketch of one possible design to kick off the discussion.
 
@@ -22,7 +22,12 @@ Content-Type: application/vnd.veraison.trustanchor-id+json; profile=http://enact
 200 OK
 Content-Type: application/vnd.veraison.trustanchor+json; profile=http://enacttrust.com/veraison/1.0.0
 
-{ "TODO" }
+{
+  "type": "RAWPUBLICKEY",
+  "value": {
+    "enacttrust.ak-pub": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE6Vwqe7hy3O8Ypa+BUETLUjBNU3rEXVUyt9XHR7HJWLG7XTKQd9i1kVRXeBPDLFnfYru1/euxRnJM7H9UoFDLdA=="
+  }
+}
 ```
 
 ## Fetching Software Components
@@ -45,7 +50,57 @@ Content-Type: application/vnd.veraison.swcomponent-id+json; profile=http://arm.c
 200 OK
 Content-Type: application/vnd.veraison.swcomponent+json; profile=http://arm.com/psa/iot/1
 
-[ { "TODO" }, { "TODO" } ]
+[
+  {
+    "id": {
+      "type": "PSA_IOT",
+      "parts": {
+       "psa.hw-model": "RoadRunner",
+        "psa.hw-vendor": "ACME",
+        "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig==",
+        "psa.measurement-type": "PRoT",
+        "psa.signer-id": "rLsRx+TaIXIFUjzkzhokWuGiOa48a/2eeHH35di66Gs=",
+        "psa.version": "1.3.5"
+      }
+    },
+    "attributes": {
+      "psa.measurement-desc": 1,
+      "psa.measurement-value": "AmOCmYm2/ZVPcrqvL8ZLwuLwHWktTecphuqAj26ZgT8="
+    }
+  }
+]
+```
+
+* Request:
+
+```http
+POST /endorsement-provisioning/v1/fetch
+Host: veraison.example
+Content-Type: application/vnd.veraison.swcomponent-id+json; profile=http://enacttrust.com/veraison/1.0.0
+
+{
+  "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig=="
+}
+```
+
+* Response:
+
+```http
+200 OK
+Content-Type: application/vnd.veraison.swcomponent+json; profile=http://enacttrust.com/veraison/1.0.0
+
+{
+  "id": {
+    "type": "TPM_ENACTTRUST",
+    "parts": {
+      "enacttrust-tpm.node-id": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+    }
+  },
+  "attributes": {
+    "enacttrust-tpm.alg-id": 1,
+    "enacttrust-tpm.digest": "h0KPxSKAPTEGXnvOPPA/5HUJZjHl4Hu9eg/eYMTPJcc="
+  }
+}
 ```
 
 ## Software Component ID
