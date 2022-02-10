@@ -58,9 +58,9 @@ Content-Type: application/vnd.veraison.swcomponent+json; profile=http://arm.com/
 
 ```json
 {
-    "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig==",
-    "psa.hw-vendor": "ACME",
-    "psa.hw-model": "RoadRunner"
+  "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig==",
+  "psa.hw-vendor": "ACME",
+  "psa.hw-model": "RoadRunner"
 }
 ```
 
@@ -70,7 +70,7 @@ Content-Type: application/vnd.veraison.swcomponent+json; profile=http://arm.com/
 
 ```json
 {
-    "enacttrust-tpm.node-id": "2170bfcf-a08f-43b5-915b-d6e820164035"
+  "enacttrust-tpm.node-id": "2170bfcf-a08f-43b5-915b-d6e820164035"
 }
 ```
 
@@ -83,8 +83,8 @@ Content-Type: application/vnd.veraison.swcomponent+json; profile=http://arm.com/
 
 ```json
 {
-    "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig==",
-    "psa.inst-id": "AUyj5PUL8kjDl4cCDWj/0FyIdndRvyZFypI/V6mL7NKW"
+  "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig==",
+  "psa.inst-id": "AUyj5PUL8kjDl4cCDWj/0FyIdndRvyZFypI/V6mL7NKW"
 }
 ```
 
@@ -94,6 +94,6 @@ Content-Type: application/vnd.veraison.swcomponent+json; profile=http://arm.com/
 
 ```json
 {
-    "enacttrust-tpm.node-id": "2170bfcf-a08f-43b5-915b-d6e820164035"
+  "enacttrust-tpm.node-id": "2170bfcf-a08f-43b5-915b-d6e820164035"
 }
 ```
