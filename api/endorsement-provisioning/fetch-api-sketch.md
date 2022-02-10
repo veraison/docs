@@ -4,6 +4,49 @@ Just a sketch of one possible design to kick off the discussion.
 
 ## Fetching a Trust Anchor
 
+### PSA IoT Profile
+
+* Request:
+
+```HTTP
+POST /endorsement-provisioning/v1/fetch
+Host: veraison.example
+Content-Type: application/vnd.veraison.trustanchor-id+json; profile=http://arm.com/psa/iot/1
+
+{
+  "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig==",
+  "psa.inst-id": "Ac7rrnuJJ6MiflMDz14PH3s0u1Qq1yUKwD+83jbsLxUI"
+}
+```
+
+* Response:
+
+```http
+200 OK
+Content-Type: application/vnd.veraison.trustanchor+json; profile=http://arm.com/psa/iot/1
+
+{
+  "id": {
+    "type": "PSA_IOT",
+    "parts": {
+      "psa.hw-model": "RoadRunner",
+      "psa.hw-vendor": "ACME",
+      "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig==",
+      "psa.inst-id": "Ac7rrnuJJ6MiflMDz14PH3s0u1Qq1yUKwD+83jbsLxUI"
+    }
+  },
+  "value": {
+    "type": "RAWPUBLICKEY",
+    "value": {
+      "psa.iak-pub": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEFn0taoAwR3PmrKkYLtAsD9o05KSM6mbgfNCgpuL0g6VpTHkZl73wk5BDxoV7n+Oeee0iIqkW3HMZT3ETiniJdg=="
+    }
+  }
+}
+```
+
+
+### EnactTrust Profile
+
 * Request:
 
 ```HTTP
@@ -23,14 +66,24 @@ Content-Type: application/vnd.veraison.trustanchor-id+json; profile=http://enact
 Content-Type: application/vnd.veraison.trustanchor+json; profile=http://enacttrust.com/veraison/1.0.0
 
 {
-  "type": "RAWPUBLICKEY",
+  "id": {
+    "type": "TPM_ENACTTRUST",
+    "parts": {
+      "enacttrust-tpm.node-id": "2170bfcf-a08f-43b5-915b-d6e820164035"
+    }
+  },
   "value": {
-    "enacttrust.ak-pub": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE6Vwqe7hy3O8Ypa+BUETLUjBNU3rEXVUyt9XHR7HJWLG7XTKQd9i1kVRXeBPDLFnfYru1/euxRnJM7H9UoFDLdA=="
+    "type": "RAWPUBLICKEY",
+    "value": {
+      "enacttrust.ak-pub": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE6Vwqe7hy3O8Ypa+BUETLUjBNU3rEXVUyt9XHR7HJWLG7XTKQd9i1kVRXeBPDLFnfYru1/euxRnJM7H9UoFDLdA=="
+    }
   }
 }
 ```
 
 ## Fetching Software Components
+
+### PSA IoT Profile
 
 * Request:
 
@@ -71,6 +124,8 @@ Content-Type: application/vnd.veraison.swcomponent+json; profile=http://arm.com/
 ]
 ```
 
+### EnactTrust Profile
+
 * Request:
 
 ```http
@@ -79,7 +134,7 @@ Host: veraison.example
 Content-Type: application/vnd.veraison.swcomponent-id+json; profile=http://enacttrust.com/veraison/1.0.0
 
 {
-  "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig=="
+  "enacttrust-tpm.node-id": "ffffffff-ffff-ffff-ffff-ffffffffffff"
 }
 ```
 
