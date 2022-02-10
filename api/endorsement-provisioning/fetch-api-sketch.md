@@ -19,7 +19,7 @@ Content-Type: application/vnd.veraison.trustanchor-id+json; profile=http://enact
 * Response:
 
 ```http
-HTTP/1.1 200 OK
+200 OK
 Content-Type: application/vnd.veraison.trustanchor+json; profile=http://enacttrust.com/veraison/1.0.0
 
 { "TODO" }
@@ -42,7 +42,7 @@ Content-Type: application/vnd.veraison.swcomponent-id+json; profile=http://arm.c
 * Response:
 
 ```http
-HTTP/1.1 200 OK
+200 OK
 Content-Type: application/vnd.veraison.swcomponent+json; profile=http://arm.com/psa/iot/1
 
 [ { "TODO" }, { "TODO" } ]
