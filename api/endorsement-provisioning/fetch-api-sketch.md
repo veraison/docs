@@ -11,7 +11,7 @@ Just a sketch of one possible design to kick off the discussion.
 ```HTTP
 POST /endorsement-provisioning/v1/fetch
 Host: veraison.example
-Content-Type: application/vnd.veraison.trustanchor-id+json; type=PSA_IOT
+Content-Type: application/vnd.veraison.trustanchor-query+json; type=PSA_IOT
 
 {
   "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig==",
@@ -23,23 +23,25 @@ Content-Type: application/vnd.veraison.trustanchor-id+json; type=PSA_IOT
 
 ```http
 200 OK
-Content-Type: application/vnd.veraison.trustanchor+json
+Content-Type: application/vnd.veraison.trustanchor-set+json
 
-{
-  "id": {
-    "type": "PSA_IOT",
-    "parts": {
-      "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig==",
-      "psa.inst-id": "Ac7rrnuJJ6MiflMDz14PH3s0u1Qq1yUKwD+83jbsLxUI"
-    }
-  },
-  "value": {
-    "type": "RAWPUBLICKEY",
+[
+  {
+    "id": {
+      "type": "PSA_IOT",
+      "parts": {
+        "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig==",
+        "psa.inst-id": "Ac7rrnuJJ6MiflMDz14PH3s0u1Qq1yUKwD+83jbsLxUI"
+      }
+    },
     "value": {
-      "psa.iak-pub": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEFn0taoAwR3PmrKkYLtAsD9o05KSM6mbgfNCgpuL0g6VpTHkZl73wk5BDxoV7n+Oeee0iIqkW3HMZT3ETiniJdg=="
+      "type": "RAWPUBLICKEY",
+      "value": {
+        "psa.iak-pub": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEFn0taoAwR3PmrKkYLtAsD9o05KSM6mbgfNCgpuL0g6VpTHkZl73wk5BDxoV7n+Oeee0iIqkW3HMZT3ETiniJdg=="
+      }
     }
   }
-}
+]
 ```
 
 ### EnactTrust Profile
@@ -49,7 +51,7 @@ Content-Type: application/vnd.veraison.trustanchor+json
 ```HTTP
 POST /endorsement-provisioning/v1/fetch
 Host: veraison.example
-Content-Type: application/vnd.veraison.trustanchor-id+json; type=TPM_ENACTTRUST
+Content-Type: application/vnd.veraison.trustanchor-query+json; type=TPM_ENACTTRUST
 
 {
   "enacttrust-tpm.node-id": "2170bfcf-a08f-43b5-915b-d6e820164035"
@@ -60,22 +62,24 @@ Content-Type: application/vnd.veraison.trustanchor-id+json; type=TPM_ENACTTRUST
 
 ```http
 200 OK
-Content-Type: application/vnd.veraison.trustanchor+json
+Content-Type: application/vnd.veraison.trustanchor-set+json
 
-{
-  "id": {
-    "type": "TPM_ENACTTRUST",
-    "parts": {
-      "enacttrust-tpm.node-id": "2170bfcf-a08f-43b5-915b-d6e820164035"
-    }
-  },
-  "value": {
-    "type": "RAWPUBLICKEY",
+[
+  {
+    "id": {
+      "type": "TPM_ENACTTRUST",
+      "parts": {
+        "enacttrust-tpm.node-id": "2170bfcf-a08f-43b5-915b-d6e820164035"
+      }
+    },
     "value": {
-      "enacttrust.ak-pub": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE6Vwqe7hy3O8Ypa+BUETLUjBNU3rEXVUyt9XHR7HJWLG7XTKQd9i1kVRXeBPDLFnfYru1/euxRnJM7H9UoFDLdA=="
+      "type": "RAWPUBLICKEY",
+      "value": {
+        "enacttrust.ak-pub": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE6Vwqe7hy3O8Ypa+BUETLUjBNU3rEXVUyt9XHR7HJWLG7XTKQd9i1kVRXeBPDLFnfYru1/euxRnJM7H9UoFDLdA=="
+      }
     }
   }
-}
+]
 ```
 
 ## Fetching Software Components
@@ -87,7 +91,7 @@ Content-Type: application/vnd.veraison.trustanchor+json
 ```http
 POST /endorsement-provisioning/v1/fetch
 Host: veraison.example
-Content-Type: application/vnd.veraison.swcomponent-id+json; type=PSA_IOT
+Content-Type: application/vnd.veraison.swcomponent-query+json; type=PSA_IOT
 
 {
   "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig=="
@@ -98,7 +102,7 @@ Content-Type: application/vnd.veraison.swcomponent-id+json; type=PSA_IOT
 
 ```http
 200 OK
-Content-Type: application/vnd.veraison.swcomponent+json
+Content-Type: application/vnd.veraison.swcomponent-set+json
 
 [
   {
@@ -145,7 +149,7 @@ Content-Type: application/vnd.veraison.swcomponent+json
 ```http
 POST /endorsement-provisioning/v1/fetch
 Host: veraison.example
-Content-Type: application/vnd.veraison.swcomponent-id+json; type=TPM_ENACTTRUST
+Content-Type: application/vnd.veraison.swcomponent-query+json; type=TPM_ENACTTRUST
 
 {
   "enacttrust-tpm.node-id": "ffffffff-ffff-ffff-ffff-ffffffffffff"
@@ -156,23 +160,25 @@ Content-Type: application/vnd.veraison.swcomponent-id+json; type=TPM_ENACTTRUST
 
 ```http
 200 OK
-Content-Type: application/vnd.veraison.swcomponent+json; profile=http://enacttrust.com/veraison/1.0.0
+Content-Type: application/vnd.veraison.swcomponent-set+json; profile=http://enacttrust.com/veraison/1.0.0
 
-{
-  "id": {
-    "type": "TPM_ENACTTRUST",
-    "parts": {
-      "enacttrust-tpm.node-id": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+[
+  {
+    "id": {
+      "type": "TPM_ENACTTRUST",
+      "parts": {
+        "enacttrust-tpm.node-id": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+      }
+    },
+    "attributes": {
+      "enacttrust-tpm.alg-id": 1,
+      "enacttrust-tpm.digest": "h0KPxSKAPTEGXnvOPPA/5HUJZjHl4Hu9eg/eYMTPJcc="
     }
-  },
-  "attributes": {
-    "enacttrust-tpm.alg-id": 1,
-    "enacttrust-tpm.digest": "h0KPxSKAPTEGXnvOPPA/5HUJZjHl4Hu9eg/eYMTPJcc="
   }
-}
+]
 ```
 
-## Software Component ID
+## Software Component Queries
 
 ### PSA IoT
 
@@ -198,7 +204,7 @@ Content-Type: application/vnd.veraison.swcomponent+json; profile=http://enacttru
 }
 ```
 
-## Trust Anchor
+## Trust Anchor Queries
 
 ### PSA IoT
 
