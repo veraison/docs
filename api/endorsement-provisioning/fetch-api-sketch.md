@@ -29,8 +29,6 @@ Content-Type: application/vnd.veraison.trustanchor+json
   "id": {
     "type": "PSA_IOT",
     "parts": {
-      "psa.hw-model": "RoadRunner",
-      "psa.hw-vendor": "ACME",
       "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig==",
       "psa.inst-id": "Ac7rrnuJJ6MiflMDz14PH3s0u1Qq1yUKwD+83jbsLxUI"
     }
@@ -43,7 +41,6 @@ Content-Type: application/vnd.veraison.trustanchor+json
   }
 }
 ```
-
 
 ### EnactTrust Profile
 
