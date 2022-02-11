@@ -11,7 +11,7 @@ Just a sketch of one possible design to kick off the discussion.
 ```HTTP
 POST /endorsement-provisioning/v1/fetch
 Host: veraison.example
-Content-Type: application/vnd.veraison.trustanchor-id+json; profile=http://arm.com/psa/iot/1
+Content-Type: application/vnd.veraison.trustanchor-id+json; type=PSA_IOT
 
 {
   "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig==",
@@ -23,7 +23,7 @@ Content-Type: application/vnd.veraison.trustanchor-id+json; profile=http://arm.c
 
 ```http
 200 OK
-Content-Type: application/vnd.veraison.trustanchor+json; profile=http://arm.com/psa/iot/1
+Content-Type: application/vnd.veraison.trustanchor+json
 
 {
   "id": {
@@ -52,7 +52,7 @@ Content-Type: application/vnd.veraison.trustanchor+json; profile=http://arm.com/
 ```HTTP
 POST /endorsement-provisioning/v1/fetch
 Host: veraison.example
-Content-Type: application/vnd.veraison.trustanchor-id+json; profile=http://enacttrust.com/veraison/1.0.0
+Content-Type: application/vnd.veraison.trustanchor-id+json; type=TPM_ENACTTRUST
 
 {
   "enacttrust-tpm.node-id": "2170bfcf-a08f-43b5-915b-d6e820164035"
@@ -63,7 +63,7 @@ Content-Type: application/vnd.veraison.trustanchor-id+json; profile=http://enact
 
 ```http
 200 OK
-Content-Type: application/vnd.veraison.trustanchor+json; profile=http://enacttrust.com/veraison/1.0.0
+Content-Type: application/vnd.veraison.trustanchor+json
 
 {
   "id": {
@@ -90,7 +90,7 @@ Content-Type: application/vnd.veraison.trustanchor+json; profile=http://enacttru
 ```http
 POST /endorsement-provisioning/v1/fetch
 Host: veraison.example
-Content-Type: application/vnd.veraison.swcomponent-id+json; profile=http://arm.com/psa/iot/1
+Content-Type: application/vnd.veraison.swcomponent-id+json; type=PSA_IOT
 
 {
   "psa.impl-id": "IllXTnRaUzFwYlhCc1pXMWxiblJoZEdsdmJpMXBaQzB3TURBd01EQXdNREU9Ig=="
@@ -101,7 +101,7 @@ Content-Type: application/vnd.veraison.swcomponent-id+json; profile=http://arm.c
 
 ```http
 200 OK
-Content-Type: application/vnd.veraison.swcomponent+json; profile=http://arm.com/psa/iot/1
+Content-Type: application/vnd.veraison.swcomponent+json
 
 [
   {
@@ -148,7 +148,7 @@ Content-Type: application/vnd.veraison.swcomponent+json; profile=http://arm.com/
 ```http
 POST /endorsement-provisioning/v1/fetch
 Host: veraison.example
-Content-Type: application/vnd.veraison.swcomponent-id+json; profile=http://enacttrust.com/veraison/1.0.0
+Content-Type: application/vnd.veraison.swcomponent-id+json; type=TPM_ENACTTRUST
 
 {
   "enacttrust-tpm.node-id": "ffffffff-ffff-ffff-ffff-ffffffffffff"
