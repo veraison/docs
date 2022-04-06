@@ -3,31 +3,25 @@
 participant "User" as User order 5
 participant "Veraison\Corim\ncocli" as CoRIM order 10
 participant "Veraison\napiclient" as API order 20
-participant "Veraison\nprovisioning" as PROV order 30
-participant "Veraison\nProvisioning\nHandler" as Handler order 35
-participant "Veraison\nProvisioning\nPluginMgr" as DecodePluginMgr order 40
-participant "Veraison\nProvisioning\nstore" as store order 50
+participant "Veraison\nProvisioning" as PROV order 30
 
 group construction of corim cbor data for provisioning endorsements
 
-	User -> CoRIM: cocli comid create --template t1.json
-	CoRIM -> User: created "/tmp/t1.cbor" from "t1.json"
-	User -> CoRIM: cocli corim create --template c1.json -m t1.cbor -o mycorim.cbor
-	CoRIM -> User: created "mycorim.cbor" from "c1.json"
+	User --> CoRIM: cocli comid create --template t1.json
+	CoRIM --> User: created "/tmp/t1.cbor" from "t1.json"
+	User --> CoRIM: cocli corim create --template c1.json -m t1.cbor -o mycorim.cbor
+	CoRIM --> User: created "mycorim.cbor" from "c1.json"
 end
 
 group end to end provisioning flow
-	User -> CoRIM: cocli corim submit --corim-file=mycorim.cbor --api-server= --media-type=
+	User -> CoRIM: cocli corim submit corim-file=mycorim.cbor\napi-server=http://veraison.example/endorsement-provisioning/v1/submit\nmedia-type="application/corim-unsigned+cbor; profile=http://arm.com/psa/iot/1"
 	CoRIM -> API: setSubmitURI(uri)
-    API -> CoRIM: ok
-    CoRIM -> API: Run(data=mycorim.cbor, mediaType)
-    API -> PROV: POST /endorsement-provisioning/v1/submit Body:{mycorim.cbor}
-    PROV -> API: 201: OK
-	API -> Handler: Submit()
-    Handler -> DecodePluginMgr : Dispatch (MediaType, payload)
-    DecodePluginMgr -> Handler : (response, err)
-    Handler -> store : store (endorsement=rsp)
+    	API -> CoRIM: ok
+    	CoRIM -> API: Run(data=mycorim.cbor, mediaType)
+    	API -> PROV: POST /endorsement-provisioning/v1/submit Body:{mycorim.cbor}
+	PROV -> API: 201: OK
+	API -> CoRIM : OK
+	CoRIM -> User : Submit OK
 end
-
 
 @enduml
