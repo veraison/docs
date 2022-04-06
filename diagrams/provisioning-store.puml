@@ -1,0 +1,49 @@
+@startuml
+
+participant "Veraison\nProvisioning\nHandler" as Handler order 35
+participant "Veraison\nProvisioning\nStoreClient" as Sc order 40
+participant "Veraison\nCommon\nVTS" as VTS order 45
+participant "Veraison\nCommon\nScheme" as Scheme order 45
+participant "Veraison\nkvstoreif"  as KVS order 50
+database "Veraison\nEndorsement Store" as V_EndStore order 55 
+
+group provisioning store trustanchor
+	Handler -> Handler : Populate TrustAnchors\nfrom Decoded Endorsement Response
+    	Handler -> Sc: AddTrustAnchor(taReq)
+	Sc -> VTS : grpc.Dial(storeServerAddr, opts)
+	VTS -> Sc : connection
+	Sc -> VTS: NewVTSClient(connection)
+	VTS -> Sc : ok
+	Sc -> VTS : AddTrustAnchor(taReq)
+	VTS -> VTS : getSchemePlugin (Load Attestation Scheme specific Plugin )
+	VTS -> Scheme: SynthkeysFromTA(ta)
+	Scheme -> VTS: keys
+	VTS -> VTS: Construct Val from ta
+	VTS -> KVS : Add(key, val)
+	KVS -> V_EndStore: Add(key, val)
+	V_EndStore -> KVS: ok
+	KVS -> VTS : ok
+	VTS -> Sc : tarsp
+	Sc -> Handler: taResult
+end
+
+group provisioning store swComponent
+	Handler -> Handler : Populate SwComponents\nfrom Decoded Endorsement Response
+    	Handler -> Sc: AddSwComponents(swCompReq)
+	Sc -> VTS : grpc.Dial(storeServerAddr, opts)
+	VTS -> Sc : connection
+	Sc -> VTS: NewVTSClient(connection)
+	VTS -> Sc : ok
+	Sc -> VTS : AddSwComponents(swComp)
+	VTS -> VTS : getSchemePlugin (Load Attestation Scheme specific Plugin )
+	VTS -> Scheme: SynthKeysFromSwComponent(swComp)
+	Scheme -> VTS: keys
+	VTS -> VTS: Construct Val from ta
+	VTS -> KVS : Add(key, val)
+	KVS -> V_EndStore: Add(key, val)
+	V_EndStore -> KVS: ok
+	KVS -> VTS : ok
+	VTS -> Sc : swrsp
+	Sc -> Handler: swCompResult
+end
+@enduml
