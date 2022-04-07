@@ -1,12 +1,14 @@
 @startuml
 
+participant "EXTERNAL" as EXT order 30
 participant "Veraison\nProvisioning" as PROV order 30
 participant "Veraison\nProvisioning\nHandler" as Handler order 35
 participant "Veraison\nProvisioning\nPluginMgr" as DecodePluginMgr order 40
-participant "Veraison\nProvisioning\nPluginCtx" as Ctx order 45
+participant "Veraison\nProvisioning\nPSA-PluginCtx" as Ctx order 45
 participant "Veraison\nProvisioning\nStoreClient" as Sc order 50
 
 group provisioning decode
+	EXT -> PROV: POST /endorsement-provisioning/v1/submit Header:{mediaType} Body:{mycorim.cbor}
 	PROV -> Handler: Submit()
     	Handler -> DecodePluginMgr : Dispatch (MediaType, payload)
 	DecodePluginMgr -> DecodePluginMgr : Get context of a specific\nDecoder Plugin(example PSA, DICE)\nbased on MediaType
@@ -18,6 +20,7 @@ group provisioning decode
 	Handler -> Sc : AddSwComponents(swCompReq)
 	Sc -> Handler : swCompResult
 	Handler -> PROV: ok
+	PROV -> EXT: 201: OK
 end
 
 @enduml

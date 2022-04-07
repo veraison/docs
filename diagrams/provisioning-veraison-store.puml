@@ -3,7 +3,7 @@
 participant "Veraison\nProvisioning\nHandler" as Handler order 35
 participant "Veraison\nProvisioning\nStoreClient" as Sc order 40
 participant "Veraison\nCommon\nVTS" as VTS order 45
-participant "Veraison\nCommon\nScheme" as Scheme order 45
+participant "Veraison\nCommon\nPSA-Scheme" as Scheme order 45
 participant "Veraison\nkvstoreif"  as KVS order 50
 database "Veraison\nEndorsement Store" as V_EndStore order 55 
 
@@ -15,7 +15,7 @@ group provisioning store trustanchor
 	Sc -> VTS: NewVTSClient(connection)
 	VTS -> Sc : ok
 	Sc -> VTS : AddTrustAnchor(taReq)
-	VTS -> VTS : getSchemePlugin (Load Attestation Scheme specific Plugin )
+	VTS -> VTS : getSchemePlugin (Load Attestation Scheme specific Plugin: example: PSA, DICE )
 	VTS -> Scheme: SynthkeysFromTA(ta)
 	Scheme -> VTS: keys
 	VTS -> VTS: Construct Val from ta

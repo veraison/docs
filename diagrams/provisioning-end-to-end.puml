@@ -7,10 +7,10 @@ participant "Veraison\nProvisioning" as PROV order 30
 
 group construction of corim cbor data for provisioning endorsements
 
-	User --> CoRIM: cocli comid create --template t1.json
-	CoRIM --> User: created "/tmp/t1.cbor" from "t1.json"
-	User --> CoRIM: cocli corim create --template c1.json -m t1.cbor -o mycorim.cbor
-	CoRIM --> User: created "mycorim.cbor" from "c1.json"
+	User --> CoRIM: cocli comid create --template mycomid-templ.json
+	CoRIM --> User: created "/tmp/mycomid-templ.cbor" from "mycomid-templ.json"
+	User --> CoRIM: cocli corim create --template mycorim-templ.json -m mycomid-templ.cbor -o mycorim.cbor
+	CoRIM --> User: created "mycorim.cbor" from "mycorim-templ.json"
 end
 
 group end to end provisioning flow
@@ -18,7 +18,7 @@ group end to end provisioning flow
 	CoRIM -> API: setSubmitURI(uri)
     	API -> CoRIM: ok
     	CoRIM -> API: Run(data=mycorim.cbor, mediaType)
-    	API -> PROV: POST /endorsement-provisioning/v1/submit Body:{mycorim.cbor}
+    	API -> PROV: POST /endorsement-provisioning/v1/submit Header:{mediaType} Body:{mycorim.cbor}
 	PROV -> API: 201: OK
 	API -> CoRIM : OK
 	CoRIM -> User : Submit OK
