@@ -9,6 +9,10 @@ end to end PSA Demonstration
 
 * Commands below assume execution in a Bourne-shell. Please adjust appropriately in case any other shell is used.
 
+## Creation of PSA Endorsements
+
+* For provisioning if Supply Chain Endorsements needs to be modified or created fresh, then one needs to use instructions given [here](./COCLI_README.md)
+
 ## Provisioning pipeline setup
 
 * Install `cocli` tool using following command
@@ -18,8 +22,6 @@ In a new shell session
 ```shell
 go install github.com/veraison/corim/cocli@demo-psa-1.0.0
 ```
-
-* For provisioning if Supply Chain Endorsements needs to be modified or created fresh, then one needs to use instructions given [here](./COCLI_README.md)
 
 To run provisioning test you need three parallel shell sessions.
 
