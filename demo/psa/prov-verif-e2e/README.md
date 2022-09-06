@@ -7,11 +7,13 @@ end to end PSA Demonstration
 
 * One need to install `jq` and `curl`.
 
+* Commands below assume execution in a Bourne-shell. Please adjust appropriately in case any other shell is used.
+
 ## Provisioning pipeline setup
 
-* Install `cocli tool` using following command
+* Install `cocli` tool using following command
 
-In a new bourne shell session
+In a new shell session
 
 ```shell
 go install github.com/veraison/corim/cocli@demo-psa-1.0.0
@@ -19,9 +21,9 @@ go install github.com/veraison/corim/cocli@demo-psa-1.0.0
 
 * For provisioning if Supply Chain Endorsements needs to be modified or created fresh, then one needs to use instructions given [here](./COCLI_README.md)
 
-To run provisioning test you need three parallel bourne shell sessions.
+To run provisioning test you need three parallel shell sessions.
 
-In each shell, move to the folder where you are going to clone the GIT repo and do:
+In each shell, move to the directory location where you are going to clone the GIT repo and do:
 
 ```shell
 export TOPDIR=$(pwd)
@@ -50,13 +52,13 @@ Start the REST API frontend:
 In another shell create the KV stores:
 
 ```shell
-( cd ${TOPDIR}/services/cmd/vts/cmd && ../test-harness/init-kvstores.sh )
+( cd ${TOPDIR}/services/vts/cmd && ../test-harness/init-kvstores.sh )
 ````
 
 Then start the VTS service:
 
 ```shell
-( cd ${TOPDIR}/services/cmd/vts && ./vts-service )
+( cd ${TOPDIR}/services/vts/cmd && ./vts-service )
 ```
 
 In the third shell
@@ -65,7 +67,7 @@ In the third shell
 git clone https://github.com/veraison/docs
 ```
 
-Move to the docs/demo/psa/prov-verif-e2e folder:
+Move to the docs/demo/psa/prov-verif-e2e directory:
 
 ```shell
 cd ${TOPDIR}/docs/demo/psa/prov-verif-e2e
@@ -108,7 +110,7 @@ If not already done, ensure the verification service is running:
 ```
 ### Exchanging evidence with the Verifier
 
-In a new bourne shell session
+In a new shell session
 
 ```shell
 export TOPDIR=$(pwd)

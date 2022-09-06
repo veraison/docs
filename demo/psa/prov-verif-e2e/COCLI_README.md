@@ -1,6 +1,8 @@
 # Provisioning Instructions
 
-Follow below instructions if one wishes to create new CoMID's and use them in creating CoRIM's to provision them in Veraison Verification Service.
+Follow below instructions if one wishes to create new Concise Module Identifiers (CoMID's) and use them in creating Concise Reference Integrity Manifests (CoRIM's) using reference templates located under `docs/demo/psa/prov-verif-e2e/data/templates` to provision them in Veraison Verification Service.
+
+More details about CoRIM and CoMID can be found [here](datatracker.ietf.org/doc/draft-birkholz-rats-corim)
 
 ## Initial Setup
 
@@ -12,7 +14,7 @@ In a new bourne shell session
 export TOPDIR=$(pwd)
 ```
 
-* Install `cocli tool` using following command
+* Install `cocli` tool using following command
 
 ```shell
 go install github.com/veraison/corim/cocli@demo-psa-1.0.0
@@ -52,7 +54,7 @@ cocli corim create --template=data/templates/corim-full.json --comid=comid-psa-i
 created "corim-full.cbor" from "data/templates/corim-full.json"
 
 ## Using newly generated CoRIM's
-Move the generated CORIM above to data/cbor folder
+Move the generated CORIM above to data/cbor directory
  
 ```shell
 mv corim-full.cbor  data/cbor/
