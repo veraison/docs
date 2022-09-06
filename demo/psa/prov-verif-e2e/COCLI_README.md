@@ -2,7 +2,7 @@
 
 Follow below instructions if one wishes to create new Concise Module Identifiers (CoMID's) and use them in creating Concise Reference Integrity Manifests (CoRIM's) using reference templates located under `docs/demo/psa/prov-verif-e2e/data/templates` to provision them in Veraison Verification Service.
 
-More details about CoRIM and CoMID can be found [here](datatracker.ietf.org/doc/draft-birkholz-rats-corim)
+More details about CoRIM and CoMID can be found [here](datatracker.ietf.org/doc/draft-birkholz-rats-corim/)
 
 ## Initial Setup
 
