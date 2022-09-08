@@ -1,17 +1,23 @@
 # PSA Demonstration Steps
 
 This document explains all the steps one need to follow to successfully run
-end to end PSA Demonstration
+end to end PSA Demonstration.
 
 ## Preconditions
 
 * One need to install `jq` and `curl`.
 
+* For build to succeed one needs to install following packages:
+1. protoc-gen-go with version v1.26
+2. protoc-gen-go-grpc version v1.1
+3. protoc-gen-go-json version v1.1.0
+4. mockgen version v1.6.0
+
 * Commands below assume execution in a Bourne-shell. Please adjust appropriately in case any other shell is used.
 
 ## Creation of PSA Endorsements
 
-* For provisioning if Supply Chain Endorsements needs to be modified or created fresh, then one needs to use instructions given [here](./COCLI_README.md)
+* The Supply Chain Endorsements used in provisioning pipeline setup below are created using the instructions given [here](./COCLI_README.md) Use these instructions if one wants to create their own Endorsements or modify existing ones.
 
 ## Provisioning pipeline setup
 
