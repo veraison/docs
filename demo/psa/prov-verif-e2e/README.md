@@ -13,7 +13,7 @@ end to end PSA Demonstration.
 3. protoc-gen-go-json version v1.1.0
 4. mockgen version v1.6.0
 
-* Commands below assume execution in a Bourne-shell. Please adjust appropriately in case any other shell is used.
+* Commands below assume execution in a Bourne-compatible shell. Please adjust appropriately in case any other shell is used.
 
 ## Creation of PSA Endorsements
 
@@ -68,6 +68,7 @@ Then start the VTS service:
 ```shell
 ( cd ${TOPDIR}/services/vts/cmd && ./vts-service )
 ```
+VTS Service starts all the supported plugins (scheme-psa-iot, scheme-tcg-dice, scheme-tpm-enacttrust for now)
 
 In the third shell
 
@@ -88,6 +89,10 @@ cocli corim submit --corim-file=data/cbor/corim-full.cbor --api-server="http://l
 ```
 
 The REST frontend should return a success status.
+
+The success of post API status can be noticed in console logs of front end (provisioning-service) likewise below...
+
+`[GIN] 2022/09/09 - 17:39:55 | 200 | 49.977785ms | 127.0.0.1 | POST "/endorsement-provisioning/v1/submit"`
 
 If so, you can inspect the KV stores to check what has been generated:
 

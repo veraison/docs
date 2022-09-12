@@ -2,7 +2,7 @@
 
 Follow below instructions if one wishes to create new Concise Module Identifiers (CoMID's) and use them in creating Concise Reference Integrity Manifests (CoRIM's) using reference templates located under `docs/demo/psa/prov-verif-e2e/data/templates` to provision them in Veraison Verification Service.
 
-More details about CoRIM and CoMID can be found [here](datatracker.ietf.org/doc/draft-birkholz-rats-corim/)
+More details about CoRIM and CoMID can be found [here](datatracker.ietf.org/doc/draft-ietf-rats-corim/)
 
 ## Initial Setup
 
@@ -30,14 +30,19 @@ git clone https://github.com/veraison/docs
 cd ${TOPDIR}/docs/demo/psa/prov-verif-e2e
 ```
 
-* Create CoMID for Trust Anchors and Reference Values using given JSON templates
+* Create CoMID for Trust Anchors using given JSON template
 
-Please inspect template JSON files `data/templates/comid-psa-iakpub.json` and `data/templates/comid-psa-refval.json`and modify anything as per your requirements
+Please inspect template JSON file `data/templates/comid-psa-iak-pub.json` and modify anything as per your requirement
 
 ```shell
-cocli comid create --template=data/templates/comid-psa-iakpub.json
+cocli comid create --template=data/templates/comid-psa-iak-pub.json
 ```
-created "comid-psa-iakpub.cbor" from "data/templates/comid-psa-iakpub.json"
+
+* Create CoMID for Reference Values using given JSON template
+
+Please inspect template JSON file `data/templates/comid-psa-refval.json`and modify anything as per your requirement
+
+created "comid-psa-iak-pub.cbor" from "data/templates/comid-psa-iak-pub.json"
 
 ```shell
 cocli comid create --template=data/templates/comid-psa-refval.json
