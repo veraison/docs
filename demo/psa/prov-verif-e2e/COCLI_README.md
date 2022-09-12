@@ -42,8 +42,6 @@ cocli comid create --template=data/templates/comid-psa-iak-pub.json
 
 Please inspect template JSON file `data/templates/comid-psa-refval.json`and modify anything as per your requirement
 
-created "comid-psa-iak-pub.cbor" from "data/templates/comid-psa-iak-pub.json"
-
 ```shell
 cocli comid create --template=data/templates/comid-psa-refval.json
 ```
