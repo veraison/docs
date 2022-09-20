@@ -1,12 +1,14 @@
 {
-  "status": "unknown",
+  "status": "none",
   "trust-vector": {
-    "hw-authenticity": "success",
-    "sw-integrity": "unknown",
-    "sw-up-to-dateness": "success",
-    "config-integrity": "unknown",
-    "runtime-integrity": "failure",
-    "certification-status": "unknown"
+    "instance-identity": 32,
+    "configuration": 32,
+    "executables": 96,
+    "file-system": 0,
+    "hardware": 2,
+    "runtime-opaque": 0,
+    "storage-opaque": 0,
+    "sourced-data": 0
   },
   "raw-evidence": "NzQ3MjY5NzM2NTYzNzQK",
   "timestamp": "2631-01-22T20:18:18Z",

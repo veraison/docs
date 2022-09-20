@@ -1,7 +1,8 @@
 ; $ar-status
-ar.status-failure = "failure"
-ar.status-success = "success"
-ar.status-unknown = "unknown"
+ar.trust-tier-none = "none"
+ar.trust-tier-affirming = "affirming"
+ar.trust-tier-warning = "warning"
+ar.trust-tier-contraindicated = "contraindicated"
 
 ; attestation-results
 ar.status = "status"
@@ -12,12 +13,14 @@ ar.endorsed-claims = "endorsed-claims"
 ar.appraisal-policy-id = "appraisal-policy-id"
 
 ; ar-trust-vector
-ar.hw-authenticity = "hw-authenticity"
-ar.sw-integrity = "sw-integrity"
-ar.sw-up-to-dateness = "sw-up-to-dateness"
-ar.config-integrity = "config-integrity"
-ar.runtime-integrity = "runtime-integrity"
-ar.certification-status = "certification-status"
+ar.instance-identity = "instance-identity"
+ar.configuration = "configuration"
+ar.executables = "executables"
+ar.file-system = "file-system"
+ar.hardware = "hardware"
+ar.runtime-opaque = "runtime-opaque"
+ar.storage-opaque = "storage-opaque"
+ar.sourced-data = "sourced-data"
 
 ; ar-endorsed-claims
 ar.hw-details = "hw-details"

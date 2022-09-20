@@ -6,4 +6,12 @@ ar-veraison-processed-evidence = {
   + ar-label => any
 }
 
+$$attestation-results-extension //= (
+  ar.veraison.verifier-added-claims => ar-veraison-verifier-added-claims
+)
+
+ar-veraison-verifier-added-claims = {
+  + ar-label => any
+}
+
 ; vim: set tw=70 ts=2 et:

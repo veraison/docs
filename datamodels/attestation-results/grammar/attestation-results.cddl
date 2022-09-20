@@ -1,11 +1,14 @@
 start = attestation-results
 
-$ar-status /= ar.status-failure
-$ar-status /= ar.status-success
-$ar-status /= ar.status-unknown
+$ar-trust-tier /= ar.trust-tier-none
+$ar-trust-tier /= ar.trust-tier-affirming
+$ar-trust-tier /= ar.trust-tier-warning
+$ar-trust-tier /= ar.trust-tier-contraindicated
+
+$ar-status = -128..127
 
 attestation-results = {
-  ar.status => $ar-status
+  ar.status => $ar-trust-tier
   ? ar.trust-vector => ar-trust-vector
   ? ar.raw-evidence => ar-bytes
   ar.timestamp => ar-timestamp
@@ -15,12 +18,14 @@ attestation-results = {
 }
 
 ar-trust-vector = {
-  ar.hw-authenticity => $ar-status
-  ar.sw-integrity => $ar-status
-  ar.sw-up-to-dateness => $ar-status
-  ar.config-integrity => $ar-status
-  ar.runtime-integrity => $ar-status
-  ar.certification-status => $ar-status
+  ar.instance-identity => $ar-status
+  ar.configuration => $ar-status
+  ar.executables => $ar-status
+  ar.file-system => $ar-status
+  ar.hardware => $ar-status
+  ar.runtime-opaque => $ar-status
+  ar.storage-opaque => $ar-status
+  ar.sourced-data => $ar-status
   * $$ar-trust-vector-extension
 }
 

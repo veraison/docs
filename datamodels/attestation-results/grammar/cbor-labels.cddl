@@ -1,7 +1,8 @@
 ; $ar-status
-ar.status-failure = 0
-ar.status-success = 1
-ar.status-unknown = 2
+ar.trust-tier-none = 0
+ar.trust-tier-affirming = 2
+ar.trust-tier-warning = 32
+ar.trust-tier-contraindicated = 96
 
 ; attestation-results
 ar.status = 0
@@ -12,12 +13,14 @@ ar.endorsed-claims = 4
 ar.appraisal-policy-id = 5
 
 ; ar-trust-vector
-ar.hw-authenticity = 0
-ar.sw-integrity = 1
-ar.sw-up-to-dateness = 2
-ar.config-integrity = 3
-ar.runtime-integrity = 4
-ar.certification-status = 5
+ar.instance-identity = 0
+ar.configuration = 1
+ar.executables = 2
+ar.file-system = 3
+ar.hardware = 4
+ar.runtime-opaque = 5
+ar.storage-opaque = 6
+ar.sourced-data = 7
 
 ; ar-endorsed-claims
 ar.hw-details = 0
