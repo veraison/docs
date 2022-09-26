@@ -12,7 +12,6 @@ attestation-results = {
   ? ar.trust-vector => ar-trust-vector
   ? ar.raw-evidence => ar-bytes
   ar.timestamp => ar-timestamp
-  ? ar.endorsed-claims => ar-endorsed-claims
   ar.appraisal-policy-id => text
   * $$attestation-results-extension
 }
@@ -27,30 +26,6 @@ ar-trust-vector = {
   ar.storage-opaque => $ar-status
   ar.sourced-data => $ar-status
   * $$ar-trust-vector-extension
-}
-
-ar-endorsed-claims = non-empty<{
-  ? ar.hw-details => ar-hw-details
-  ? ar.sw-details => ar-sw-details
-  ? ar.certification-details => ar-certification-details
-  ? ar.config-details => ar-config-details
-  * $$ar-endorsed-claims-extension
-}>
-
-ar-hw-details = {
-  + ar-label => any
-}
-
-ar-sw-details = {
-  + ar-label => any
-}
-
-ar-config-details = {
-  + ar-label => any
-}
-
-ar-certification-details = {
-  + ar-label => any
 }
 
 ; vim: set tw=70 ts=2 et:

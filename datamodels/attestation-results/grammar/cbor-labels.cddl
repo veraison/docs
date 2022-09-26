@@ -9,8 +9,7 @@ ar.status = 0
 ar.trust-vector = 1
 ar.raw-evidence = 2
 ar.timestamp = 3
-ar.endorsed-claims = 4
-ar.appraisal-policy-id = 5
+ar.appraisal-policy-id = 4
 
 ; ar-trust-vector
 ar.instance-identity = 0
@@ -21,12 +20,6 @@ ar.hardware = 4
 ar.runtime-opaque = 5
 ar.storage-opaque = 6
 ar.sourced-data = 7
-
-; ar-endorsed-claims
-ar.hw-details = 0
-ar.sw-details = 1
-ar.certification-details = 2
-ar.config-details = 3
 
 ; types
 ar-timestamp = tdate
