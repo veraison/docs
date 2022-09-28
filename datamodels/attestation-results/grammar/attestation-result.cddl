@@ -1,4 +1,4 @@
-start = attestation-results
+start = attestation-result
 
 $ar-trust-tier /= ar.trust-tier-none
 $ar-trust-tier /= ar.trust-tier-affirming
@@ -7,12 +7,12 @@ $ar-trust-tier /= ar.trust-tier-contraindicated
 
 $ar-status = -128..127
 
-attestation-results = {
+attestation-result = {
   ar.status => $ar-trust-tier
   ? ar.trust-vector => ar-trust-vector
   ? ar.raw-evidence => ar-bytes
   ar.timestamp => ar-timestamp
-  ar.appraisal-policy-id => text
+  ? ar.appraisal-policy-id => text
   * $$attestation-results-extension
 }
 
