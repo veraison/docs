@@ -38,7 +38,7 @@ CLEANFILES += $(3:.diag=.cbor)
 
 endef # cddl_check_template
 
-JSON_FRAGS := attestation-results.cddl
+JSON_FRAGS := attestation-result.cddl
 JSON_FRAGS += json-labels.cddl
 JSON_FRAGS += generic-non-empty.cddl
 
@@ -46,7 +46,7 @@ JSON_EXAMPLES := $(wildcard examples/json-*.diag)
 
 $(eval $(call cddl_check_template,json,$(JSON_FRAGS),$(JSON_EXAMPLES)))
 
-CBOR_FRAGS := attestation-results.cddl
+CBOR_FRAGS := attestation-result.cddl
 CBOR_FRAGS += cbor-labels.cddl
 CBOR_FRAGS += generic-non-empty.cddl
 
@@ -54,7 +54,7 @@ CBOR_EXAMPLES := $(wildcard examples/cbor-*.diag)
 
 $(eval $(call cddl_check_template,cbor,$(CBOR_FRAGS),$(CBOR_EXAMPLES)))
 
-VERAISON_CBOR_FRAGS := attestation-results.cddl
+VERAISON_CBOR_FRAGS := attestation-result.cddl
 VERAISON_CBOR_FRAGS += cbor-labels.cddl
 VERAISON_CBOR_FRAGS += generic-non-empty.cddl
 VERAISON_CBOR_FRAGS += veraison.cddl
@@ -64,7 +64,7 @@ VERAISON_CBOR_EXAMPLES := $(wildcard examples/veraison-cbor-*.diag)
 
 $(eval $(call cddl_check_template,veraison-cbor,$(VERAISON_CBOR_FRAGS),$(VERAISON_CBOR_EXAMPLES)))
 
-VERAISON_JSON_FRAGS := attestation-results.cddl
+VERAISON_JSON_FRAGS := attestation-result.cddl
 VERAISON_JSON_FRAGS += json-labels.cddl
 VERAISON_JSON_FRAGS += generic-non-empty.cddl
 VERAISON_JSON_FRAGS += veraison.cddl
