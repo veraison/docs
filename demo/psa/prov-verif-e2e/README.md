@@ -54,19 +54,19 @@ make -C ${TOPDIR}/services
 Start the REST API frontend:
 
 ```shell
-( cd ${TOPDIR}/services/provisioning/cmd && ./provisioning-service )
+( cd ${TOPDIR}/services/provisioning/cmd/provisioning-service && ./provisioning-service )
 ```
 
 In another shell create the KV stores:
 
 ```shell
-( cd ${TOPDIR}/services/vts/cmd && ../test-harness/init-kvstores.sh )
+( cd ${TOPDIR}/services/vts/cmd/vts-service && ../test-harness/init-kvstores.sh )
 ````
 
 Then start the VTS service:
 
 ```shell
-( cd ${TOPDIR}/services/vts/cmd && ./vts-service )
+( cd ${TOPDIR}/services/vts/cmd/vts-service && ./vts-service )
 ```
 VTS Service starts all the supported plugins (scheme-psa-iot, scheme-tcg-dice, scheme-tpm-enacttrust for now)
 
@@ -82,7 +82,19 @@ Move to the docs/demo/psa/prov-verif-e2e directory:
 cd ${TOPDIR}/docs/demo/psa/prov-verif-e2e
 ```
 
-Ship the single CORIM that contains PSA reference values and trust anchor from data/cbor folder using following command
+Create a single CORIM that contains PSA reference values
+
+```shell
+mkdir -p data/cbor
+pushd data/cbor
+cocli comid create --template=../templates/comid-psa-iak-pub.json
+cocli comid create --template=../templates/comid-psa-refval.json
+cocli corim create --template=../templates/corim-full.json --comid=comid-psa-iak-pub.cbor --comid=comid-psa-refval.cbor
+popd
+```
+
+Ship the single CORIM that contains PSA reference values and trust anchor from data/cbor folder using following commands
+
 
 ```shell
 cocli corim submit --corim-file=data/cbor/corim-full.cbor --api-server="http://localhost:8888/endorsement-provisioning/v1/submit" --media-type="application/corim-unsigned+cbor; profile=http://arm.com/psa/iot/1"
@@ -99,18 +111,18 @@ If so, you can inspect the KV stores to check what has been generated:
 * Verification keys:
 
 ```shell
-sqlite3 ${TOPDIR}/services/vts/cmd/ta-store.sql 'select distinct vals from kvstore' | jq .
+sqlite3 ${TOPDIR}/services/vts/cmd/vts-service/ta-store.sql 'select distinct vals from kvstore' | jq .
 ```
 
 * Reference values:
 
 ```shell
-sqlite3 ${TOPDIR}/services/vts/cmd/en-store.sql 'select distinct vals from kvstore' | jq .
+sqlite3 ${TOPDIR}/services/vts/cmd/vts-service/en-store.sql 'select distinct vals from kvstore' | jq .
 ```
 
 ### Cleanup
 
-Use Ctrl-C to stop the REST provisioning frontend in shells 1 (as one 
+Use Ctrl-C to stop the REST provisioning frontend in shells 1 (as one
 would not need provisioning service once the Reference Values and
 Endorsements are now provisioned into Verification service)
 
@@ -119,7 +131,7 @@ Endorsements are now provisioned into Verification service)
 If not already done, ensure the verification service is running:
 
 ```shell
-( cd ${TOPDIR}/services/verification/cmd && ./verification-service )
+( cd ${TOPDIR}/services/verification/cmd/verification-service && ./verification-service )
 ```
 ### Exchanging evidence with the Verifier
 
@@ -162,6 +174,6 @@ evcli psa verify-as attester --api-server=http://localhost:8080/challenge-respon
 
 * Log checking
 
-1. On VTS plugin window(where VTS is running) one should see the debug print: `plugin.scheme-psa-iot:  Token Signature Verified` & `matchSoftware Success` 
+1. On VTS plugin window(where VTS is running) one should see the debug print: `plugin.scheme-psa-iot:  Token Signature Verified` & `matchSoftware Success`
 
 2. On Verification window one should see Appraisal Context indicating Success
