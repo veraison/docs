@@ -17,19 +17,75 @@ end to end PSA Demonstration.
 
 ## Creation of PSA Endorsements
 
-* The Supply Chain Endorsements used in provisioning pipeline setup below are created using the instructions given [here](./COCLI_README.md) Use these instructions if one wants to create their own Endorsements or modify existing ones.
+First create new Concise Module Identifiers (CoMID's) and use them in creating Concise Reference Integrity Manifests (CoRIM's) using reference templates located under `docs/demo/psa/prov-verif-e2e/data/templates` to provision them in Veraison Verification Service.
 
-## Provisioning pipeline setup
+More details about CoRIM and CoMID can be found [here](datatracker.ietf.org/doc/draft-ietf-rats-corim/)
+
+### Initial Setup
+
+Do this ONLY if it is not done already:
+
+In a new bourne shell session
+
+```shell
+export TOPDIR=$(pwd)
+```
 
 * Install `cocli` tool using following command
-
-In a new shell session
 
 ```shell
 go install github.com/veraison/corim/cocli@demo-psa-1.0.0
 ```
 
-To run provisioning test you need three parallel shell sessions.
+```shell
+git clone https://github.com/veraison/docs
+```
+
+* Remember this shell as shell-1. 
+
+### Create CoMID's
+
+```shell
+cd ${TOPDIR}/docs/demo/psa/prov-verif-e2e
+```
+
+* Create CoMID for Trust Anchors using given JSON template
+
+Please inspect template JSON file `data/templates/comid-psa-iak-pub.json` and modify anything as per your requirement
+
+```shell
+cocli comid create --template=data/templates/comid-psa-iak-pub.json
+```
+
+* Create CoMID for Reference Values using given JSON template
+
+Please inspect template JSON file `data/templates/comid-psa-refval.json`and modify anything as per your requirement
+
+```shell
+cocli comid create --template=data/templates/comid-psa-refval.json
+```
+created "comid-psa-refval.cbor" from "data/templates/comid-psa-refval.json"
+
+### Create CoRIM
+
+* Create a single CoRIM from Trust Anchor and Reference Value CoMID and using given JSON template CoRIM Wrapper
+
+```shell
+cocli corim create --template=data/templates/corim-full.json --comid=comid-psa-iak-pub.cbor --comid=comid-psa-refval.cbor
+```
+created "corim-full.cbor" from "data/templates/corim-full.json"
+
+### Using newly generated CoRIM's
+Move the generated CORIM above to data/cbor directory
+ 
+```shell
+mv corim-full.cbor  data/cbor/
+```
+* Please retain this shell, as shell-1 as you would need to come back here at the time of provisioning the endorsements.
+
+## Provisioning pipeline setup
+
+To run provisioning test you need two parallel shell sessions.
 
 In each shell, move to the directory location where you are going to clone the GIT repo and do:
 
@@ -70,27 +126,12 @@ Then start the VTS service:
 ```
 VTS Service starts all the supported plugins (scheme-psa-iot, scheme-tcg-dice, scheme-tpm-enacttrust for now)
 
-In the third shell
+Go back to shell-1, used for Creation of PSA Endorsements
 
-```shell
-git clone https://github.com/veraison/docs
-```
-
-Move to the docs/demo/psa/prov-verif-e2e directory:
+Ensure that you are under docs/demo/psa/prov-verif-e2e directory, otherwise, execute the command:
 
 ```shell
 cd ${TOPDIR}/docs/demo/psa/prov-verif-e2e
-```
-
-Create a single CORIM that contains PSA reference values
-
-```shell
-mkdir -p data/cbor
-pushd data/cbor
-cocli comid create --template=../templates/comid-psa-iak-pub.json
-cocli comid create --template=../templates/comid-psa-refval.json
-cocli corim create --template=../templates/corim-full.json --comid=comid-psa-iak-pub.cbor --comid=comid-psa-refval.cbor
-popd
 ```
 
 Ship the single CORIM that contains PSA reference values and trust anchor from data/cbor folder using following commands
