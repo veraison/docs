@@ -57,6 +57,8 @@ Please inspect template JSON file `data/templates/comid-psa-iak-pub.json` and mo
 cocli comid create --template=data/templates/comid-psa-iak-pub.json
 ```
 
+One should see, created "comid-psa-iak-pub.cbor" from "data/templates/comid-psa-iak-pub.json"
+
 * Create CoMID for Reference Values using given JSON template
 
 Please inspect template JSON file `data/templates/comid-psa-refval.json`and modify anything as per your requirement
@@ -64,7 +66,7 @@ Please inspect template JSON file `data/templates/comid-psa-refval.json`and modi
 ```shell
 cocli comid create --template=data/templates/comid-psa-refval.json
 ```
-created "comid-psa-refval.cbor" from "data/templates/comid-psa-refval.json"
+One should see, created "comid-psa-refval.cbor" from "data/templates/comid-psa-refval.json"
 
 ### Create CoRIM
 
@@ -128,7 +130,7 @@ VTS Service starts all the supported plugins (scheme-psa-iot, scheme-tcg-dice, s
 
 Go back to shell-1, used for Creation of PSA Endorsements
 
-Ensure that you are under docs/demo/psa/prov-verif-e2e directory, otherwise, execute the command:
+Ensure that you are under docs/demo/psa/prov-verif-e2e directory:
 
 ```shell
 cd ${TOPDIR}/docs/demo/psa/prov-verif-e2e
