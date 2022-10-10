@@ -118,7 +118,7 @@ Start the REST API frontend:
 In another shell create the KV stores:
 
 ```shell
-( cd ${TOPDIR}/services/vts/cmd/vts-service && ../test-harness/init-kvstores.sh )
+( cd ${TOPDIR}/services/vts/cmd/vts-service && ../../test-harness/init-kvstores.sh )
 ````
 
 Then start the VTS service:
