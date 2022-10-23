@@ -15,7 +15,7 @@ EAR = {
   ? ear.raw-evidence => ear-bytes
   iat => numeric-date
   ? ear.appraisal-policy-id => text
-  * $$attestation-results-extension
+  * $$ear-extension
 }
 
 ar4si-trustworthiness-vector = non-empty<{
