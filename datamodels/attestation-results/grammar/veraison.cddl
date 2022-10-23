@@ -3,7 +3,7 @@ $$attestation-results-extension //= (
 )
 
 ar-veraison-processed-evidence = {
-  + ar-label => any
+  + ear-label => any
 }
 
 $$attestation-results-extension //= (
@@ -11,7 +11,7 @@ $$attestation-results-extension //= (
 )
 
 ar-veraison-verifier-added-claims = {
-  + ar-label => any
+  + ear-label => any
 }
 
 ; vim: set tw=70 ts=2 et:

@@ -1,29 +1,30 @@
-; $ar-status
-ar.trust-tier-none = "none"
-ar.trust-tier-affirming = "affirming"
-ar.trust-tier-warning = "warning"
-ar.trust-tier-contraindicated = "contraindicated"
+; $ar4si-trust-tier
+ar4si.trust-tier-none = "none"
+ar4si.trust-tier-affirming = "affirming"
+ar4si.trust-tier-warning = "warning"
+ar4si.trust-tier-contraindicated = "contraindicated"
 
-; attestation-results
-ar.status = "status"
-ar.trust-vector = "trust-vector"
-ar.raw-evidence = "raw-evidence"
-ar.timestamp = "timestamp"
-ar.appraisal-policy-id = "appraisal-policy-id"
+; EAR (EAT Attestation Result)
+ear.status = "ear.status"
+ear.trustworthiness-vector = "ear.trustworthiness-vector"
+ear.raw-evidence = "ear.raw-evidence"
+ear.appraisal-policy-id = "ear.appraisal-policy-id"
+eat_profile = "eat_profile"
+iat = "iat"
 
-; ar-trust-vector
-ar.instance-identity = "instance-identity"
-ar.configuration = "configuration"
-ar.executables = "executables"
-ar.file-system = "file-system"
-ar.hardware = "hardware"
-ar.runtime-opaque = "runtime-opaque"
-ar.storage-opaque = "storage-opaque"
-ar.sourced-data = "sourced-data"
+; ar4si-trustworthiness-vector 
+instance-identity = "instance-identity"
+configuration = "configuration"
+executables = "executables"
+file-system = "file-system"
+hardware = "hardware"
+runtime-opaque = "runtime-opaque"
+storage-opaque = "storage-opaque"
+sourced-data = "sourced-data"
 
 ; types
-ar-timestamp = text
-ar-bytes = text .regexp "[A-Za-z0-9_=-]+"
-ar-label = text
+numeric-date = ~time
+ear-bytes = text .regexp "[A-Za-z0-9_=-]+"
+ear-label = text
 
 ; vim: set tw=70 ts=2 et:

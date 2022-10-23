@@ -1,29 +1,30 @@
-; $ar-status
-ar.trust-tier-none = 0
-ar.trust-tier-affirming = 2
-ar.trust-tier-warning = 32
-ar.trust-tier-contraindicated = 96
+; $ar4si-trust-tier
+ar4si.trust-tier-none = 0
+ar4si.trust-tier-affirming = 2
+ar4si.trust-tier-warning = 32
+ar4si.trust-tier-contraindicated = 96
 
-; attestation-results
-ar.status = 0
-ar.trust-vector = 1
-ar.raw-evidence = 2
-ar.timestamp = 3
-ar.appraisal-policy-id = 4
+; EAR (EAT Attestation Result)
+ear.status = 1000
+ear.trustworthiness-vector = 1001
+ear.raw-evidence = 1002
+ear.appraisal-policy-id = 1003
+eat_profile = 265
+iat = 6
 
-; ar-trust-vector
-ar.instance-identity = 0
-ar.configuration = 1
-ar.executables = 2
-ar.file-system = 3
-ar.hardware = 4
-ar.runtime-opaque = 5
-ar.storage-opaque = 6
-ar.sourced-data = 7
+; ar4si-trustworthiness-vector
+instance-identity = 0
+configuration = 1
+executables = 2
+file-system = 3
+hardware = 4
+runtime-opaque = 5
+storage-opaque = 6
+sourced-data = 7
 
 ; types
-ar-timestamp = tdate
-ar-bytes = bytes
-ar-label = int / text
+numeric-date = ~time
+ear-bytes = bytes
+ear-label = int / text
 
 ; vim: set tw=70 ts=2 et:
