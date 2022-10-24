@@ -1,4 +1,4 @@
-ar.veraison.processed-evidence = 100
-ar.veraison.verifier-added-claims = 101
+ear.veraison.processed-evidence = 64000
+ear.veraison.verifier-added-claims = 64001
 
 ; vim: set tw=70 ts=2 et:

@@ -1,31 +1,32 @@
-start = attestation-result
+start = EAR
 
-$ar-trust-tier /= ar.trust-tier-none
-$ar-trust-tier /= ar.trust-tier-affirming
-$ar-trust-tier /= ar.trust-tier-warning
-$ar-trust-tier /= ar.trust-tier-contraindicated
+$ar4si-trust-tier /= ar4si.trust-tier-none
+$ar4si-trust-tier /= ar4si.trust-tier-affirming
+$ar4si-trust-tier /= ar4si.trust-tier-warning
+$ar4si-trust-tier /= ar4si.trust-tier-contraindicated
 
-$ar-status = -128..127
+$ar4si-trustworthiness-claim = -128..127
 
-attestation-result = {
-  ar.status => $ar-trust-tier
-  ? ar.trust-vector => ar-trust-vector
-  ? ar.raw-evidence => ar-bytes
-  ar.timestamp => ar-timestamp
-  ? ar.appraisal-policy-id => text
-  * $$attestation-results-extension
+; EAT Attestation Result
+EAR = {
+  ear.status => $ar4si-trust-tier
+  eat_profile => "tag:github.com/veraison/ar4si,2022-10-17"
+  ? ear.trustworthiness-vector => ar4si-trustworthiness-vector
+  ? ear.raw-evidence => ear-bytes
+  iat => numeric-date
+  ? ear.appraisal-policy-id => text
+  * $$ear-extension
 }
 
-ar-trust-vector = {
-  ar.instance-identity => $ar-status
-  ar.configuration => $ar-status
-  ar.executables => $ar-status
-  ar.file-system => $ar-status
-  ar.hardware => $ar-status
-  ar.runtime-opaque => $ar-status
-  ar.storage-opaque => $ar-status
-  ar.sourced-data => $ar-status
-  * $$ar-trust-vector-extension
-}
+ar4si-trustworthiness-vector = non-empty<{
+  ? instance-identity => $ar4si-trustworthiness-claim
+  ? configuration => $ar4si-trustworthiness-claim
+  ? executables => $ar4si-trustworthiness-claim
+  ? file-system => $ar4si-trustworthiness-claim
+  ? hardware => $ar4si-trustworthiness-claim
+  ? runtime-opaque => $ar4si-trustworthiness-claim
+  ? storage-opaque => $ar4si-trustworthiness-claim
+  ? sourced-data => $ar4si-trustworthiness-claim
+}>
 
 ; vim: set tw=70 ts=2 et:

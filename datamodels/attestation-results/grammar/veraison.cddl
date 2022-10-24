@@ -1,17 +1,17 @@
-$$attestation-results-extension //= (
-  ar.veraison.processed-evidence => ar-veraison-processed-evidence
+$$ear-extension //= (
+  ear.veraison.processed-evidence => ear-veraison-processed-evidence
 )
 
-ar-veraison-processed-evidence = {
-  + ar-label => any
+ear-veraison-processed-evidence = {
+  + ear-label => any
 }
 
-$$attestation-results-extension //= (
-  ar.veraison.verifier-added-claims => ar-veraison-verifier-added-claims
+$$ear-extension //= (
+  ear.veraison.verifier-added-claims => ear-veraison-verifier-added-claims
 )
 
-ar-veraison-verifier-added-claims = {
-  + ar-label => any
+ear-veraison-verifier-added-claims = {
+  + ear-label => any
 }
 
 ; vim: set tw=70 ts=2 et:
