@@ -1,4 +1,4 @@
-ear.veraison.processed-evidence = "veraison.processed-evidence"
-ear.veraison.verifier-added-claims = "veraison.verifier-added-claims"
+ear.veraison.processed-evidence = "ear.veraison.processed-evidence"
+ear.veraison.verifier-added-claims = "ear.veraison.verifier-added-claims"
 
 ; vim: set tw=70 ts=2 et:
