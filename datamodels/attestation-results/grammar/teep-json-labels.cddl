@@ -1,0 +1,38 @@
+ear.teep.claims = "ear.teep.claims"
+
+eat.nonce = "nonce"
+eat.ueid = "ueid"
+eat.oemid = "oemid"
+eat.hardware-model = "hwmodel"
+eat.hardware-version = "hwversion"
+eat.manifests = "manifests"
+
+eat.nonce-type = tstr .size (10..74)
+
+eat.ueid-type = base64-url-text ; cddl(1)-unsupported: .size (12..44)
+
+eat.oemid-type = oemid-pen / oemid-ieee / oemid-random
+
+eat.hardware-model-type = base64-url-text ; cddl(1)-unsupported: .size (4..44)
+
+eat.hardware-version-type = [
+  version:  tstr,
+  ? scheme:  $version-scheme
+]
+
+eat.manifests-type = [ + manifest-format ]
+
+manifest-format = [
+  content-type:   coap-content-format,
+  content-format: base64-url-text / text
+]
+
+coap-content-format = uint .le 65535
+
+oemid-pen = int
+oemid-ieee = base64-url-text ; cddl(1)-unsupported: .size 4
+oemid-random = base64-url-text ; cddl(1)-unsupported: .size 24
+
+base64-url-text = tstr .regexp "[A-Za-z0-9_=-]+"
+
+; vim: set tw=70 ts=2 et:

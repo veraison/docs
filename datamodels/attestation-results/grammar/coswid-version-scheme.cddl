@@ -1,0 +1,12 @@
+$version-scheme /= multipartnumeric
+$version-scheme /= multipartnumeric-suffix
+$version-scheme /= alphanumeric
+$version-scheme /= decimal
+$version-scheme /= semver
+$version-scheme /= int / text
+multipartnumeric = 1
+multipartnumeric-suffix = 2
+alphanumeric = 3
+decimal = 4
+semver = 16384
+
