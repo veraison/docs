@@ -19,7 +19,7 @@ end to end PSA Demonstration.
 
 First create new Concise Module Identifiers (CoMID's) and use them in creating Concise Reference Integrity Manifests (CoRIM's) using reference templates located under `docs/demo/psa/prov-verif-e2e/data/templates` to provision them in Veraison Verification Service.
 
-More details about CoRIM and CoMID can be found [here](datatracker.ietf.org/doc/draft-ietf-rats-corim/)
+More details about CoRIM and CoMID can be found [here](https://datatracker.ietf.org/doc/draft-ietf-rats-corim/)
 
 ### Initial Setup
 
