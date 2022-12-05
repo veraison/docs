@@ -5,6 +5,7 @@ end to end PSA Demonstration.
 
 ## Preconditions
 
+### Install on UBuntu 
 * One need to install `GO`, `jq`,`sqilte3`,`tmux` and `curl`.
 
 Installing Go, use the below mentioned path to install go in your system.
@@ -58,7 +59,19 @@ To check if this works
 4. mockgen version v1.6.0
 `go install github.com/golang/mock/mockgen@v1.6.0`
 
+### Other systems
+
+* One need to install jq and curl.
+
+
+* For build to succeed one needs to install following packages:
+1. protoc-gen-go with version v1.26
+2. protoc-gen-go-grpc version v1.1
+3. protoc-gen-go-json version v1.1.0
+4. mockgen version v1.6.0
+
 * Commands below assume execution in a Bourne-compatible shell. Please adjust appropriately in case any other shell is used.
+
 
 ## Creation of PSA Endorsements
 
