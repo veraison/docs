@@ -5,13 +5,58 @@ end to end PSA Demonstration.
 
 ## Preconditions
 
-* One need to install `jq` and `curl`.
+* One need to install `GO`, `jq`,`sqilte3`,`tmux` and `curl`.
+
+Installing Go, use the below mentioned path to install go in your system.
+
+`https://go.dev/doc/install`
+
+installing jq.
+```sh
+sudo apt update||sudo apt install jq||jq --version
+```
+
+Installing sqlite3.
+```sh
+sudo apt update
+sudo apt install sqlite3 
+sqlite3 --version
+```
+You will get an output like this:
+`3.31.1 2020-01-27 19:55:54 3bfa9cc97da10598521b342961df8f5f68c7388fa117345eeb516eaa837balt1`
+
+Installing Curl.
+```sh
+sudo apt-get install autoconf automake libtool curl make g++ unzip
+```
+
+Installing tmux.
+```sh
+sudo pacman -S tmux --noconfirm
+sudo apt-get install tmux
+```
+
 
 * For build to succeed one needs to install following packages:
 1. protoc-gen-go with version v1.26
+From  `https://github.com/protocolbuffers/protobuf/releases` download the `protobuf-all-[VERSION].tar.gz`.
+Extract the contents and change in the directory
+
+```sh
+./configure
+make
+make check
+sudo make install
+```
+To check if this works
+`protoc --version`
+
 2. protoc-gen-go-grpc version v1.1
+`go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1`
 3. protoc-gen-go-json version v1.1.0
+`go install github.com/mitchellh/protoc-gen-go-json@v1.1.0`
 4. mockgen version v1.6.0
+`go install github.com/golang/mock/mockgen@v1.6.0`
 
 * Commands below assume execution in a Bourne-compatible shell. Please adjust appropriately in case any other shell is used.
 
