@@ -14,7 +14,7 @@ Installing Go, use the below mentioned path to install go in your system.
 
 installing jq.
 ```sh
-sudo apt update||sudo apt install jq||jq --version
+sudo apt update && sudo apt install jq && jq --version
 ```
 
 Installing sqlite3.
@@ -28,12 +28,11 @@ You will get an output like this:
 
 Installing Curl.
 ```sh
-sudo apt-get install autoconf automake libtool curl make g++ unzip
+sudo apt install curl
 ```
 
 Installing tmux.
 ```sh
-sudo pacman -S tmux --noconfirm
 sudo apt-get install tmux
 ```
 
