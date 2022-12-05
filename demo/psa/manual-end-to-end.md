@@ -5,19 +5,19 @@ end to end PSA Demonstration.
 
 ## Preconditions
 
-### Install on UBuntu 
-* One need to install `GO`, `jq`,`sqilte3`,`tmux` and `curl`.
+### Install on Ubuntu 
+* One needs to install `Go`, `jq`,`sqlite3`,`tmux` and `curl`.
 
-Installing Go, use the below mentioned path to install go in your system.
+Use the below mentioned path to install go in your system:
 
 `https://go.dev/doc/install`
 
-installing jq.
+Installing jq:
 ```sh
 sudo apt update && sudo apt install jq && jq --version
 ```
 
-Installing sqlite3.
+Installing sqlite3:
 ```sh
 sudo apt update
 sudo apt install sqlite3 
@@ -26,12 +26,12 @@ sqlite3 --version
 You will get an output like this:
 `3.31.1 2020-01-27 19:55:54 3bfa9cc97da10598521b342961df8f5f68c7388fa117345eeb516eaa837balt1`
 
-Installing Curl.
+Installing curl:
 ```sh
 sudo apt install curl
 ```
 
-Installing tmux.
+Installing tmux:
 ```sh
 sudo apt-get install tmux
 ```
