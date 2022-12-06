@@ -64,7 +64,7 @@ docker exec docker-verification-1 bash -c 'evcli psa verify-as relying-party --a
 
 - Verifying as an Attester
 ```shell
-docker exec docker-verification-1 bash -c 'evcli psa verify-as attester --api-server=http://localhost:8080/challenge-response/v1/newSession --claims="${INPUT_FILE_DIR}"/psa-claims-profile-2-without-nonce.json --key="${INPUT_FILE_DIR}"/ec-p256.jwk --nonce-size=32'
+docker exec docker-verification-1 bash -c 'evcli psa verify-as attester --api-server=http://localhost:8080/challenge-response/v1/newSession --claims="${INPUT_FILE_DIR}"/psa-claims-profile-2-integ-without-nonce.json --key="${INPUT_FILE_DIR}"/ec-p256.jwk --nonce-size=32'
 ```
 
 On verification success, should see 204 and 201 success statuses and the `docker-vts-1` container should log the attestation result with `status:Affirming` to conclude that the result is successful.
