@@ -9,7 +9,8 @@ Please ensure:
 
 ## Setup and running of docker containers
 
-Running the below sequence of commands will allow you to setup all 3 services configured using the environment variables defined in `default.env` file in `veraison/services/deployment/docker`.
+Running the below sequence of commands will allow you to setup all 3 services configured using the environment variables defined in `demo.env` file in `veraison/services/deployment/docker`. `demo.env` is used to configure the demo envorinment appropriately.
+
 
 1. Change directory to the docker deployment directory inside the services repository
 ```shell
@@ -18,12 +19,12 @@ cd services/deployments/docker
 
 2. Build the images for the 3 containers
 ```bash
-docker compose --env-file=default.env build
+docker compose --env-file=demo.env build
 ```
 
 3. Spin up all 3 containers using the images built in the previous step
 ```bash
-docker compose --env-file=default.env up
+docker compose --env-file=demo.env up
 ```
 
 At this stage you should have all 3 services up and running, shown by the docker output in your terminal.
