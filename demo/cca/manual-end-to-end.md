@@ -259,7 +259,7 @@ cd ${TOPDIR}/docs/demo/cca/prov-verif-e2e
 1. First create Evidence using supplied templates
 
 ```shell
-evcli cca create --claims=data/templates/cca-claims.json --pak=data/keys/ec256.json --rak=data/keys/ec384.json --token=cca-evidence.cbor
+evcli cca create --claims=data/templates/cca-claims.json --pak=data/keys/ec256.jwk --rak=data/keys/ec384.jwk --token=cca-evidence.cbor
 ```
 ` >> "cca-evidence.cbor" successfully created `
 
