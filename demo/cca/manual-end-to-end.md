@@ -1,16 +1,16 @@
 # CCA Demonstration Steps
 
-This document explains all the steps one need to follow to successfully run
+This document explains all the steps one needs to follow to successfully run
 end to end CCA Platform Verification Demonstration.
 
 ## Preconditions
 
+> **Note**: The below commands assume an Ubuntu system, you may need to adjust the package managers and/or package names to match your Operating System.
+
 ### Install on Ubuntu 
-* One needs to install `Go`, `jq`,`sqlite3`,`tmux` and `curl`.
+* One needs to install `go`, `jq`,`sqlite3`,`tmux` and `curl`.
 
-Use the below mentioned path to install go in your system:
-
-`https://go.dev/doc/install`
+Follow the instructions given [here](https://go.dev/doc/install) to install `go` in your system
 
 Installing jq:
 ```sh
@@ -36,11 +36,12 @@ Installing tmux:
 sudo apt-get install tmux
 ```
 
-
 * For build to succeed one needs to install following packages:
+
 1. protoc-gen-go with version v1.26
-From  `https://github.com/protocolbuffers/protobuf/releases` download the `protobuf-all-[VERSION].tar.gz`.
-Extract the contents and change in the directory
+Download `protobuf-all-[VERSION].tar.gz` from [here](https://github.com/protocolbuffers/protobuf/releases).
+
+Extract the contents and change into the directory
 
 ```sh
 ./configure
@@ -62,8 +63,7 @@ To check if this works
 
 * One need to install jq and curl.
 
-
-* For build to succeed one needs to install following packages:
+* For build to succeed, one needs to install following packages:
 1. protoc-gen-go with version v1.26
 2. protoc-gen-go-grpc version v1.1
 3. protoc-gen-go-json version v1.1.0
@@ -74,16 +74,17 @@ To check if this works
 
 ## Creation of CCA Endorsements
 
-First create new Concise Module Identifiers (CoMID's) and use them in creating Concise Reference Integrity Manifests (CoRIM's) using reference templates located under `docs/demo/cca/prov-verif-e2e/data/templates` to provision them in Veraison Verification Service.
+First create new Concise Module Identifiers (CoMID's), then use them to create Concise Reference Integrity Manifests (CoRIM's) using reference templates located under `docs/demo/cca/prov-verif-e2e/data/templates` to provision them in Veraison Verification Service.
 
 More details about CoRIM and CoMID can be found [here](https://datatracker.ietf.org/doc/draft-ietf-rats-corim/)
 
 ### Initial Setup
 
-Do this ONLY if it is not done already:
-PLEASE NOTE: Setup instructions are same between PSA and CCA demonstration.
+Do this **ONLY** if it is not done already:
 
-In a new bourne shell session
+> **Please Note**: Setup instructions are same between PSA and CCA demonstration.
+
+In a new Bourne-compatible shell session
 
 ```shell
 export TOPDIR=$(pwd)
@@ -105,8 +106,6 @@ go install github.com/veraison/ear/arc@demo-cca-1.0.0
 git clone https://github.com/veraison/docs
 ```
 
-* Remember this shell as shell-1. 
-
 ### Create CoMID's
 
 ```shell
@@ -115,11 +114,11 @@ cd ${TOPDIR}/docs/demo/cca/prov-verif-e2e
 
 * Create CoMIDs for CCA Trust Anchors and Reference Values using given JSON template
 
-Please inspect template JSON file `data/templates/comid-cca-ta-endorsements.json`  to provision cca trust anchors (ta) and modify anything as per your requirement
+Please inspect template JSON file `data/templates/comid-cca-ta-endorsements.json`  to provision CCA trust anchors (TA) and modify anything as per your requirement
 
-Please inspect template JSON file `data/templates/comid-cca-mult-refval.json` to provision cca reference values and modify anything as per your requirement
+Please inspect template JSON file `data/templates/comid-cca-mult-refval.json` to provision CCA reference values and modify anything as per your requirement
 
-Using single command one can create two CBOR files for two CoMIDs from above json templates
+Using a single command one can create two CBOR files for two CoMIDs from above json templates
 
 ```shell
 cocli comid create --template=data/templates/comid-cca-ta-endorsements.json \
@@ -127,8 +126,11 @@ cocli comid create --template=data/templates/comid-cca-ta-endorsements.json \
 ```
 
 One should see, on the console
-created "comid-cca-ta-endorsements.cbor" from "data/templates/comid-cca-ta-endorsements.json"
+
+```
+created "comid-cca-ta-endorsements.cbor" from "data/templates comid-cca-ta-endorsements.json"
 created "comid-cca-mult-refval.cbor" from "data/templates/comid-cca-mult-refval.json"
+```
 
 ### Create CoRIM
 
@@ -145,7 +147,7 @@ Move the generated CORIM above to data/cbor directory
 ```shell
 mv corim-cca.cbor  data/cbor/
 ```
-* Please retain this shell, as shell-1 as you would need to come back here at the time of provisioning the endorsements.
+* Please retain this shell, as `shell-1` as you would need to come back here at the time of provisioning the endorsements.
 
 ## Provisioning pipeline setup
 
@@ -177,7 +179,7 @@ Start the REST API frontend:
 ( cd ${TOPDIR}/services/provisioning/cmd/provisioning-service && ./provisioning-service )
 ```
 
-In another shell create the KV stores:
+In another shell, create the KV stores:
 
 ```shell
 ( cd ${TOPDIR}/services/vts/cmd/vts-service && ./../../test-harness/init-kvstores.sh )
@@ -188,11 +190,21 @@ Then start the VTS service:
 ```shell
 ( cd ${TOPDIR}/services/vts/cmd/vts-service && ./vts-service )
 ```
-VTS Service starts all the supported plugins (scheme-psa-iot, scheme-tcg-dice, scheme-tpm-enacttrust, scheme-cca-ssd-platform for now)
+VTS Service starts, loading available plugins. You should see a list of media types registered by the discovered pluings. e.g.
 
-Go back to shell-1, used for Creation of CCA Endorsements
+```
+INFO    loading attestation schemes
+INFO    Registered media types:
+INFO            application/psa-attestation-token
+INFO            application/eat-cwt; profile=http://arm.com/psa/2.0.0
+INFO            application/pem-certificate-chain
+INFO            application/vnd.enacttrust.tpm-evidence
+INFO            application/eat-collection; profile=http://arm.com/CCA-SSD/1.0.0
+```
 
-Ensure that you are under docs/demo/cca/prov-verif-e2e directory:
+Go back to `shell-1`, used for Creation of CCA Endorsements
+
+Ensure that you are under `docs/demo/cca/prov-verif-e2e` directory:
 
 ```shell
 cd ${TOPDIR}/docs/demo/cca/prov-verif-e2e
@@ -205,9 +217,9 @@ Ship the single CORIM that contains CCA reference values and trust anchor from d
 cocli corim submit --corim-file=data/cbor/corim-cca.cbor --api-server="http://localhost:8888/endorsement-provisioning/v1/submit" --media-type="application/corim-unsigned+cbor; profile=http://arm.com/cca/ssd/1"
 ```
 
-The REST frontend should return a success status.
+The REST frontend should return a success (`200` this indicates HTTP OK) status.
 
-The success of post API status can be noticed in console logs of front end (provisioning-service) likewise below...
+The success of post API status can be noticed in console logs of the frontend (provisioning-service) as below...
 
 `[GIN] 2022/09/09 - 17:39:55 | 200 | 49.977785ms | 127.0.0.1 | POST "/endorsement-provisioning/v1/submit"`
 
@@ -227,7 +239,7 @@ sqlite3 ${TOPDIR}/services/vts/cmd/vts-service/en-store.sql 'select distinct val
 
 ### Cleanup
 
-Use Ctrl-C to stop the REST provisioning frontend in shells 1 (as one
+Use `Ctrl-C` to stop the REST provisioning frontend (`shell-1`) (as you
 would not need provisioning service once the Reference Values and
 Endorsements are now provisioned into Verification service)
 
