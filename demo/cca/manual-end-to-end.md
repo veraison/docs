@@ -277,8 +277,9 @@ The above command writes a Entity Attestation Result (ear) as a signed JSON Web 
 
 One can cryptogrpahically verify the `ear.jwt` returned from Veraison and decode the contents using `arc` CLI tool as below:
 
+```shell
 arc verify -a=ES256  -p=data/keys/verif_es256_pub.jwk ear.jwt
-
+```
 
 * Verifying as an Attester
 
