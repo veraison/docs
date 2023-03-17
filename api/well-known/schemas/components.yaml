@@ -1,0 +1,46 @@
+components:
+  schemas:
+    WellKnownInfo:
+      required:
+        - media-types
+        - version
+        - state
+        - api-endpoints
+      properties:
+        public-key:
+          type: string
+          format: json
+          description:
+            Public key used to verify the Attestation Result
+        media-types:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaType'
+          format: array
+          description: >
+            Acceptable types for attestation evidence being submitted
+        version:
+          type: string
+          format: byte
+          description: >
+            Version of the current service running represented using a unique 
+            commit hash. This value can change as new commits are made to the service
+          example: commit-cb11fa0
+        state:
+          type: string
+          description:
+            State of the VTS service
+        api-endpoints:
+          $ref: '#/components/schemas/PublicApiMap'
+          description: >
+            API entrypoints used in the Veraison services
+
+    MediaType:
+      type: string
+      example: 'application/eat-collection; profile=http://arm.com/CCA-SSD/1.0.0'
+
+    PublicApiMap:
+      type: object
+      additionalProperties:
+        type: string
+

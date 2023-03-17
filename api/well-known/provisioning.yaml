@@ -1,0 +1,20 @@
+openapi: '3.0.0'
+
+info:
+  title: discovery api for provisioning service
+  description: API to get well known information about the provisioning service
+  version: '1.0.0alpha'
+paths:
+  /.well-known/veraison/provisioning:
+    get:
+      description: >
+        Retrieve information about the provisioning service
+      responses:
+        '200':
+          description: >
+            The information about the provisioning service has been
+            successfully queried
+          content:
+            application/vnd.veraison.discovery+json:
+              schema:
+                $ref: './schemas/components.yaml#/components/schemas/WellKnownInfo'

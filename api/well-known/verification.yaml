@@ -1,0 +1,20 @@
+openapi: '3.0.0'
+
+info:
+  title: discovery api for verification service
+  description: API to get well known information about the verification service
+  version: '1.0.0alpha'
+paths:
+  /.well-known/veraison/verification:
+    get:
+      description: >
+        Retrieve information about the verification service
+      responses:
+        '200':
+          description: >
+            The information about the verification service has been
+            successfully queried
+          content:
+            application/vnd.veraison.discovery+json:
+              schema:
+                $ref: './schemas/components.yaml#/components/schemas/WellKnownInfo'
