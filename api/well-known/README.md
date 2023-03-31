@@ -46,7 +46,7 @@ The information for the verification service has the following attributes:
 * The allowed media types for attestation evidence;
 * The version of the verification service;
 * The current operational state of the service;
-* The exposed API endpoints and the corresponding URLs (relative to the base URL).
+* The exposed API endpoints and the corresponding URLs (relative to the request's base URL).
 
 
 ### Querying information about the Verification service
