@@ -9,7 +9,7 @@ The information for the provisioning service has the following attributes:
 * The allowed provisioning media types;
 * The version of the provisioning service;
 * The current operational state of the service;
-* The exposed API endpoints and the corresponding URLs (relative to the base URL).
+* The exposed API endpoints and the corresponding URLs (relative to the request's base URL).
 
 ### Querying information about the Provisioning service
 
