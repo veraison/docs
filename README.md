@@ -12,6 +12,7 @@
 
 * [Evidence Verification via Challenge-Response](api/challenge-response/README.md)
 * [Endorsement Provisioning](api/endorsement-provisioning/README.md)
+* [Discovery](api/well-known/README.md)
 
 ## Data Models
 
