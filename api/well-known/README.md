@@ -31,7 +31,7 @@ Content-format: application/vnd.veraison.discovery+json
     "application/corim-unsigned+cbor; profile=http://enacttrust.com/veraison/1.0.0"
   ],
   "version": "commit-a8056d0",
-  "state": "READY",
+  "service-state": "READY",
   "api-endpoints": {
     "provisioningSubmit": "/endorsement-provisioning/v1/submit"
   }
@@ -78,7 +78,7 @@ Content-format: application/vnd.veraison.discovery+json
     "application/vnd.enacttrust.tpm-evidence"
   ],
   "version": "commit-a8056d0",
-  "state": "READY",
+  "service-state": "READY",
   "api-endpoints": {
     "newChallengeResponseSession": "/challenge-response/v1/newSession"
   }
