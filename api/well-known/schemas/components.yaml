@@ -4,14 +4,13 @@ components:
       required:
         - media-types
         - version
-        - state
+        - service-state
         - api-endpoints
       properties:
-        public-key:
-          type: string
-          format: json
+        ear-verification-key:
+          $ref: '#/components/schemas/PublicKey'
           description:
-            Public key used to verify the Attestation Result
+            Public key and algorithm to be used to verify the Attestation Result
         media-types:
           type: array
           items:
@@ -26,8 +25,9 @@ components:
             Version of the current service running represented using a unique 
             commit hash. This value can change as new commits are made to the service
           example: commit-cb11fa0
-        state:
+        service-state:
           type: string
+          enum: [ DOWN, INITIALIZING, READY, TERMINATING ]
           description:
             State of the VTS service
         api-endpoints:
@@ -38,9 +38,23 @@ components:
     MediaType:
       type: string
       example: 'application/eat-collection; profile=http://arm.com/CCA-SSD/1.0.0'
+      description: an Evidence media type
 
     PublicApiMap:
       type: object
       additionalProperties:
         type: string
+      description: >
+        a dictionary with the API names as keys and their relative URLs as values
 
+    PublicKey:
+      required:
+        - alg
+      properties:
+        alg:
+          type: string
+          description: >
+            Identifier of the algorithm used to sign the Attestation Result
+          example: ES256
+      description: >
+        A public key in JSON Web Key (https://www.rfc-editor.org/rfc/rfc7517) format

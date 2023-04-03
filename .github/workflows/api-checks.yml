@@ -23,3 +23,6 @@ jobs:
 
     - name: Check Endorsement provisioning API
       run: make -C api/endorsement-provisioning check
+
+    - name: Check Discovery API
+      run: make -C api/well-known check
