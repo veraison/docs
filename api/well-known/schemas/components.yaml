@@ -4,10 +4,10 @@ components:
       required:
         - media-types
         - version
-        - state
+        - service-state
         - api-endpoints
       properties:
-        public-key:
+        ear-verification-key:
           $ref: '#/components/schemas/PublicKey'
           description:
             Public key and algorithm to be used to verify the Attestation Result
