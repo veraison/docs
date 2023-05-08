@@ -6,19 +6,19 @@ A Veraison services workload ($V$) runs in a TEE ($P$).
 
 ###  Keys
 
-$P$ has its own attestation key pair $\langle \mathcal {SK}_{P}, \mathcal {PK}_{P} \rangle$.
+$P$ has its own attestation key pair $\langle \mathcal SK_P, \mathcal PK_P \rangle$.
 
-At start-up, $V$ generates its signing key-pair $\langle \mathcal {SK}_{V}, \mathcal {PK}_{V} \rangle$.
+At start-up, $V$ generates its signing key-pair $\langle \mathcal SK_V, \mathcal PK_V \rangle$.
 
-* $V \rightarrow P$ : $h(\mathcal {PK}_{V})$
-* $V \leftarrow  P$ : $\epsilon[P_{t_{i}}, W_{t_{i}}, h(\mathcal {PK}_{V}), t_{i}]_{\mathcal {SK}_{P}}$
+* $V \rightarrow P$ : $h(\mathcal PK_V)$
+* $V \leftarrow  P$ : $\epsilon[P_{t_{i}}, W_{t_{i}}, h(\mathcal PK_V), t_{i}]_{\mathcal SK_P}$
 
 ### Appraisal
 
-When appraisal is requested by a relying party $R$[^1] (or an attester, if in passport mode), $V$ replies with an attestation result $\alpha[\ldots]_{\mathcal {SK}_{V}}$ that, along with the appraisal result for the submitted evidence ($E$), contains the most recently obtained workload and key attestation:
+When appraisal is requested by a relying party $R$[^1] (or an attester, if in passport mode), $V$ replies with an attestation result $\alpha[\ldots]_{\mathcal SK_V}$ that, along with the appraisal result for the submitted evidence ($E$), contains the most recently obtained workload and key attestation:
 
 * $R \rightarrow V$ : $E$
-* $R \leftarrow  V$ : $\alpha{[\ldots, {\epsilon[P_{t_{i}}, W_{t_{i}}, h(\mathcal {PK}_{V}), t_{i}]}_{\mathcal {SK}_{P}}]}_{\mathcal {SK}_{V}}$
+* $R \leftarrow  V$ : $\alpha{[\ldots, {\epsilon[P_{t_{i}}, W_{t_{i}}, h(\mathcal PK_V), t_{i}]}_{\mathcal SK_P}]}_{\mathcal SK_V}$
 
 The relying party (or an auditor in its stead) can verify that:
 
@@ -27,23 +27,11 @@ The relying party (or an auditor in its stead) can verify that:
 
 This binding scheme guarantees that $V$'s identities (both as a cryptographic signer, and as a piece of running code & configuration) cannot be separated, which prevents a _forwarding_ attack where a rogue verifier $\tilde{V}$ can use platform evidence not correlated to the outer signing key -- obtained in some way from a genuine verifier $V$ -- to trick $R$ into thinking that platform and workload security state is as expected.
 
-**Note:** if $t_{i}$'s are paced with a frequency that is $\gg$ than the number of expected appraisals from the same $R$, a hash of $\epsilon[P_{t_{i}}, W_{t_{i}}, h(\mathcal {PK}_{V}), t_{i}]_{\mathcal {SK}_{P}}$ can be used instead, which reduces bandwidth requirements.
+**Note:** if $t_{i}$'s are paced with a frequency that is $\gg$ than the number of expected appraisals from the same $R$, a hash of $\epsilon[P_{t_{i}}, W_{t_{i}}, h(\mathcal PK_V), t_{i}]_{\mathcal SK_P}$ can be used instead, which reduces bandwidth requirements.
 
-[^1]: There needs to be a pre-existing trust relationship between $R$ and $P$, i.e.: $R$ trusts $\mathcal {PK}_{P}$ to be associated with $P$.
+[^1]: There needs to be a pre-existing trust relationship between $R$ and $P$, i.e.: $R$ trusts $\mathcal PK_P$ to be associated with $P$.
 
-[^2]: $\mathcal {PK}_{V}$ is either published at a known location, or inlined in the attestation result.
-
-```
-% keys shorthands
-\newcommand{\BPKA}{\overline{\mathcal {PK}}_{A}}
-\newcommand{\BSKA}{\overline{\mathcal {SK}}_{A}}
-\newcommand{\SKA}{\mathcal {SK}_{A}}
-\newcommand{\PKA}{\mathcal {PK}_{A}}
-\newcommand{\SKV}{\mathcal {SK}_{V}}
-\newcommand{\PKV}{\mathcal {PK}_{V}}
-\newcommand{\SKP}{\mathcal {SK}_{P}}
-\newcommand{\PKP}{\mathcal {PK}_{P}}
-```
+[^2]: $\mathcal PK_V$ is either published at a known location, or inlined in the attestation result.
 
 ## Nitro Instantiation
 
@@ -54,9 +42,9 @@ When run in a Nitro Enclave, the abstract protocol elements are instantiated usi
   1. `pcrs["PCR0"]` (Enclave image file),
   1. `pcrs["PCR1"]` (Linux kernel and bootstrap), and
   1. `pcrs["PCR2"]` (Application)
-* $h(\mathcal {PK}_{V})$: `public_key`
+* $h(\mathcal PK_V)$: `public_key`
 * $t_i$: `timestamp`
-* $\mathcal {SK}_{P}$: `certificate`
+* $\mathcal SK_P$: `certificate`
 
 The complete `AttestationDocument` is provided below:
 
