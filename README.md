@@ -6,6 +6,7 @@
 
 ## Services Architecture
 
+* [Introduction Slides](slides/veraison-tmpdev2023.pdf)
 * [Provisioning Pipeline](architecture/endorsement-provisioning.md)
 
 ## API
