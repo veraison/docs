@@ -172,6 +172,9 @@ Intel Root Certificate can be downloaded from the Intel provided web-site.
 The Get PCK Certificates API allows requesting PCK Certificates for all configured TCB Levels 
 for a given platform using the given Platform Identifier or a Platform Manifest
 
+- Download Certificate Revocation List (CRL) using the Get Revocation List API
+Identify the CA that issued the requested CRL. Allowed values are "processor" or "platform" 
+
 - Get TDX TCB information: 
 Retrieve TDX TCB information for a given FMSPC. The identifier FMSPC can be obtained from the 
 retrieved PCK Certificate
@@ -191,6 +194,8 @@ Verification Algorithm given below.
 
 * Using the AK and PCK Cert Chain from the Quote, Verify that the AK and the Cert Chain is rooted fully to
 the root certificate supplied from Intel
+
+* Verify that none of the certificates in the chain are present in the CRL list for the specific platform
 
 * Using PCK Certificate obtain the FMSPC Value for the given platform
 
