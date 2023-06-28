@@ -1,0 +1,174 @@
+openapi: '3.0.0'
+
+info:
+  title: policy management
+  description: Veraison attestation policy management
+  version: '1.0.0alpha'
+
+servers:
+  - url: 'https://veraison.example/management/v1'
+
+paths:
+  /policy/{scheme}:
+    post:
+      description: >
+        Update policy rules for the scheme identified in path.
+      parameters:
+        - name: scheme
+          description: >
+            The name of the attestation scheme to which the policy relates.
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: >
+            The name under which the policy will be added.
+          required: false
+          schema:
+            type: string
+      requestBody:
+        description: >
+          Policy rules to be uploaded.
+        required: true
+        content:
+          application/vnd.veraison.policy.opa:
+            schema:
+              type: string
+      responses:
+        '201':
+          description: policy created
+          content:
+            application/vnd.veraison.policy+json:
+              schema:
+                $ref: './schemas/components.yaml#/components/schemas/Policy'
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+              description:
+                URL of the newly created policy.
+        default:
+          $ref: './schemas/components.yaml#/components/responses/Error'
+    get:
+      description: >
+        Get the current active policy for the scheme
+      parameters:
+        - name: scheme
+          description: >
+            The name of the attestation scheme to which the policy relates.
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: policy retrieved
+          content:
+            application/vnd.veraison.policy+json:
+              schema:
+                $ref: './schemas/components.yaml#/components/schemas/Policy'
+        default:
+          $ref: './schemas/components.yaml#/components/responses/Error'
+  /policy/{scheme}/{uuid}:
+    get:
+      description: >
+        Get the policy associated with the uuid.
+      parameters:
+        - name: scheme
+          description: >
+            The name of the attestation scheme to which the policy relates.
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: uuid
+          description: >
+            The unique identifier of the policy
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: policy retrieved
+          content:
+            application/vnd.veraison.policy+json:
+              schema:
+                $ref: './schemas/components.yaml#/components/schemas/Policy'
+        default:
+          $ref: './schemas/components.yaml#/components/responses/Error'
+  /policy/{scheme}/{uuid}/activate:
+    post:
+      description: >
+        Activate the policy associated with the uuid for the scheme. This will
+        deactivate the currently active policy, if there is one.
+      parameters:
+        - name: scheme
+          description: >
+            The name of the attestation scheme to which the policy relates.
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: uuid
+          description: >
+            The unique identifier of the policy
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: policy activated
+        default:
+          $ref: './schemas/components.yaml#/components/responses/Error'
+  /policies/{scheme}:
+    get:
+      description: >
+        Get all policies associated with the scheme.
+      parameters:
+        - name: scheme
+          description: >
+            The name of the attestation scheme to which the policy relates.
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: >
+            Only policies with this name will be returned.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: policies retrieved
+          content:
+            application/vnd.veraison.policy+json:
+              schema:
+                type: array
+                items:
+                  $ref: './schemas/components.yaml#/components/schemas/Policy'
+        default:
+          $ref: './schemas/components.yaml#/components/responses/Error'
+  /policies/{scheme}/deactivate:
+    post:
+      description: >
+        Deactivate all policies for the scheme.
+      parameters:
+        - name: scheme
+          description: >
+            The name of the attestation scheme to which the policy relates.
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: all policies deactivated
+        default:
+          $ref: './schemas/components.yaml#/components/responses/Error'
