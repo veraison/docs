@@ -67,20 +67,19 @@ In order to cryptographically link "utoken" with "pat", the sequence to be follo
 
 Upon receipt of "user data" from client application, 
 
-a. The binding layer initiates a Session with the "Attestation Verification Service" and receives 
-
+a. The binding layer initiates a Session with the "Attestation Verification Service" and receives
 a "nonce" from the Service. The session intiation details can be found [here](https://github.com/veraison/docs/tree/main/api/challenge-response#challengeresponse)
 
-b. The binding layer encodes a "utoken" as a CBOR data.
+b. The binding layer encodes a "utoken" as a CBOR data
 
-c. The encoded "utoken" is hashed using a suitable hash algorithm as detailed in the utoken. 
+c. The encoded "utoken" is hashed using a suitable hash algorithm as detailed in the utoken
 
-d. The Hash("utoken") is used as a "challenge parameter" to obtain the `pat` from the underlying PSA platform.
+d. The Hash("utoken") is used as a "challenge parameter" to obtain the `pat` from the underlying PSA platform
 
-* CBOR data produced by encoding bytes .cbor extendedPsaEvidence is used as a attestation token that is sent to Verification Service (Veraison) to obtain the Attestation Results.
+* CBOR data produced by encoding bytes .cbor extendedPsaEvidence is used as a attestation token that is sent to Verification Service (Veraison) to obtain the Attestation Results
 
 * A new mediaType defined, as `application/eat-collection; profile=http://arm.com/psa-extension/1.0.0`
-will be used to exchange this Evidence. This needs to be set in ContentType when submitting Evidence.
+will be used to exchange this Evidence. This needs to be set in ContentType when submitting Evidence
 
 The exact steps are detailed [here](https://github.com/veraison/docs/tree/main/api/challenge-response)
 
