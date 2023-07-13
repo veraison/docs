@@ -3,6 +3,21 @@ This document explains for a composite attester built on PSA Root of Trust and a
 can model supply chain Reference values and Endorsed Values. It also includes a scenario where
 these values get updated in the system.
 
+## Gap filling
+
+The following extends and replaces the `domain-membership-triple-record` to model composition:
+
+```cddl
+attester-composition = [
+  AE: environmnent-map / null
+  TEs: [ + environmnent-map ]
+  ? name: environmnent-map / label
+]
+
+label /= text
+label /= uuid
+label /= ...
+```
 
 ## Core Composition
 
