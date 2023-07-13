@@ -68,23 +68,24 @@ domain-membership-triple-record = [
     ]
 ```
 
-### Domain definition for PSA RoT
+### Domain composition for PSA RoT
 
 ```
     / comid.membership-triples / 5 : [
     {
         / domain.env / 0: {
             / comid.class-id / 0 :
-                / tagged-impl-id-type / TBD(
-                h'67b28b6c34cc40a19117ab5b05911e37'
-                ),
-            /comid.vendor / 1 : "ARM"
+              / tagged-impl-id-type / 600(
+                h'61636d652d696d706c656d656e746174
+                  696f6e2d69642d303030303030303031'
+              ),
+            / comid.vendor / 1 : "ACME Ltd.",
+            / comid.model /  2 : "Roadrunner 1.0"
         },
         [
             / environment-map / {
-
                 / tagged-uuid-type / 37(
-                h'67b28b6c34cc40a19117ab5b05911e37'
+                  h'67b28b6c34cc40a19117ab5b05911e37'
                 ),
             / comid.vendor / 1 : "FW Manufacture X",
             / comid.model / 2 : "BL",
