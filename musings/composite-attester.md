@@ -112,8 +112,39 @@ domain-membership-triple-record = [
  * Subject : Domain, which has Implementation ID and Instance ID
  * Object : Key Material
 
- Instantiates Multiple Domain Instances for each TA for each Device Domain
+ Instantiates multiple domain instances for each raw public key for each device.
 
+```
+       / comid.attest-key-triples / 3 : [
+         [
+           / environment-map / {
+             / comid.class / 0 : {
+               / comid.class-id / 0 :
+                 / tagged-impl-id-type / 600(
+                   h'61636d652d696d706c656d656e746174
+                     696f6e2d69642d303030303030303031'
+                 ),
+                 / comid.vendor / 1 : "ACME Ltd.",
+                 / comid.model /  2 : "Roadrunner 1.0"
+             },
+             / comid.instance / 1 :
+               / tagged-ueid-type / 550(
+                 h'01
+                   4ca3e4f50bf248c39787020d68ffd05c
+                   88767751bf2645ca923f57a98becd296'
+               )
+           },
+           [
+             / verification-key-map / {
+               / comid.key / 0 :
+                 "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgA
+   ETl4iCZ47zrRbRG0TVf0dw7VFlHtv18HInY
+   hnmMNybo+A1wuECyVqrDSmLt4QQzZPBECV8
+   ANHS5HgGCCSr7E/Lg=="
+             }
+           ]
+         ]
+```
 
 ### GPU Attester Reference Values
 
