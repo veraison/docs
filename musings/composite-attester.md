@@ -28,9 +28,7 @@ domain-membership-triple-record = [
                     h'67b28b6c34cc40a19117ab5b05911e37'
                 ),
                 / comid.vendor / 1 : "FW Manufacture X",
-                / comid.model / 2 : "BL",
-                / comid.layer / 3 : 0
-            }
+                / comid.model / 2 : "BL"
             },
             / measurement-map / {
             / comid.mval / 1 : {
@@ -38,10 +36,10 @@ domain-membership-triple-record = [
                     /version / 0: "1.0.0"
                 },
                 / comid.digests / 2 : [ [
-                / hash-alg-id / 1, / sha256 /
-                / hash-value / h'44aa336af4cb14a879432e53dd6571c7fa9bccafb75f488259262d6ea3a4d91b'
+                    / hash-alg-id / 1, / sha256 /
+                    / hash-value / h'44aa336af4cb14a879432e53dd6571c7fa9bccafb75f488259262d6ea3a4d91b'
                 ] ]
-            }
+              }
             }
         ],
         [
