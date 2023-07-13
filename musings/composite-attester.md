@@ -8,7 +8,7 @@ these values get updated in the system.
 The following extends and replaces the `domain-membership-triple-record` to model composition:
 
 ```cddl
-attester-composition = [
+domain* = [
   AE: environmnent-map / null
   TEs: [ + environmnent-map ]
   ? name: environmnent-map / label
