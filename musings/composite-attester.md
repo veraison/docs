@@ -14,12 +14,11 @@ domain-membership-triple-record = [
 ]
 ```
 
-## Core Composition
+## Base Composition
 
 ### Base Reference Triples for PSA RoT
 
-`
-
+```
     / comid.reference-triples / 0 : [
         [
             / environment-map / {
