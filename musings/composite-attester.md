@@ -66,11 +66,11 @@ domain-membership-triple-record = [
           }
        ],
     ]
-`
+```
 
 ### Domain definition for PSA RoT
-`
 
+```
     / comid.membership-triples / 5 : [
     {
         / domain.env / 0: {
@@ -104,7 +104,7 @@ domain-membership-triple-record = [
         ],
     }
     ]
-`
+```
 
 ### Verification Key Material
 
@@ -116,8 +116,7 @@ domain-membership-triple-record = [
 
 ### GPU Attester Reference Values
 
-`
-
+```
     / comid.reference-triples / 0 : [
         [
             / environment-map / {
@@ -144,14 +143,14 @@ domain-membership-triple-record = [
             }
     ],
 ]
-`
+```
 
 ### Domain definition for GPU 
+
 Note this may be strictly not required as GPU Domain has
 only one environment but documented here for completeness
 
-`
-
+```
     / comid.membership-triples / 5 : [
     {
         / domain.env / 0: {
@@ -177,16 +176,14 @@ only one environment but documented here for completeness
 
     }
     ]
-`
-
+```
 
 ### Domain Dependency Triple
 
 * Subject: Device Domain Identifier
 * Object : [PSA-Domain, GPU-Domain]
 
-`
-
+```
     / comid.dependency-triples / 4 : [
     {
         / domain.env / 0: {
@@ -215,7 +212,7 @@ only one environment but documented here for completeness
 
     }
     ]
-`
+```
 
 ## UPDATE Flow
 
@@ -226,8 +223,7 @@ Composite Attester components, namely PSA RoT and GPU sub-attester.
 
 BL gets updated to a new version 1.0.1 using the triple semantics below:
 
-`
-
+```
     / comid.reference-triples / 0 : [
         [
             / environment-map / {
@@ -253,16 +249,13 @@ BL gets updated to a new version 1.0.1 using the triple semantics below:
             }
             }
         ]
-`
-
+```
 
 ### SW Update story GPU
 
 GPU Component gets updated. A new version 1.2.0 of GPU FW is updated in the system
 
-
-`
-
+```
     / comid.reference-triples / 0 : [
         [
             / environment-map / {
@@ -289,7 +282,8 @@ GPU Component gets updated. A new version 1.2.0 of GPU FW is updated in the syst
             }
     ],
 ]
-`
+```
+
 ## Impact to other triples
 
 * We believe none of the Domain Composition or Domain Dependency triples need an update
