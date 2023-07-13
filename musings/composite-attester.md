@@ -5,18 +5,13 @@ these values get updated in the system.
 
 ## Gap filling
 
-The following extends and replaces the `domain-membership-triple-record` to model composition:
+The following extends the `domain-membership-triple-record` to model recursive composition:
 
 ```cddl
-domain* = [
-  AE: environmnent-map / null
-  TEs: [ + environmnent-map ]
-  ? name: environmnent-map / label
+domain-membership-triple-record = [
+  name: $domain-type-choice / environment-map
+  envs: [ + environment-map ]
 ]
-
-label /= text
-label /= uuid
-label /= ...
 ```
 
 ## Core Composition
