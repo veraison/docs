@@ -16,7 +16,7 @@ domain-membership-triple-record = [
 
 ## Base Composition
 
-### Base Reference Triples for PSA RoT
+### Reference Triples for PSA RoT
 
 ```
     / comid.reference-triples / 0 : [
@@ -219,7 +219,7 @@ only one environment but documented here for completeness
 This section describes the CDDL Schema when there is an update to 
 Composite Attester components, namely PSA RoT and GPU sub-attester.
 
-### SW Update story PSA RoT
+### SW Update for PSA RoT
 
 BL gets updated to a new version 1.0.1 using the triple semantics below:
 
@@ -251,7 +251,7 @@ BL gets updated to a new version 1.0.1 using the triple semantics below:
         ]
 ```
 
-### SW Update story GPU
+### SW Update for GPU
 
 GPU Component gets updated. A new version 1.2.0 of GPU FW is updated in the system
 
