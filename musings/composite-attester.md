@@ -152,27 +152,25 @@ domain-membership-triple-record = [
     / comid.reference-triples / 0 : [
         [
             / environment-map / {
-            / comid.class / 0 : {
+              / comid.class / 0 : {
                 / comid.class-id / 0 :
                 / tagged-uuid-type / 37(
                     h'98b28b6c34cc40a19117ab5b05911e37'
                 ),
                 / comid.vendor / 1 : "GPU Manufacture X",
-                / comid.model / 2 : "GPU-FW",
-                / comid.layer / 3 : 0
-            }
+                / comid.model / 2 : "GPU-FW"
             },
             / measurement-map / {
-            / comid.mval / 1 : {
+              / comid.mval / 1 : {
                 / comid.version / 0 : {
-                    /version / 0: "1.0.0"
+                    / version / 0: "1.0.0"
                 },
                 / comid.digests / 2 : [ [
-                / hash-alg-id / 1, / sha256 /
-                / hash-value / h'94aa336af4cb14a879432e53dd6571c7fa9bccafb75f488259262d6ea3a4d91b'
+                  / hash-alg-id / 1, / sha256 /
+                  / hash-value / h'94aa336af4cb14a879432e53dd6571c7fa9bccafb75f488259262d6ea3a4d91b'
                 ] ]
             }
-            }
+        }
     ],
 ]
 ```
