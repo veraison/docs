@@ -109,10 +109,11 @@ domain-membership-triple-record = [
 
 ### Verification Key Material
 
- * Subject : Domain, which has Implementation ID and Instance ID
- * Object : Key Material
+In base PSA, each raw public key (RPK) associated to a device is indidually provisioned in to the verifier.
 
- Instantiates multiple domain instances for each raw public key for each device.
+For each RPK, we usa a "Verification Key Material" triple.   The subject is an environment with its own `instance-id`, and `class-id` equal to the domain's `class-id`.  Note that the linkage is implicit in the hierarchical naming scheme.
+
+Instantiates multiple domain instances for each raw public key for each device.
 
 ```
        / comid.attest-key-triples / 3 : [
