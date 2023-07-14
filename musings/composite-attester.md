@@ -1,7 +1,30 @@
 # Composite Attester Description
-This document explains for a composite attester built on PSA Root of Trust and a GPU subsystem
-can model supply chain Reference values and Endorsed Values. It also includes a scenario where
-these values get updated in the system.
+
+*This document explains for a composite attester built on PSA Root of Trust and a GPU subsystem can model supply chain Reference values and Endorsed Values. It also includes a scenario where these values get updated in the system.*
+
+```mermaid
+flowchart TD
+    Domain1["sub-Attester PSA"]
+    subgraph Attester1["PSA"]
+        AE1["AE"]
+        style AE1 fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+        TEx["BL"]
+        TEy["TF M"]
+    end
+    Domain2["sub-Attester GPU"]
+    subgraph Attester2["GPU"]
+        AE2["AE"]
+        TE2["GPU FW"]
+    end
+    Domain1 --> Attester1
+    Domain2 --> Attester2
+    Domain0["Lead Attester Domain"]
+    subgraph DomainComp["Domains"]
+        Domain1["sub-Attester PSA"]
+        Domain2["sub-Attester GPU"]
+    end
+    Domain0 --> DomainComp
+```
 
 ## Gap filling
 
@@ -9,8 +32,8 @@ The following extends the `domain-membership-triple-record` to model recursive c
 
 ```cddl
 domain-membership-triple-record = [
-  name: $domain-type-choice / environment-map
-  envs: [ + environment-map ]
+    $domain-type-choice / environment-map
+    [ + environment-map ]
 ]
 ```
 
@@ -18,102 +41,101 @@ domain-membership-triple-record = [
 
 ### Reference Triples for PSA RoT
 
+* Boot-loader firmware:
+
+```cbor-diag
+[
+    / environment-map / {
+    / comid.class / 0 : {
+        / comid.class-id / 0 : 37(h'57057d658db1403b9e387f9f0fa604cf'),
+        / comid.vendor /   1 : "FW Manufacturer X",
+        / comid.model /    2 : "BL"
+    },
+
+    / measurement-map / {
+    / comid.mval / 1 : {
+        / comid.version / 0 : {
+            /version / 0: "1.0.0"
+        },
+        / comid.digests / 2 : [
+            [
+                / hash-alg-id / 1, / sha256 /
+                / hash-value /  h'44aa336af4cb14a879432e53dd6571c7fa9bccafb75f488259262d6ea3a4d91b'
+            ]
+        ]
+    }
+],
 ```
-    / comid.reference-triples / 0 : [
-        [
-            / environment-map / {
-            / comid.class / 0 : {
-                / comid.class-id / 0 :
-                / tagged-uuid-type / 37(
-                    h'67b28b6c34cc40a19117ab5b05911e37'
-                ),
-                / comid.vendor / 1 : "FW Manufacture X",
-                / comid.model / 2 : "BL"
+
+* Secure Partition Manager firmware:
+
+```cbor-diag
+[
+    / environment-map / {
+        / comid.class / 0 : {
+            / comid.class-id / 0 : 37(h'993a383a41134c999c333a13414a546d'),
+            / comid.vendor /   1 : "FW Manufacturer X",
+            / comid.model /    2 : "TF-M"
+        }
+    },
+    / measurement-map / {
+        / comid.mval / 1 : {
+            / comid.version / 0 : {
+                /version / 0: "1.0.0"
             },
-            / measurement-map / {
-            / comid.mval / 1 : {
-                / comid.version / 0 : {
-                    /version / 0: "1.0.0"
-                },
-                / comid.digests / 2 : [ [
+            / comid.digests / 2 : [
+                [
                     / hash-alg-id / 1, / sha256 /
-                    / hash-value / h'44aa336af4cb14a879432e53dd6571c7fa9bccafb75f488259262d6ea3a4d91b'
-                ] ]
-              }
-            }
-        ],
-        [
-            / environment-map / {
-            / comid.class / 0 : {
-                / comid.class-id / 0 :
-                / tagged-uuid-type / 37(
-                    h'68b28b6c34cc40a19117ab5b05911e37'
-                ),
-                / comid.vendor / 1 : "FW Manufacture X",
-                / comid.model / 2 : "PRoT"
-              }
-            },
-            / measurement-map / {
-            / comid.mval / 1 : {
-                / comid.version / 0 : {
-                    /version / 0: "1.0.0"
-                },
-                / comid.digests / 2 : [ [
-                  / hash-alg-id / 1, / sha256 /
-                  / hash-value / h'54aa336af4cb14a879432e53dd6571c7fa9bccafb75f488259262d6ea3a4d91b'
-                ] ]
-            }
-          }
-       ],
-    ]
+                    / hash-value /  h'9c49c3f7b15f62db77deb9a5fa5a21e516edb15bb7b2214654695a59ac492d9e'
+                ]
+            ]
+        }
+    }
+]
 ```
 
 ### Domain composition for PSA RoT
 
+The PSA sub-attester is modelled as a domain membership triple.
+The name of the domain is given as an environment with `class-id` set to the PSA Implementation ID of the sub-attester.
+The domain elements are the target environments associated with the FW components.
+
 ```
-    / comid.membership-triples / 5 : [
-    {
-        / domain.env / 0: {
-            / comid.class-id / 0 :
-              / tagged-impl-id-type / 600(
-                h'61636d652d696d706c656d656e746174
-                  696f6e2d69642d303030303030303031'
-              ),
-            / comid.vendor / 1 : "ACME Ltd.",
-            / comid.model /  2 : "Roadrunner 1.0"
+[
+    / name (as environment) /
+    [
+        / comid.class-id / 0 : / tagged-impl-id-type / 600(
+            h'61636d652d696d706c656d656e746174696f6e2d69642d303030303030303031'
+        ),
+        / comid.vendor / 1 : "ACME Ltd.",
+        / comid.model /  2 : "PSA RoT 1.0"
+    ],
+
+    [
+        / environment-map / {
+            / comid.class / 0 : {
+                / comid.class-id / 0 : 37(h'57057d658db1403b9e387f9f0fa604cf'),
+                / comid.vendor /   1 : "FW Manufacturer X",
+                / comid.model /    2 : "BL"
+            }
         },
-        [
-            / environment-map / {
-                / tagged-uuid-type / 37(
-                  h'67b28b6c34cc40a19117ab5b05911e37'
-                ),
-            / comid.vendor / 1 : "FW Manufacture X",
-            / comid.model / 2 : "BL",
-            / comid.layer / 3 : 0
-            },
-            / environment-map / {
-                / comid.class / 0 : {
-                / comid.class-id / 0 :
-                    / tagged-uuid-type / 37(
-                    h'68b28b6c34cc40a19117ab5b05911e37'
-                    ),
-                / comid.vendor / 1 : "FW Manufacture X",
-                / comid.model / 2 : "PRoT",
-                / comid.layer / 3 : 1
-                }
-            },
-        ],
-    }
+        / environment-map / {
+            / comid.class / 0 : {
+                / comid.class-id / 0 : 37(h'68b28b6c34cc40a19117ab5b05911e37'),
+                / comid.vendor /   1 : "FW Manufacturer X",
+                / comid.model /    2 : "TF-M"
+            }
+        }
     ]
+]
 ```
 
 ### Verification Key Material
 
-In base PSA, each raw public key (RPK) associated to a device is indidually provisioned in to the verifier.
-
-For each RPK, we usa a "Verification Key Material" triple.   The subject is an environment with its own `instance-id`, and `class-id` equal to the domain's `class-id`.  Note that the linkage is implicit in the hierarchical naming scheme.
-
-Instantiates multiple domain instances for each raw public key for each device.
+Each raw public key (RPK) associated to a PSA device is individually provisioned in to the verifier.
+For each RPK, we usa a "Verification Key Material" triple.
+The subject is an environment with its own `instance-id`, and `class-id` equal to the PSA domain's `class-id`.
+Note that the linkage between the PSA domain and each PSA instance is implicit in the hierarchical naming scheme.
 
 ```
        / comid.attest-key-triples / 3 : [
@@ -126,7 +148,7 @@ Instantiates multiple domain instances for each raw public key for each device.
                      696f6e2d69642d303030303030303031'
                  ),
                  / comid.vendor / 1 : "ACME Ltd.",
-                 / comid.model /  2 : "Roadrunner 1.0"
+                 / comid.model /  2 : "PSA RoT 1.0"
              },
              / comid.instance / 1 :
                / tagged-ueid-type / 550(
@@ -176,7 +198,7 @@ Instantiates multiple domain instances for each raw public key for each device.
 ]
 ```
 
-### Domain definition for GPU 
+### Domain definition for GPU
 
 Note this may be strictly not required as GPU Domain has
 only one environment but documented here for completeness
@@ -247,7 +269,7 @@ only one environment but documented here for completeness
 
 ## UPDATE Flow
 
-This section describes the CDDL Schema when there is an update to 
+This section describes the CDDL Schema when there is an update to
 Composite Attester components, namely PSA RoT and GPU sub-attester.
 
 ### SW Update for PSA RoT
