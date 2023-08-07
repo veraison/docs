@@ -3,6 +3,7 @@
 ## Project Overview
 
 * [Veraison Overview](project-overview.md)
+* [Veraison Source Repo Overview](repo-guide.md)
 
 ## Services Architecture
 
