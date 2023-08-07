@@ -67,7 +67,7 @@ These libraries provide functions for working with EAR (EAT Attestation Results)
 ####  Verifier Provisioning 
 These libraries provide support for the standard information models used to convey data to a Verifier.
 
-[corim](https://github.com/veraison/corim): manipulation of Concise Reference Integrity Manifest (CoRIM) and Concise Module Identifier (CoMID) tags. Also includes cocli CLI tool.
+[corim](https://github.com/veraison/corim): manipulation of Concise Reference Integrity Manifest (CoRIM) and Concise Module Identifier (CoMID) tags. Also includes cocli CLI tool, that assists users creating CoRIM & CoMID tags.
 
 [swid](https://github.com/veraison/swid) : SWID and CoSWID manipulation library
 
