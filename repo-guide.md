@@ -74,4 +74,124 @@ These libraries provide support for the standard information models used to conv
 #### COSE
 [go-cose](https://github.com/veraison/go-cose): go library for CBOR Object Signing and Encryption (COSE)
 
+## Veraison Repository Organisation
 
+```mermaid
+flowchart TD
+VR("Veraison Roles")
+style VR fill:#f9f,stroke:#333,stroke-width:4px
+LG["<b>Logical Group</b> \n <i>Repository name</i>"]
+subgraph Daigram[<b>Daigram Convention</b>]
+
+VR  -->| Direct Usage | LG
+VR  -.-> | Possible Usage | LG
+LG  -->| Direct Dependency | LG
+end
+
+```
+
+```mermaid
+flowchart TD
+subgraph Veraison["<b>Core Structure </b?"]
+style Veraison stroke:#333,stroke-width:4px
+
+SP("Supply Chain \n
+                \n")
+style SP fill:#f9f,stroke:#333,stroke-width:4px
+
+ATT("Attester  \n
+                \n")
+style ATT fill:#f9f,stroke:#333,stroke-width:4px
+
+COCLI["<b>Endorsement Manipulation CLI Tool</b>
+ <i>cocli</i>"]
+
+VPF["<b>Verifier Provisioning Formats</b>
+ <i>corim</i>
+ <i>coswid</i>"]
+COCLI ---> VPF
+
+CL["<b>Common Libraries</b> 
+     <i>go-cose</i>"]
+
+VPF ---> CL
+
+EF["<b>Evidence Formats</b> 
+     <i>dice</i>
+     <i>eat</i>
+     <i>psatoken</i>
+     <i>ccatoken</i>
+     <i>enacttrust-tpm</i>
+     <i>parsec (tpm, cca)</i>"]
+EF ---> CL
+
+SD["<b>Core Verifier repositories</b> 
+    <i>services</i> 
+    <i>docs</i>"]
+
+RP("Relying Party \n
+                \n")
+style RP fill:#f9f,stroke:#333,stroke-width:4px
+
+AR["<b>Attestation Results</b> 
+    <i>ear</i> 
+    <i>c-ear</i>
+    <i>rust-ear</i>"]
+RP ---> AR
+
+subgraph Verifier["Verifier"]
+  style Verifier fill:#f9f,stroke:#333,stroke-width:4px
+SD
+end
+
+
+Verifier ---> AR
+
+
+Verifier ---> VPF
+Verifier ---> CL
+Verifier ---> EF
+
+SP ---> COCLI
+
+API["<b>API CLIENT LIBRARIES</b>
+    <i>apiclient</i>
+    <i>c-apiclient</i>
+    <i>rust-apiclient</i>"]
+SP  -.-> API
+
+EVCLI["<b>Evidence Manipulation CLI Tool</b> \n <i>evcli</i> "]
+EVCLI ---> API
+
+CMW["<b>CONCEPTUAL MESSAGE WRAPPER</b>
+      <i>cmw</i>"]
+
+ATT --->EF
+ATT -.-> EVCLI
+EVCLI ---> EF
+API ---> CMW
+Verifier ---> CMW
+POCLI["<b>Policy Mgmt CLI Tool</b>
+      <i>pocli</i>"]
+
+VO("Verifier Owner  \n
+                \n")
+style VO fill:#f9f,stroke:#333,stroke-width:4px
+
+VO --> POCLI
+
+POCLI ---> API
+
+end
+```
+
+```mermaid
+flowchart TD
+VA["
+    <i>community</i> 
+    <i>veraison.github.io</i>"]
+subgraph Veraison["<b>Administrative Repositories</b>"]
+VA
+end
+
+```
