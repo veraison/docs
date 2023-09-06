@@ -19,9 +19,9 @@ Many real world attestation solutions and potential extrapolations of their use 
 To ensure that the code backs up the design, reference support for multiple attestation tokens are supported in the project. The following are currently supported:
 
 * EAT Tokens, with the ARM PSA Profiles (Profile 1 & Profile 2) being a specific test set.
-* ARM Confidential Computing Architecture (CCA) Token and its variant [Parsec-CCA](https://github.com/CCC-Attestation/attested-tls-poc/blob/main/doc/parsec-evidence-cca.md)
-* [DICE Tokens](https://trustedcomputinggroup.org/work-groups/dice-architectures/) (note: this does not implement any specific DICE architecture). If you're planning any specific profile of DICE protocol implementations, we would be very interested in discussing them.
-* TPM based attestation tokens namely [Enactrust](https://enacttrust.com/)  & [Parsec-TPM](https://github.com/CCC-Attestation/attested-tls-poc/blob/main/doc/parsec-evidence-tpm.md)
+* ARM Confidential Computing Architecture (CCA) Token and its composition [Parsec-CCA](https://github.com/CCC-Attestation/attested-tls-poc/blob/main/doc/parsec-evidence-cca.md)
+* [DICE layered Evidence](https://trustedcomputinggroup.org/work-groups/dice-architectures/) (note: this does not adhere to any specific DICE-based protocol). If you're planning any particular of DICE protocol implementations, we would be very interested in discussing them.
+* TPM based attestation tokens, namely [Enacttrust](https://enacttrust.com/) & [Parsec-TPM](https://github.com/CCC-Attestation/attested-tls-poc/blob/main/doc/parsec-evidence-tpm.md)
 
 ### Deployments
 
