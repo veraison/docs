@@ -18,9 +18,9 @@ If the following resonates with any of your plans, if you would like to contribu
 Many real world attestation solutions and potential extrapolations of their use have been considered to ensure that the general logic within the components performs the correct set of operations to provide support for the maximum set of deployments. Developing understanding and modelling the necessary flows for their verification process has driven the Veraison design.
 To ensure that the code backs up the design, reference support for multiple attestation tokens are supported in the project. The following are currently supported:
 
-* EAT Tokens, with the ARM PSA Profiles (Profile 1 & Profile 2) being a specific test set.
+*  EAT Tokens, with the [ARM PSA Profiles](https://datatracker.ietf.org/doc/draft-tschofenig-rats-psa-token/) being a specific test set.
 * ARM Confidential Computing Architecture (CCA) Token and its composition [Parsec-CCA](https://github.com/CCC-Attestation/attested-tls-poc/blob/main/doc/parsec-evidence-cca.md)
-* [DICE layered Evidence](https://trustedcomputinggroup.org/work-groups/dice-architectures/) (note: this does not adhere to any specific DICE-based protocol). If you're planning any particular DICE protocol implementation, we would be very interested in discussing it.
+* [DICE layered Evidence](https://trustedcomputinggroup.org/work-groups/dice-architectures/) (Note: this does not adhere to any specific DICE-based protocol). If you're planning any particular DICE protocol implementation, we would be very interested in discussing it.
 * TPM based attestation tokens, namely [Enacttrust](https://enacttrust.com/) & [Parsec-TPM](https://github.com/CCC-Attestation/attested-tls-poc/blob/main/doc/parsec-evidence-tpm.md)
 
 ### Deployments
