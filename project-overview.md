@@ -23,6 +23,9 @@ To ensure that the code backs up the design, reference support for multiple atte
 * [DICE layered Evidence](https://trustedcomputinggroup.org/work-groups/dice-architectures/) (Note: this does not adhere to any specific DICE-based protocol). If you're planning any particular DICE protocol implementation, we would be very interested in discussing it.
 * TPM based attestation tokens, namely [Enacttrust](https://enacttrust.com/) & [Parsec-TPM](https://github.com/CCC-Attestation/attested-tls-poc/blob/main/doc/parsec-evidence-tpm.md).
 
+Support for additional architectures is a matter of frequent discussion and we expect this list to expand. Veraison team 
+welcomes active participation from community contributors.
+
 ### Deployments
 
 To ensure that the core components are structured correctly for use as a service, the project will build reference deployments that can perform token verifications. To help ensure abstractions for the components over deployment environments are sufficiently general, multiple reference deployments will be built. They are:
