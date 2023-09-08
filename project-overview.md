@@ -16,10 +16,15 @@ If the following resonates with any of your plans, if you would like to contribu
 ### Tokens
 
 Many real world attestation solutions and potential extrapolations of their use have been considered to ensure that the general logic within the components performs the correct set of operations to provide support for the maximum set of deployments. Developing understanding and modelling the necessary flows for their verification process has driven the Veraison design.
-To ensure that the code backs up the design, reference support for multiple attestation tokens will be developed in the project. The current targets for this support are:
+To ensure that the code backs up the design, reference support for multiple attestation tokens are supported in the project. The following are currently supported:
 
-* EAT Tokens, with the ARM PSA Profile being a specific test set.
-* DICE Tokens. NB: the current delivery format for the 'token', being the full DICE Certificate chain is still under consultation. If you're planning any such protocol implementations, we would be very interested in discussing them.
+*  EAT Tokens, with the [ARM PSA Profiles](https://datatracker.ietf.org/doc/draft-tschofenig-rats-psa-token/) being a specific test set.
+* ARM Confidential Computing Architecture (CCA) Token and its composition [Parsec-CCA](https://github.com/CCC-Attestation/attested-tls-poc/blob/main/doc/parsec-evidence-cca.md).
+* [DICE layered Evidence](https://trustedcomputinggroup.org/work-groups/dice-architectures/) (Note: this does not adhere to any specific DICE-based protocol. If you're planning any particular DICE protocol implementation, we would be very interested in discussing it).
+* TPM based attestation tokens, namely [EnactTrust](https://enacttrust.com/) & [Parsec-TPM](https://github.com/CCC-Attestation/attested-tls-poc/blob/main/doc/parsec-evidence-tpm.md).
+
+Support for additional architectures is a matter of frequent discussion and we expect this list to expand. Veraison team 
+welcomes active participation from community contributors.
 
 ### Deployments
 
