@@ -186,7 +186,7 @@ Verification Algorithm given below.
 
 ### TDX Quote Verification - Platform 
 
-#### Validating Evidence Integrity
+1. Validating Evidence Integrity
 
 * Verify the signature on the Quote using the AK supplied in the Quote Signature Structure
 
@@ -201,12 +201,16 @@ the root certificate supplied from Intel
 
 2. Comparing Reference Values
 
-* From the Endorsement Store obtain TCB Information for the Platform. Specifically tdxtcbcomponents array.
+* From the Quote, obtain the PCK Certificate and retrieve FMSPC value (from Certificate) for the given platform.
+
+* Using FMSPC fetch the TDX TCB Information for the Platform (either cached or invoking the API)
 
 * Compare all the SGX TCB Comp SVNs retrieved from PCK Certificate(1 to 16) with the corresponding values 
-of SVNs in tdxtcbcomponents array. If the Certificate SVN Values are greater or equal to the ones 
-stored in the Endorsement Store, then proceed below. Otherwise move to the next TCB Level. If none of 
-them are greater then it indicates Verification Failure.
+of SVNs in sgxtcbcomponents array. If the Certificate SVN Values are greater or equal to the ones 
+stored in the Endorsement Store, then proceed below. Otherwise move to the next TCB Level in the list. If none of 
+the TCB Levels are greater then it indicates Verification Failure.
+
+* Compare PCESVN value retrieved from the SGX PCK certificate with the corresponding value in the TCB Level. If it is greater or equal to the value in TCB Level,  move to next verification step, otherwise move to the next item on the TCB Level list.
 
 * Compare all of the SVNs received in TEE TCB SVN Array retrieved from TD Report in Quote (index 0 to index 15)
 with the corresponding values of SVNs in tdxtcbcomponents array of TCB Level. If all TEE TCB SVN in the TD Report are
