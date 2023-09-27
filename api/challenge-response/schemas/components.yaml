@@ -10,7 +10,8 @@ components:
           type: string
           format: byte
           description:
-            base64 encoded 32, 48, or 64 bytes random value
+            base64 encoded random value. Must be between 8 and 64 bytes long in
+            its raw form (the base64 encoding must be no longer than 88 bytes).
           example: MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=
         expiry:
           type: string

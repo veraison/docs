@@ -66,6 +66,10 @@ session expiry has elapsed.
   }
 ```
 
+`nonceSize` must be between `8` and `64`. Analogously, `nonce` must be between
+8 and 64 bytes when decoded (which means the specified base64 string must be no
+longer than 88 bytes).
+
 ### Asynchronous verification
 
 * Submit evidence for this session:
