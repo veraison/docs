@@ -22,7 +22,7 @@ paths:
         - name: nonceSize
           in: query
           description: >
-            number of bytes of the returned nonce
+            number of bytes of the returned nonce. Must be between 8 and 64.
           required: false
           schema:
             type: integer
@@ -30,7 +30,8 @@ paths:
           in: query
           description: >
             the API server should not generate a nonce for this session and
-            use instead the one supplied by the client
+            use instead the one supplied by the client. The supplied value must
+            decode to a byte sequence between 8 and 64 bytes long.
           required: false
           schema:
             type: string
