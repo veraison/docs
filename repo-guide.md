@@ -42,11 +42,14 @@ A library for the Arm Confidential Computing Architecture (CCA) Attestation Toke
 ## CLI tools 
 CLI tools for illustrative interactions with attestation tokens or a Veraison service. Used for demos & integration testing.
 
-[evcli](https://github.com/veraison/evcli) 
+[evcli](https://github.com/veraison/evcli)
 CLI for handling attestation evidence
-[pocli]() 
-Veraison services policy management client
 
+[pocli](https://github.com/veraison/pocli) 
+CLI for Veraison services policy management client
+
+[gen-corim](https://github.com/veraison/gen-corim)
+CLI for generating CoRIM (containing Endorsements and Reference Values) using Evidence
 
 ## Standards driven work
 The Veraison Project supports Attestation related working groups in standards bodies, in particular IETF & TCG. This set of repos provide test bed implementations for some of the standards work, as related to Veraison services.
@@ -105,6 +108,9 @@ style ATT fill:#f9f,stroke:#333,stroke-width:4px
 
 COCLI["<b>Endorsement Manipulation CLI Tool</b>
  <i>cocli</i>"]
+
+GEN-CORIM["<b>Endorsement creation from Evidence CLI Tool</b>
+ <i>gen-corim</i>"]
 
 VPF["<b>Verifier Provisioning Formats</b>
  <i>corim</i>
