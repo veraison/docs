@@ -10,6 +10,7 @@ check:: check-json check-json-examples
 check:: check-cbor check-cbor-examples
 check:: check-veraison-cbor check-veraison-cbor-examples
 check:: check-veraison-json check-veraison-json-examples
+check:: check-teep-json check-teep-json-examples
 
 # $1: label
 # $2: cddl fragments
@@ -73,5 +74,16 @@ VERAISON_JSON_FRAGS += veraison-json-labels.cddl
 VERAISON_JSON_EXAMPLES := $(wildcard examples/veraison-json-*.diag)
 
 $(eval $(call cddl_check_template,veraison-json,$(VERAISON_JSON_FRAGS),$(VERAISON_JSON_EXAMPLES)))
+
+TEEP_JSON_FRAGS := attestation-result.cddl
+TEEP_JSON_FRAGS += json-labels.cddl
+TEEP_JSON_FRAGS += generic-non-empty.cddl
+TEEP_JSON_FRAGS += teep.cddl
+TEEP_JSON_FRAGS += teep-json-labels.cddl
+TEEP_JSON_FRAGS += coswid-version-scheme.cddl
+
+TEEP_JSON_EXAMPLES := $(wildcard examples/teep-json-*.diag)
+
+$(eval $(call cddl_check_template,teep-json,$(TEEP_JSON_FRAGS),$(TEEP_JSON_EXAMPLES)))
 
 clean: ; $(RM) $(CLEANFILES)

@@ -1,0 +1,19 @@
+{
+  "eat_profile": "tag:github.com/veraison/ar4si,2022-10-17",
+  "ear.status": "affirming",
+  "ear.trustworthiness-vector": {
+    "instance-identity": 2,
+    "configuration": 2,
+    "executables": 2,
+    "hardware": 2
+  },
+  "iat": 1666529284,
+  "ear.appraisal-policy-id": "https://veraison.example/policy/1/60a0068d",
+  "ear.teep.claims": {
+    "nonce": "80FH7byS7VjfARIq0_KLqu6B9j-F79QtV6p",
+    "ueid": "AQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAh",
+    "oemid": "Av8B",
+    "hwmodel": "fJYq",
+    "hwversion": ["1.2.5", 16384]
+  }
+}

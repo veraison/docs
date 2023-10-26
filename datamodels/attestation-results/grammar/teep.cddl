@@ -1,0 +1,14 @@
+$$ear-extension //= (
+  ear.teep.claims => ear-teep-claims
+)
+
+ear-teep-claims = non-empty<{
+  ? eat.nonce => eat.nonce-type
+  ? eat.ueid => eat.ueid-type
+  ? eat.oemid => eat.oemid-type
+  ? eat.hardware-model => eat.hardware-model-type
+  ? eat.hardware-version => eat.hardware-version-type
+  ? eat.manifests => eat.manifests-type
+}>
+
+; vim: set tw=70 ts=2 et:
