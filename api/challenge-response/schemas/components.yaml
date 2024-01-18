@@ -46,7 +46,7 @@ components:
           description: >
             the submitted attestation Evidence
         result:
-          $ref: '#/components/schemas/AttestationResult'
+          type: string
           description: >
             the computed Attestation Result
 
