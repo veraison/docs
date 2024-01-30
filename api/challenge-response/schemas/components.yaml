@@ -46,9 +46,10 @@ components:
           description: >
             the submitted attestation Evidence
         result:
-          $ref: '#/components/schemas/AttestationResult'
+          type: string
           description: >
-            the computed Attestation Result
+            the computed Attestation Result wrapped as payload in an JWS.
+            The wrapped Attestation Result is of type '#/components/schemas/AttestationResult'
 
     EvidenceContentType:
       type: string
