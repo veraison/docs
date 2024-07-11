@@ -157,7 +157,7 @@ export TOPDIR=$(pwd)
 In the first shell, clone the Veraison services repository:
 
 ```shell
-git clone https://github.com/veraison/services
+git clone --branch demo-psa-1.0.1 https://github.com/veraison/services
 ```
 
 Build the services:
