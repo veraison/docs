@@ -48,8 +48,9 @@ components:
         result:
           type: string
           description: >
-            the computed Attestation Result wrapped as payload in an JWS.
-            The wrapped Attestation Result is of type '#/components/schemas/AttestationResult'
+            The computed Attestation Result encoded as an EAR
+            (https://datatracker.ietf.org/doc/draft-fv-rats-ear) using the JWT
+            serialization.
 
     EvidenceContentType:
       type: string
