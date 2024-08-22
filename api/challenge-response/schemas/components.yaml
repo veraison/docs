@@ -46,9 +46,11 @@ components:
           description: >
             the submitted attestation Evidence
         result:
-          $ref: '#/components/schemas/AttestationResult'
+          type: string
           description: >
-            the computed Attestation Result
+            The computed Attestation Result encoded as an EAR
+            (https://datatracker.ietf.org/doc/draft-fv-rats-ear) using the JWT
+            serialization.
 
     EvidenceContentType:
       type: string
