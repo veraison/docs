@@ -124,7 +124,7 @@ flowchart TD
 > * Evidence to be verified
 > * Identity endorsements
 
-1. Look up the matching identity endorsement (e.g., a raw public key, a trust anchor, etc.)
+1. Look up the matching identity endorsement / trust anchor (e.g., a raw public key, an x509 cert, etc.)
 1. Use the key material to verify the Evidence's cryptographic envelope
 
 > Output:
