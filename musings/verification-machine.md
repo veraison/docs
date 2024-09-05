@@ -1,5 +1,13 @@
 
-# Verification Machinery
+# Verification Machinery <!-- omit in toc -->
+
+## Table of Contents <!-- omit in toc -->
+- [Verification From Ten Thousand Feet](#verification-from-ten-thousand-feet)
+- [A Closer Look to the Appraisal Process](#a-closer-look-to-the-appraisal-process)
+  - [Crypto Verification](#crypto-verification)
+  - [Reference Values match](#reference-values-match)
+  - [Endorsed Values Decoration](#endorsed-values-decoration)
+  - [Attestation Result assembly and signing](#attestation-result-assembly-and-signing)
 
 ## Verification From Ten Thousand Feet
 
@@ -55,10 +63,10 @@ flowchart TD
 
 The picture below provides a closer look in to the appraisal process, describing what a typical verification flow could look like.  The flow is broken down into four separate stages:
 
-* [Crypto verification](#crypto-verification)
-* [Reference values match](#reference-values-match)
-* [Endorsed values decoration](#endorsed-values-decoration)
-* [Attestation result assembly and signing](#attestation-result-assembly-and-signing)
+[Crypto Verification](#crypto-verification)
+[Reference Values match](#reference-values-match)
+[Endorsed Values Decoration](#endorsed-values-decoration)
+[Attestation Result assembly and signing](#attestation-result-assembly-and-signing)
 
 > **Notes**:
 >
@@ -92,7 +100,7 @@ flowchart TD
     P
     end
 
-    subgraph stages[" "]
+    subgraph stages["verifier stages"]
     v1
     v2
     v3
