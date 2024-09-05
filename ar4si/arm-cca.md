@@ -6,7 +6,7 @@
 |||NO_CLAIM|This MAY be the value for the buckets that are not applicable (i.e., those marked as “N.A.”), if they are included.|
 |||UNEXPECTED_EVIDENCE|On failures coming from the token decoder|
 |||CRYPTO_VALIDATION_FAILED|On failures coming from the Platform token verifier (excluding Realm binding, which is captured in the Realm part)|
-|Instance identity||TRUSTWORTHY_INSTANCE|verification using CPAK is successful and Implementation ID is known (implicitly, from the fact that ref-values associated to it exist)|
+|Instance identity||TRUSTWORTHY_INSTANCE|verification using the CCA Platform Attestation Key (CPAK) is successful and Implementation ID is known (implicitly, from the fact that ref-values associated to it exist)|
 |||UNTRUSTWORTHY_INSTANCE|If the verifier has a notion of known-bad CPAK, then verification using CPAK that is successful but CPAK is known-bad can assert this claim.|
 |||UNRECOGNIZED_INSTANCE|No CPAK found corresponding to the Instance ID or Implementation ID is not known (i.e., there are no ref-values associated to it.)|
 |Config|Two notions of config in CCA may apply: (a) the “System Properties” captured in the Platform “config” claim, (b) the firmware and/or hardware configuration file that can be specified by certain boot loader stages. Those end up in sw-components entries of type “*_CONFIG”|APPROVED_CONFIG|TBD[^1] decide on what semantics we want to map here.|
@@ -22,10 +22,10 @@
 |File system||APPROVED_FILES|N.A.|
 |||UNRECOGNIZED_FILES|N.A.|
 |||CONTRAINDICATED_FILES|N.A.|
-|Hardware (and Firmware)||CONTRAINDICATED_HARDWARE (genuine HW/FW but contraindicated)|TRUSTWORTHY_INSTANCE && some sw-component claims are known-bad|
+|Hardware (and Firmware)||CONTRAINDICATED_HARDWARE (genuine HW/FW with known and exploitable vulnerability)|TRUSTWORTHY_INSTANCE && some sw-component claims are known-bad with an x-reason of exploit-exists|
 |||UNRECOGNIZED_HARDWARE (unrecognised HW/FW)|TRUSTWORTHY_INSTANCE && some sw-component claims couldn’t be found|
 |||GENUINE_HARDWARE (genuine HW/FW)|Same as (TRUSTWORTHY_INSTANCE && APPROVED_BOOT)|
-||Not clear what is the difference between this and CONTRAINDICATED_HARDWARE?|UNSAFE_HARDWARE (genuine HW/SW but known sec vulns)|TBD (see note)|
+|||UNSAFE_HARDWARE (genuine HW/FW with known vulnerability)||TRUSTWORTHY_INSTANCE && some sw-component claims are known-bad with an x-reason of security-flaw|
 |Sourced Data||CONTRAINDICATED_SOURCES|N.A.|
 |||TRUSTED_SOURCES|N.A.|
 |||UNTRUSTED_SOURCES|N.A.|
@@ -65,11 +65,11 @@ ThomasF: OK, so this can be implied if (tv.instance_identity == TRUSTWORTHY_INST
 |||UNAVAIL_CONFIG_ELEMS|N.A.|
 |||UNSAFE_CONFIG|N.A.|
 |||UNSUPPORTABLE_CONFIG|N.A.|
-|Executables|It looks like an “UNRECOGNIZED_BOOT” is missing… but really the problem here is that this claim conflates run-time and boot-time.|APPROVED_BOOT|if RIM and PV (if provided) match|
+|Executables|It looks like an “UNRECOGNIZED_BOOT” is missing… but really the problem here is that this claim conflates run-time and boot-time. **ACTION: raise issue in AR4SI.**|APPROVED_BOOT|if RIM and PV (if provided) match|
 |||APPROVED_RUNTIME|if REM match|
-|||CONTRAINDICATED_RUNTIME|If the verifier has a notion of known-bad REM values (alongside known-good) this can be set in case REM matches known-bad values|
+|||CONTRAINDICATED_RUNTIME|If the verifier has a notion of known-bad REM values (alongside known-good) this can be set in case REM matches known-bad values for a known and exploitable vulnerability|
 |||UNRECOGNIZED_RUNTIME|If no REM ref-values match evidence|
-||Not clear how this differs from CONTRAINDICATED_RUNTIME|UNSAFE_RUNTIME|(could be used as an alternative to CONTRAINDICATED_RUNTIME in the warning tier)|
+|||UNSAFE_RUNTIME|If the verifier has a notion of known-bad REM values (alongside known-good) this can be set in case REM matches known-bad values for a known vulnerability|
 |File system||APPROVED_FILES|N.A.|
 |||UNRECOGNIZED_FILES|N.A.|
 |||CONTRAINDICATED_FILES|N.A.|
