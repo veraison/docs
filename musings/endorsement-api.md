@@ -1,6 +1,6 @@
-# Endorsement API
+# Endorsement Distribution API
 
-This musing discusses the addition of a new Veraison service that provides an [Endorsement API](https://wiki.ietf.org/en/group/rats/referencevalues) endpoint.
+This musing discusses the addition of a new Veraison service that provides an [Endorsement Distribution API](https://wiki.ietf.org/en/group/rats/referencevalues) endpoint.
 
 In the reminder of this musing, we will use the shorthand "EAPI" to refer to this new service.
 
