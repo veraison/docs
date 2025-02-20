@@ -11,15 +11,18 @@ At this stage, this work is intended as a proof-of-concept, therefore we will ma
 1. Arm CCA only
 2. Simplified RBAC model with fixed tenant
 3. Transactional (request-response) API
+  * All responses will be "full" in the PoC: we won't try to exemplify any kind of fine-grained partial patching of data.
+  * The client is expected to perform a periodic fetch to refresh its local cache.
 4. API output in [rust-ccatoken](https://github.com/veraison/rust-ccatoken/blob/main/src/store/data-model.cddl) format
+  * The output format will generally depend on the attestation scheme. In the prototype, the Arm CCA scheme identifier will be included during the API negotiation process. Any other scheme identifier will result in a failure.
 
 These choices minimise the amount of new client code required while still creating many of the necessary building blocks on the server side.
 
 ## New bits and pieces
 
-EAPI will be added as a new service alongside the existing [verification](), [management]() and [provisioning]() components.
+EAPI will be added as a new service alongside the existing [verification](https://github.com/veraison/services/tree/main/verification), [management](https://github.com/veraison/services/tree/main/management) and [provisioning](https://github.com/veraison/services/tree/main/provisioning) components.
 
-Strictly speaking, EAPI depends only on [VTS]() (Veraison trusted services) which is the exclusive owner of the stores from which the endorsements are fetched.
+Strictly speaking, EAPI depends only on [VTS](https://github.com/veraison/services/tree/main/vts) (Veraison trusted services) which is the exclusive owner of the stores from which the endorsements are fetched.
 EAPI is likely to execute in combination with the provisioning service, which allows ingesting up-to-date endorsements from "upstream" endorsers and reference value providers via its push API.
 In an EAPI-driven deployment, the verification service can be muted.
 (Full blown RBAC support will need integration with KeyCloak; this can be deferred to a later stage.)
@@ -57,3 +60,5 @@ A suitable data model for encapsulating different identifiers is the [`environme
 This prototype will utilize the `environment-map` along with an attestation scheme identifier to supply the necessary query parameters:
 * The attestation scheme identifier is used to locate the right "query plugin".
 * The `environment-map` is treated as opaque data until it reaches the intended plugin, where it's interpreted and mapped to a suitable KV-store key for lookup.
+
+Which schemes are supported in the prototype (Arm CCA only), and which attester identification data model (CoRIM’s `environment-map`) will be exposed via a discovery resource at `.well-known/veraison/endorsement-distribution`
