@@ -47,4 +47,13 @@ If needed, scheme-specific query adapters will be encapsulated in a "EAPI query 
                                   '-------'
 ```
 
+## Attester Identification
 
+When requesting endorsements for a specific target or attesting environment, the client must provide an identifier for that environment.
+These identifiers are specific to the attestation scheme being used.
+
+A suitable data model for encapsulating different identifiers is the [`environment-map`](https://www.ietf.org/archive/id/draft-ietf-rats-corim-06.html#section-5.1.4.1) from CoRIM.
+
+This prototype will utilize the `environment-map` along with an attestation scheme identifier to supply the necessary query parameters:
+* The attestation scheme identifier is used to locate the right "query plugin".
+* The `environment-map` is treated as opaque data until it reaches the intended plugin, where it's interpreted and mapped to a suitable KV-store key for lookup.
