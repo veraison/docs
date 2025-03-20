@@ -1,10 +1,12 @@
-# Interaction models
+# Challenge/Response
+
+## Interaction models
 
 The APIs described here are meant to be instantiations of the abstract
 protocols described in [Reference Interaction Models for Remote Attestation
 Procedures](https://datatracker.ietf.org/doc/draft-ietf-rats-reference-interaction-models/).
 
-## Challenge/Response
+## Session flow
 
 Each Challenge-Response session is associated to its own resource, with the
 following attributes:

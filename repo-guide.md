@@ -31,12 +31,15 @@ Veraison services expose REST APIs. This set of libraries provides convenient co
 This collection of libraries provides manipulation and verification functionality for Attestation formats of various architectures. 
 
 [psatoken](https://github.com/veraison/psatoken): Platform Security Abstraction (PSA) Attestation Token manipulation library.
+
 [ccatoken](https://github.com/veraison/ccatoken) 
 A library for the Arm Confidential Computing Architecture (CCA) Attestation Token.
-[dice](https://github.com/veraison/dice): library providing support functions for manipulating various profiles of DICE.
-[parsec](https://github.com/veraison/parsec): Library support for handling the Parsec Key Attestation formats used in the attested TLS PoC.
-[enact-demo](https://github.com/veraison/enact-demo): EnactTrust TPM/Veraison interop demo and related docs
 
+[dice](https://github.com/veraison/dice): library providing support functions for manipulating various profiles of DICE.
+
+[parsec](https://github.com/veraison/parsec): Library support for handling the Parsec Key Attestation formats used in the attested TLS PoC.
+
+[enact-demo](https://github.com/veraison/enact-demo): EnactTrust TPM/Veraison interop demo and related docs
 
 
 ## CLI tools 
