@@ -4,7 +4,7 @@ The API described here are intended to assist with the operation and management
 of a Veraison services deployment. They are not meant to be utilized by the
 services' users.
 
-## Policy management
+# Policy management
 
 Policies allow augmenting attestation scheme generated [Attestation Results] on
 per-deployment basis, by specifying additional rules to be applied to these

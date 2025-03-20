@@ -91,12 +91,12 @@ format is CoRIM.
              { "status": "processing|success|failed" }
 ```
 
+
 * Client submits the endorsement provisioning request
 * Server responds with response code `201` indicating that the request has been accepted and will be processed asynchronously
 * Server returns the URI of a time-bound session resource in the `Location` header. The resource can be polled at regular intervals to check the progress of the submission, until the processing is complete (either successfully or with a failure)
 
-### Example
-
+### Example
 
 ```text
 >> Request:
