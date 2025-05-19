@@ -49,7 +49,7 @@ The following is the intended scope of the Veraison Project. This is being liste
 
 ### Scope - Provisioning
 
-Some of the more complex problems in the implementation of Verification Services arise from the requirements of Appraisal Policies to access Reference Values for Evidence. These values must be supplied by a trusted supply chain and kept securely by the Service. The Veraison project supports a Provisioning module that allows Reference Values (& Endorsements) to be presented by the supply chain and stored within the service. The actual storage medium is abstracted from the storage model. It has been determined that the most appropriate form of storage to support queries by the validator is a database that support graph structures & queries.
+Some of the more complex problems in the implementation of Verification Services arise from the requirements of Appraisal Policies to access Reference Values for Evidence. These values must be supplied by a trusted supply chain and kept securely by the Service. The Veraison project supports a Provisioning module that allows Reference Values (& Endorsements) to be presented by the supply chain and stored within the service. The actual storage medium is abstracted from the storage model.
 Given the above, the scope of the Provisioning work is:
 
 * API to allow provisioning of Reference Values / Endorsements from supply chain. Secured provisioning actions will be validated.
