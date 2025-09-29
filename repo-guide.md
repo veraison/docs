@@ -127,12 +127,10 @@ flowchart TD
 subgraph Veraison["<b>Core Structure </b?"]
 style Veraison stroke:#333,stroke-width:4px
 
-SP("Supply Chain \n
-                \n")
+SP("Supply Chain")
 style SP fill:#f9f,stroke:#333,stroke-width:4px
 
-ATT("Attester  \n
-                \n")
+ATT("Attester")
 style ATT fill:#f9f,stroke:#333,stroke-width:4px
 
 COCLI["<b>Endorsement Manipulation CLI Tool</b>
@@ -173,8 +171,7 @@ SD["<b>Core Verifier repositories</b>
     <i>book</i>
     <i>ratsd</i>"]
 
-RP("Relying Party \n
-                \n")
+RP("Relying Party")
 style RP fill:#f9f,stroke:#333,stroke-width:4px
 
 AR["<b>Attestation Results</b> 
