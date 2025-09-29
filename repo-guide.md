@@ -41,9 +41,6 @@ A library for the Arm Confidential Computing Architecture (CCA) Attestation Toke
 [rust-ccatoken](https://github.com/veraison/rust-ccatoken)
 Rust implementation of the Arm Confidential Computing Architecture (CCA) Attestation Token library.
 
-[cca-realm-measurements](https://github.com/veraison/cca-realm-measurements)
-Library for handling CCA Realm measurements and attestation data.
-
 [dice](https://github.com/veraison/dice): library providing support functions for manipulating various profiles of DICE.
 
 [parsec](https://github.com/veraison/parsec): Library support for handling the Parsec Key Attestation formats used in the attested TLS PoC.
@@ -70,8 +67,8 @@ CLI for generating CoRIM (containing Endorsements and Reference Values) using Ev
 [gen-testcase](https://github.com/veraison/gen-testcase)
 Test case generator for CoRIM-related testing and validation
 
-[cover](https://github.com/veraison/cover)
-CoRIM Verifier - tool for verifying CoRIM files
+[cca-realm-measurements](https://github.com/veraison/cca-realm-measurements)
+A tool to calculate Realm Initial Measurements and Realm Extended Measurements for Arm CCA
 
 ## Standards driven work
 The Veraison Project supports Attestation related working groups in standards bodies, in particular IETF & TCG. This set of repos provide test bed implementations for some of the standards work, as related to Veraison services.
@@ -139,15 +136,11 @@ COCLI["<b>Endorsement Manipulation CLI Tool</b>
 GEN-CORIM["<b>Endorsement creation from Evidence CLI Tool</b>
  <i>gen-corim</i>"]
 
-COVER["<b>CoRIM Verifier</b>
- <i>cover</i>"]
-
 VPF["<b>Verifier Provisioning Formats</b>
  <i>corim</i>
  <i>corim-rs</i>
  <i>coswid</i>"]
 COCLI ---> VPF
-COVER ---> VPF
 
 CL["<b>Common Libraries</b> 
      <i>go-cose</i>"]
@@ -160,7 +153,6 @@ EF["<b>Evidence Formats</b>
      <i>psatoken</i>
      <i>ccatoken</i>
      <i>rust-ccatoken</i>
-     <i>cca-realm-measurements</i>
      <i>enacttrust-tpm</i>
      <i>parsec (tpm, cca)</i>"]
 EF ---> CL
