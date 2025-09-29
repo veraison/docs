@@ -217,8 +217,7 @@ Verifier ---> CMW
 POCLI["<b>Policy Mgmt CLI Tool</b>
       <i>pocli</i>"]
 
-VO("Verifier Owner  \n
-                \n")
+VO("Verifier Owner")
 style VO fill:#f9f,stroke:#333,stroke-width:4px
 
 VO --> POCLI
