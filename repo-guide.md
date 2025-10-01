@@ -12,6 +12,9 @@ This is the main repo holding the code implementing the attestation verification
 [docs](https://github.com/veraison/docs)
 Veraison documentation
 
+[book](https://github.com/veraison/book)
+Compilation of documentation for various Veraison projects into a reader-friendly format
+
 ## Project 
 [community](https://github.com/veraison/community)
 Veraison community files. Look here for introductory presentations to the project and CCC membership materials.
@@ -35,11 +38,18 @@ This collection of libraries provides manipulation and verification functionalit
 [ccatoken](https://github.com/veraison/ccatoken) 
 A library for the Arm Confidential Computing Architecture (CCA) Attestation Token.
 
+[rust-ccatoken](https://github.com/veraison/rust-ccatoken)
+Rust implementation of the Arm Confidential Computing Architecture (CCA) Attestation Token library.
+
 [dice](https://github.com/veraison/dice): library providing support functions for manipulating various profiles of DICE.
 
 [parsec](https://github.com/veraison/parsec): Library support for handling the Parsec Key Attestation formats used in the attested TLS PoC.
 
+## Demos and Integration Examples
+
 [enact-demo](https://github.com/veraison/enact-demo): EnactTrust TPM/Veraison interop demo and related docs
+
+[keybroker-demo](https://github.com/veraison/keybroker-demo): A simple key broker protocol demonstration
 
 
 ## CLI tools 
@@ -54,6 +64,12 @@ CLI for Veraison services policy management client
 [gen-corim](https://github.com/veraison/gen-corim)
 CLI for generating CoRIM (containing Endorsements and Reference Values) using Evidence
 
+[gen-testcase](https://github.com/veraison/gen-testcase)
+Test case generator for CoRIM-related testing and validation
+
+[cca-realm-measurements](https://github.com/veraison/cca-realm-measurements)
+A tool to calculate Realm Initial Measurements and Realm Extended Measurements for Arm CCA
+
 ## Standards driven work
 The Veraison Project supports Attestation related working groups in standards bodies, in particular IETF & TCG. This set of repos provide test bed implementations for some of the standards work, as related to Veraison services.
 
@@ -66,14 +82,21 @@ These libraries provide functions for working with EAR (EAT Attestation Results)
 
 [ear](https://github.com/veraison/ear): Golang implementation of EAT Attestation Results
 [rust-ear](https://github.com/veraison/rust-ear): Rust implementation of EAT Attestation Results
-[c-ear](https://github.com/veraison/ear): C implementation of EAT Attestation Results
+[c-ear](https://github.com/veraison/c-ear): C implementation of EAT Attestation Results
+[python-ear](https://github.com/veraison/python-ear): Python implementation of EAT Attestation Results
  
 [cmw](https://github.com/veraison/cmw): implementation for  RATS WG Conceptual Message Wrappers (draft-ftbs-rats-msg-wrap) for attestation related data encapsulation.
+
+[rust-cmw](https://github.com/veraison/rust-cmw): Rust implementation of RATS WG Conceptual Message Wrappers
+
+[ratsd](https://github.com/veraison/ratsd): A RATS conceptual message collection daemon
 
 ####  Verifier Provisioning 
 These libraries provide support for the standard information models used to convey data to a Verifier.
 
 [corim](https://github.com/veraison/corim): manipulation of Concise Reference Integrity Manifest (CoRIM) and Concise Module Identifier (CoMID) tags. Also includes cocli CLI tool, that assists users creating CoRIM & CoMID tags.
+
+[corim-rs](https://github.com/veraison/corim-rs): Rust implementation of CoRIM and CoMID manipulation library
 
 [swid](https://github.com/veraison/swid) : SWID and CoSWID manipulation library
 
@@ -101,12 +124,10 @@ flowchart TD
 subgraph Veraison["<b>Core Structure </b?"]
 style Veraison stroke:#333,stroke-width:4px
 
-SP("Supply Chain \n
-                \n")
+SP("Supply Chain")
 style SP fill:#f9f,stroke:#333,stroke-width:4px
 
-ATT("Attester  \n
-                \n")
+ATT("Attester")
 style ATT fill:#f9f,stroke:#333,stroke-width:4px
 
 COCLI["<b>Endorsement Manipulation CLI Tool</b>
@@ -117,6 +138,7 @@ GEN-CORIM["<b>Endorsement creation from Evidence CLI Tool</b>
 
 VPF["<b>Verifier Provisioning Formats</b>
  <i>corim</i>
+ <i>corim-rs</i>
  <i>coswid</i>"]
 COCLI ---> VPF
 
@@ -130,22 +152,25 @@ EF["<b>Evidence Formats</b>
      <i>eat</i>
      <i>psatoken</i>
      <i>ccatoken</i>
+     <i>rust-ccatoken</i>
      <i>enacttrust-tpm</i>
      <i>parsec (tpm, cca)</i>"]
 EF ---> CL
 
 SD["<b>Core Verifier repositories</b> 
     <i>services</i> 
-    <i>docs</i>"]
+    <i>docs</i>
+    <i>book</i>
+    <i>ratsd</i>"]
 
-RP("Relying Party \n
-                \n")
+RP("Relying Party")
 style RP fill:#f9f,stroke:#333,stroke-width:4px
 
 AR["<b>Attestation Results</b> 
     <i>ear</i> 
     <i>c-ear</i>
-    <i>rust-ear</i>"]
+    <i>rust-ear</i>
+    <i>python-ear</i>"]
 RP ---> AR
 
 subgraph Verifier["Verifier"]
@@ -173,7 +198,8 @@ EVCLI["<b>Evidence Manipulation CLI Tool</b> \n <i>evcli</i> "]
 EVCLI ---> API
 
 CMW["<b>CONCEPTUAL MESSAGE WRAPPER</b>
-      <i>cmw</i>"]
+      <i>cmw</i>
+      <i>rust-cmw</i>"]
 
 ATT --->EF
 ATT -.-> EVCLI
@@ -183,8 +209,7 @@ Verifier ---> CMW
 POCLI["<b>Policy Mgmt CLI Tool</b>
       <i>pocli</i>"]
 
-VO("Verifier Owner  \n
-                \n")
+VO("Verifier Owner")
 style VO fill:#f9f,stroke:#333,stroke-width:4px
 
 VO --> POCLI
