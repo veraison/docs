@@ -38,36 +38,85 @@ sudo apt-get install tmux
 
 
 * For build to succeed one needs to install following packages:
-1. protoc-gen-go with version v1.26
-From  `https://github.com/protocolbuffers/protobuf/releases` download the `protobuf-all-[VERSION].tar.gz`.
-Extract the contents and change in the directory
 
-```sh
-./configure
-make
-make check
-sudo make install
-```
-To check if this works
-`protoc --version`
+1. **Protocol Buffer Compiler (protoc)**
+   
+   Download the latest pre-compiled `protoc` binary from [Protocol Buffers releases](https://github.com/protocolbuffers/protobuf/releases).
+   
+   For Ubuntu/Linux x86_64:
+   ```sh
+   # Download and install protoc (replace VERSION with latest, e.g., 25.1)
+   curl -LO https://github.com/protocolbuffers/protobuf/releases/download/v25.1/protoc-25.1-linux-x86_64.zip
+   unzip protoc-25.1-linux-x86_64.zip -d $HOME/.local
+   export PATH="$PATH:$HOME/.local/bin"
+   ```
+   
+   For macOS:
+   ```sh
+   # Download and install protoc for macOS
+   curl -LO https://github.com/protocolbuffers/protobuf/releases/download/v25.1/protoc-25.1-osx-x86_64.zip
+   unzip protoc-25.1-osx-x86_64.zip -d $HOME/.local
+   export PATH="$PATH:$HOME/.local/bin"
+   ```
+   
+   For Windows:
+   ```powershell
+   # Download protoc-25.1-win64.zip from the releases page and extract to a directory
+   # Add the bin directory to your PATH environment variable
+   ```
+   
+   To verify installation:
+   ```sh
+   protoc --version
+   ```
 
-2. protoc-gen-go-grpc version v1.1
-`go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1`
-3. protoc-gen-go-json version v1.1.0
-`go install github.com/mitchellh/protoc-gen-go-json@v1.1.0`
-4. mockgen version v1.6.0
-`go install github.com/golang/mock/mockgen@v1.6.0`
+2. **Go Protocol Buffer Plugin (protoc-gen-go) version v1.26**
+   
+   > **Important**: This is separate from protoc and must be installed via Go:
+   
+   ```sh
+   go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.26.0
+   ```
+3. **protoc-gen-go-grpc version v1.1**
+   ```sh
+   go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1
+   ```
 
-### Other systems
+4. **protoc-gen-go-json version v1.1.0**
+   ```sh
+   go install github.com/mitchellh/protoc-gen-go-json@v1.1.0
+   ```
 
-* One need to install jq and curl.
+5. **mockgen version v1.6.0**
+   ```sh
+   go install github.com/golang/mock/mockgen@v1.6.0
+   ```
 
+### Troubleshooting
 
-* For build to succeed one needs to install following packages:
-1. protoc-gen-go with version v1.26
-2. protoc-gen-go-grpc version v1.1
-3. protoc-gen-go-json version v1.1.0
-4. mockgen version v1.6.0
+If you encounter issues with the above installation:
+
+**protoc not found:**
+- Ensure `$HOME/.local/bin` is in your `$PATH`
+- Try `which protoc` to verify installation location
+- For system-wide installation, extract to `/usr/local` instead of `$HOME/.local`
+
+**protoc-gen-go not found:**
+- Verify Go is properly installed: `go version`
+- Ensure `$GOPATH/bin` (or `$HOME/go/bin`) is in your `$PATH`
+- Try `which protoc-gen-go` to verify the plugin is available
+- If using Go modules, the default GOPATH is `$HOME/go`
+
+**Permission issues:**
+- Use `sudo` for system-wide installation of protoc
+- For Go packages, avoid `sudo` as they install in user space
+
+**Build failures with "protoc-gen-go: program not found or is not executable":**
+- This indicates protoc cannot find the protoc-gen-go plugin
+- Verify both protoc and protoc-gen-go are installed and in PATH
+- Try running: `protoc-gen-go --version` to test the plugin directly
+
+**Note:** protoc (the compiler) and protoc-gen-go (the Go plugin) are separate tools that must both be installed for Go protocol buffer generation to work.
 
 * Commands below assume execution in a Bourne-compatible shell. Please adjust appropriately in case any other shell is used.
 
