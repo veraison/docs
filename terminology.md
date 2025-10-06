@@ -8,8 +8,8 @@ It is intended to help new contributors, developers, and users quickly understan
 ## 🔹 Provisioning
 
 ### **CoRIM (Concise Reference Integrity Manifest)**
-A data structure that provides trusted reference values (baselines) for attestation.  
-It defines what "good" looks like for a platform or component.  
+A data format that provides trusted Reference Values (baselines) and Endorsements for remote attestation.  
+It defines what are "golden values" for a platform or component.  
 *(Defined in [IETF CoRIM draft](https://datatracker.ietf.org/doc/draft-birkholz-rats-corim/))*  
 
 ### **CoMID (Concise Module Identifier)**
@@ -27,10 +27,10 @@ Statements issued by manufacturers or trusted authorities about a device/compone
 Claims collected from a device (the Attester) about its current state (firmware, boot configuration, runtime properties).  
 
 ### **Scheme**
-A verification policy or method supported by Veraison that defines how evidence should be interpreted and matched against reference values.  
+A verification policy or method supported by Veraison that defines how Evidence should be interpreted and matched against Reference Values.  
 
 ### **Verifier**
-The entity that validates evidence against endorsements and reference values to produce an attestation result.  
+The entity that validates Evidence against Endorsements and Reference Values to produce an Attestation Result.  
 
 ### **Attestation Result**
 The outcome of the verification process, usually expressing whether the evidence is trustworthy.  
@@ -40,13 +40,13 @@ The outcome of the verification process, usually expressing whether the evidence
 ## 🔹 Attestation Roles (from IETF RATS)
 
 ### **Attester**
-The device or system that generates evidence about its state.  
+The device or system that generates Evidence about its state.  
 
 ### **Verifier**
-The system (in Veraison) that checks evidence and produces results.  
+An entity (typically a collection of components in Veraison) that  appraise Evidence and produces Attestation Results.  
 
 ### **Relying Party**
-The consumer of the attestation result (e.g., a cloud service that decides access based on trust).  
+The consumer of the Attestation Result (e.g., a cloud service that decides access based on trust).  
 
 ---
 
