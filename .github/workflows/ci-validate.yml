@@ -18,9 +18,9 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y curl shellcheck protobuf-compiler
-          # Install docker-compose via pip as docker-compose-plugin isn't available on all Ubuntu versions
-          python3 -m pip install --user docker-compose
+          sudo apt-get install -y shellcheck protobuf-compiler
+          # Note: docker and docker-compose are pre-installed on GitHub Actions runners
+          # Our validation scripts check for their presence but don't require them to run
       - name: Run validation
         run: |
           make validate
