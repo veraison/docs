@@ -13,10 +13,30 @@ check(){
   fi
 }
 
+# Check for Docker (required)
 check docker
-check docker-compose || true
-check protoc || true
-check shellcheck || true
+
+# Check for docker-compose (v1) or docker compose plugin (v2)
+if command -v docker-compose >/dev/null 2>&1; then
+  echo "[ OK ] Found: docker-compose -> $(command -v docker-compose)"
+elif docker compose version >/dev/null 2>&1; then
+  echo "[ OK ] Found: docker compose (plugin)"
+else
+  echo "[WARN] docker-compose not found (optional, demos may not work)"
+fi
+
+# Check optional tools
+if command -v protoc >/dev/null 2>&1; then
+  echo "[ OK ] Found: protoc -> $(command -v protoc)"
+else
+  echo "[WARN] protoc not found (optional)"
+fi
+
+if command -v shellcheck >/dev/null 2>&1; then
+  echo "[ OK ] Found: shellcheck -> $(command -v shellcheck)"
+else
+  echo "[WARN] shellcheck not found (optional)"
+fi
 
 if [[ $missing -ne 0 ]]; then
   echo "One or more required tools are missing. Run scripts/setup.sh for guidance."
