@@ -19,6 +19,7 @@
 ## Data Models
 
 * [Attestation Results](datamodels/attestation-results/README.md)
+* [AR4SI Mappings](ar4si/README.md)
 
 ## Musings
 
