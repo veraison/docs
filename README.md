@@ -27,31 +27,65 @@
 * [Assumptions about Attestation Evidence](musings/token-assumptions.md)
 ```
 
-## Quick start
+## Quick Start
 
-This repository includes small helper scripts to improve the developer onboarding experience
-and address common setup/validation tasks. They are intentionally conservative and
-platform-guided. See `CONTRIBUTING.md` for the recommended workflow.
+This repository includes comprehensive tooling to improve the developer onboarding experience.
+See `CONTRIBUTING.md` for the full workflow.
 
-1. Run a quick validation to check your environment:
+### 1. Validate Your Environment
 
-	```sh
-	scripts/validate-setup.sh
-	```
+```sh
+make validate
+# or
+scripts/validate-setup.sh
+```
 
-2. If tools are missing, either follow the printed suggestions or use the guided setup:
+### 2. Install Missing Dependencies
 
-	```sh
-	scripts/setup.sh --dry-run
-	# or
-	scripts/setup.sh
-	```
+```sh
+scripts/setup.sh
+```
 
-3. To run a minimal quick-start verification (requires Docker):
+### 3. Run Quick Start
 
-	```sh
-	scripts/quick-start.sh
-	```
+```sh
+make quick-start
+# or
+scripts/quick-start.sh
+```
 
-These scripts are small helpers to make developer onboarding easier. They don't replace
-per-demo instructions; please check `demo/` for demo-specific steps (PSA and CCA demos).
+### 4. Start Demo Services
+
+```sh
+# PSA demo
+make demo-psa
+
+# CCA demo
+make demo-cca
+
+# Check health
+make health-check
+```
+
+### 5. Using VS Code?
+
+Open this repository in a devcontainer for a pre-configured development environment:
+- Install the "Dev Containers" extension
+- Open Command Palette (Ctrl+Shift+P)
+- Select "Dev Containers: Reopen in Container"
+
+### Available Make Targets
+
+Run `make help` to see all available commands.
+
+### Troubleshooting
+
+If you encounter issues, see:
+- [TROUBLESHOOTING.md](TROUBLESHOOTING.md) - Platform-specific solutions
+- [docs/ERROR_HANDLING.md](docs/ERROR_HANDLING.md) - Common error scenarios
+
+### Demo-Specific Instructions
+
+For detailed demo walkthroughs:
+- PSA: [demo/psa/](demo/psa/)
+- CCA: [demo/cca/](demo/cca/)
