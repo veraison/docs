@@ -1,0 +1,6 @@
+version: '3.8'
+services:
+  psa-demo-placeholder:
+    image: busybox:latest
+    command: ["sh", "-c", "while true; do echo psa-demo running; sleep 60; done"]
+    restart: unless-stopped

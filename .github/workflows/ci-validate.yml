@@ -1,0 +1,25 @@
+name: CI - Docs validation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python (for some tools if needed)
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl docker.io docker-compose-plugin shellcheck protobuf-compiler
+      - name: Run validation
+        run: |
+          make validate
+          make shellcheck
