@@ -18,7 +18,9 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y curl docker.io docker-compose-plugin shellcheck protobuf-compiler
+          sudo apt-get install -y curl shellcheck protobuf-compiler
+          # Install docker-compose via pip as docker-compose-plugin isn't available on all Ubuntu versions
+          python3 -m pip install --user docker-compose
       - name: Run validation
         run: |
           make validate
