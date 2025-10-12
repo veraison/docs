@@ -4,6 +4,7 @@
 
 * [Veraison Overview](project-overview.md)
 * [Veraison Source Repo Overview](repo-guide.md)
+* [Terminology](terminology.md)
 
 ## Services Architecture
 
@@ -19,6 +20,18 @@
 ## Data Models
 
 * [Attestation Results](datamodels/attestation-results/README.md)
+
+## Demos
+
+### PSA
+
+* [PSA Automated End-to-End Demo](demo/psa/automated-end-to-end.md)
+* [PSA Manual End-to-End Demo](demo/psa/manual-end-to-end.md)
+
+### CCA (Arm Confidential Computing Architecture)
+
+* [Realm Instances - A Developer's Guide](demo/cca/realm-instance.md) - Understanding Realm Instances in CCA
+* [CCA Manual End-to-End Demo](demo/cca/manual-end-to-end.md)
 
 ## Musings
 
