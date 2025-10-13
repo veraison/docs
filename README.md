@@ -28,10 +28,10 @@
 * [PSA Automated End-to-End Demo](demo/psa/automated-end-to-end.md)
 * [PSA Manual End-to-End Demo](demo/psa/manual-end-to-end.md)
 
-### CCA (Arm Confidential Computing Architecture)
+### Arm CCA (Arm's Confidential Computing Architecture)
 
 * [Realm Instances - A Developer's Guide](demo/cca/realm-instance.md) - Understanding Realm Instances in CCA
-* [CCA Manual End-to-End Demo](demo/cca/manual-end-to-end.md)
+* [Arm CCA Manual End-to-End Demo](demo/cca/manual-end-to-end.md)
 
 ## Musings
 
