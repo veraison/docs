@@ -30,11 +30,11 @@
 
 ### Arm CCA (Arm's Confidential Computing Architecture)
 
-* [Realm Instances - A Developer's Guide](demo/cca/realm-instance.md) - Understanding Realm Instances in CCA
 * [Arm CCA Manual End-to-End Demo](demo/cca/manual-end-to-end.md)
 
 ## Musings
 
 * [DICE notes](musings/dice.md)
 * [Device and Supply-Chain Modelling](musings/device-and-supply-chain-modelling.md)
+* [Realm Instances - A Developer's Guide](musings/realm-instance.md)
 * [Assumptions about Attestation Evidence](musings/token-assumptions.md)
