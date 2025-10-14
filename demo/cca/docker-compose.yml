@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # Veraison CCA verification service (placeholder)
+  cca-verifier:
+    image: nginx:alpine
+    ports:
+      - "8081:80"
+    volumes:
+      - ./data:/usr/share/nginx/html:ro
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - veraison-cca-net
+
+  # CCA provisioning service (placeholder)
+  cca-provisioning:
+    image: nginx:alpine
+    ports:
+      - "8889:80"
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - veraison-cca-net
+
+networks:
+  veraison-cca-net:
+    driver: bridge
