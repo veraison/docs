@@ -26,6 +26,29 @@ components:
           type: string
           description: >
             Optional field to provide more details about the failure cause when provisioning status is `failed`
+    
+    IDCollection:
+      description: List of CoRIM or CoMID IDs.
+      type: object
+      required:
+        - profile
+      properties:
+        profile:
+          type: string
+          description:
+            CoRIM profile to which the CoRIM/CoMID ids belong to.
+          example: "tag:example.com,2025/example-profile"
+        corim-ids:
+          type: array
+          items:
+            type: string
+          description: List of CoRIM ids.
+        comid-ids:
+          type: array
+          items:
+            type: string
+          description: List of CoMID ids.
+    
     Problem:
       required:
         - title

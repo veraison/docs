@@ -1,8 +1,8 @@
 openapi: '3.0.0'
 
 info:
-  title: attestation endorsement provisioning
-  description: API to provision endorsements. For further details, see datatracker.ietf.org/doc/draft-birkholz-rats-corim
+  title: Attestation endorsement provisioning and management
+  description: API to provision and manage endorsements. For further details, see datatracker.ietf.org/doc/draft-birkholz-rats-corim
   version: '1.0.0alpha'
 servers:
   - url: 'https://veraison.example/endorsement-provisioning/v1'
@@ -64,6 +64,92 @@ paths:
             application/vnd.veraison.provisioning-session+json:
               schema:
                 $ref: './schemas/components.yaml#/components/schemas/SessionResource'
+        default:
+          $ref: './schemas/components.yaml#/components/responses/Error'
+  /activate:
+    post:
+      summary: Activate triples using CoMID or CoRIM IDs or CoSERV queries.
+      description: >
+        Activate triples using CoRIM/CoMID IDs or using CoSERV queries.
+        All the triples from the provided list of IDs or the triples
+        matching the CoSERV query environment  are activated. If any of
+        the supplied IDs are not present or if there are no triples matching
+        the CoSERV query environment in the database, error is returned.
+      operationId: activateEndorsementsUsingIDs
+      requestBody:
+        required: true
+        content:
+          application/vnd.veraison.endorsement-id-collection+json:
+            schema:
+              $ref: './schemas/components.yaml#/components/schemas/IDCollection'
+          application/coserv+cbor:
+            schema:
+              type: string
+              format: binary
+              description: >
+                A CoSERV query as per draft-ietf-rats-coserv
+      responses:
+        '204':
+          description: >
+            Activation successful. All the CoRIM/CoMID ids for the profile,
+            which were posted are present in the database and all the triples
+            from those CoRIM/CoRIMs have been converted to active state. If
+            a coserv was supplied in the request body, this response code
+            means: There was at least one triple matching the
+            selection. All the matching triples are now in active state.
+        '404':
+          description: >
+            One or more IDs present in the collection were not found in the
+            store for the given profile. If a coserv was submitted, then
+            this response code means no matching triples were found.
+          content:
+            application/problem+json:
+              schema:
+                $ref: './schemas/components.yaml#/components/schemas/Problem'
+        default:
+          $ref: './schemas/components.yaml#/components/responses/Error'
+
+
+  /deactivate:
+    post:
+      summary: Deactivate triples using CoMID or CoRIM IDs or CoSERV queries.
+      description: >
+        Deactivate triples using CoRIM/CoMID IDs or using CoSERV queries.
+        All the triples from the provided list of IDs or the triples
+        matching the CoSERV query environment  are deactivated. If any of
+        the supplied IDs are not present or if there are no triples matching
+        the CoSERV query environment in the database, error is returned.
+      operationId: deactivateEndorsementsUsingIDs
+      requestBody:
+        required: true
+        content:
+          application/vnd.veraison.endorsement-id-collection+json:
+            schema:
+              $ref: './schemas/components.yaml#/components/schemas/IDCollection'
+          application/coserv+cbor:
+            schema:
+              type: string
+              format: binary
+              description: >
+                A CoSERV query as per draft-ietf-rats-coserv
+      responses:
+        '204':
+          description: >
+            Deactivation successful. All the CoRIM/CoMID ids for the profile,
+            which were posted are present in the database and all the triples
+            from those CoRIM/CoRIMs have been converted to inactive state. If
+            a coserv was supplied in the request body, this response code
+            means: There was at least one triple matching the
+            selection. All the matching triples are now in inactive state.
+        '404':
+          description: >
+            One or more IDs present in the collection were not found in the
+            store for the given profile. If a coserv was submitted, then
+            this response code means no matching triples were found.
+          content:
+            application/problem+json:
+              schema:
+                $ref: './schemas/components.yaml#/components/schemas/Problem'
         default:
           $ref: './schemas/components.yaml#/components/responses/Error'
 components:
