@@ -133,131 +133,96 @@ format is CoRIM.
   }
 ```
 
-# Endorsement Lifecycle Management Interface
+# Endorsement Lifecycle Management (ELM) Interface
 
 This interface can be used for activating/deactivating endorsements provisioned
-to the verifier. Two modes are supported:
+to the verifier. It allows using CoSERV base types to define an ELM query that 
+can be used to select endorsements using either (stateful) environments or one or
+more RIM identifiers.
 
-1. Using CoRIM/CoMID ids
-2. Using CoSERV query
+## Query Format
 
-In the first mode, a collection of CoRIM/CoMID ids (or a combination of both)
-can be submitted, to activate/deactivate all endorsements that came from those
-CoRIM/CoMIDs. The collection of IDs are structured in a JSON document:
-
-```json
-{
-    "profile": "tag:example.com,2025/example-profile",
-    "corim-ids": ["82702896-9ced-4952-88f4-8c1dc2c8af20"],
-    "comid-ids": ["6720f8cb-6594-493a-8fb7-f1bdff446eb5", "101ef8a1-0e72-449a-a1d2-031ee206b2f0"]
-}
+Following is the CDDL format for an ELM query:
 ```
+elm-query =  {
+  &(profile: 0) => coserv.profile
+  &(query: 1) => query
+}
 
-In the second mode, a CoSERV query is submitted and all the endorsements that
-match the selection are activated/deactivated. The `result-type` field in
-CoSERV query are ignored.
+query = {
+ ( environment-query // rim-query )
+}
 
+environment-query = (
+  &(artifact-type: 0) => coserv.artifact-type
+  &(environment-selector: 1) => coserv.environment-selector-map
+)
+
+rim-query = (
+  &(rim-selector: 3) => [ + coserv.rim-selector-id ]
+)
+```
 
 ## Examples
 
-### Activating a combination of CoRIMs and CoMIDs
-Activate a set of CoRIMs and CoMIDs using the `activate` API.
+### Deactivate keys
+Use the `environment-query` variant to deactivate two keys by `instance-id`.
+
+#### Request
+
+```
+POST /endorsement-provisioning/v1/deactivate
+Host: veraison.example
+Content-Type: application/vnd.veraison.elm-v1+cbor
+
+-- body in EDN
+
+{
+  / profile / 0: "tag:arm.com,2025/example-profile",
+  / query /   1: {
+    / artifact-type / 0: 1 / trust-anchors /
+    / environment-selector / 1: {
+      / instance / 1: [ 
+        [ 550( h'01 ...' ) ],
+        [ 550( h'01 ...' ) ]
+      ]
+    },
+  }
+}
+```
+
+#### Response
+
+```
+HTTP/1.1 204 No Content
+```
+
+### Activate RIMs
+Use the `rim-query` variant to activate two CoRIMs and one CoMID.
 
 #### Request
 
 ```
 POST /endorsement-provisioning/v1/activate
 Host: veraison.example
-Content-Type: application/vnd.veraison.endorsement-id-collection+json
-
-{
-    "profile": "tag:example.com,2025/example-profile",
-    "corim-ids": ["82702896-9ced-4952-88f4-8c1dc2c8af20"],
-    "comid-ids": ["6720f8cb-6594-493a-8fb7-f1bdff446eb5", "101ef8a1-0e72-449a-a1d2-031ee206b2f0"]
-}
-```
-
-#### Response
-
-```
-HTTP/1.1 204 No Content
-```
-
-### Activating using CoSERV
-Activate the trust anchors for the instance-ids `0x1234` and `0x2345`.
-
-#### Request
-```
-POST /endorsement-provisioning/v1/activate
-Host: veraison.example
-Content-Type: application/coserv+cbor; profile="tag:vendor.com,2025/example-profile"
+Content-Type: application/vnd.veraison.elm-v1+cbor
 
 -- body in EDN
+
 {
-    / profile / 0: "tag:vendor.com,2025/example-profile",
-    / query / 1: {
-        / artifact-type /           0: 1, / trust-anchors /
-        / environment-selector /    1: {
-            / instance / 1: [ [h'1234'], [h'2345'] ]
-        }
-        / result-type / 2: 0    / collected-artifacts /
-    }
+  / profile / 0: "tag:arm.com,2025/example-profile",
+  / query /   1: {
+    / rim-id selector / 3: [
+      [ / corim / 2, / CoRIM id / "corim-acme-gizmo-1.0.0" ],
+      [ / corim / 2, / CoRIM id / "corim-acme-gizmo-1.2.0" ],
+      [ / comid / 0, / CoMID id / "d7bd6c2c-4844-48e4-a794-eeafdff128df" ]
+    ]
+  }
 }
 ```
 
 #### Response
-```
-HTTP/1.1 204 No Content
-```
 
-
-### Deactivating a CoMID
-Deactivating endorsements from a single CoMID
-
-#### Request
-```
-POST /endorsement-provisioning/v1/deactivate
-Host: veraison.example
-Content-Type: application/vnd.veraison.endorsement-id-collection+json
-
-{
-    "profile": "tag:example.com,2025/example-profile",
-    "comid-ids": ["101ef8a1-0e72-449a-a1d2-031ee206b2f0"]
-}   
-```
-
-#### Response
-```
-HTTP/1.1 204 No Content
-```
-
-### Deactivating using CoSERV
-Deactivate all reference values for a particular class of devices:
-
-#### Request
-```
-POST /endorsement-provisioning/v1/deactivate
-Host: veraison.example
-Content-Type: application/coserv+cbor; profile="tag:vendor.com,2025/example-profile"
-
--- body in EDN
-{
-    / profile / 0: "tag:vendor.com,2025/example-profile",
-    / query / 1: {
-        / artifact-type /           0: 2, / reference-values /
-        / environment-selector /    1: {
-            / class / 0: {
-                [
-                    [{ / model / 2: "model2" }]
-                ]
-            }
-        }
-        / result-type / 2: 0    / collected-artifacts /
-    }
-}
-```
-
-#### Response
 ```
 HTTP/1.1 204 No Content
 ```
