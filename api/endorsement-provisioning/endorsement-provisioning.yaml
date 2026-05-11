@@ -86,11 +86,11 @@ paths:
         '404':
           description: No matching endorsements found
           content:
-            application/problem+json:
+            application/concise-problem-details+cbor:
               schema:
-                $ref: './schemas/components.yaml#/components/schemas/Problem'
+                $ref: './schemas/components.yaml#/components/schemas/ConciseProblem'
         default:
-          $ref: './schemas/components.yaml#/components/responses/Error'
+          $ref: './schemas/components.yaml#/components/responses/ConciseError'
 
   /deactivate:
     post:
@@ -112,11 +112,11 @@ paths:
         '404':
           description: No matching endorsements found
           content:
-            application/problem+json:
+            application/concise-problem-details+cbor:
               schema:
-                $ref: './schemas/components.yaml#/components/schemas/Problem'
+                $ref: './schemas/components.yaml#/components/schemas/ConciseProblem'
         default:
-          $ref: './schemas/components.yaml#/components/responses/Error'
+          $ref: './schemas/components.yaml#/components/responses/ConciseError'
 components:
   parameters:
     SessionID:
