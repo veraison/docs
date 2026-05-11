@@ -144,18 +144,14 @@ more RIM identifiers.
 
 Following is the CDDL format for an ELM query:
 ```
-elm-query =  {
-  &(profile: 0) => coserv.profile
-  &(query: 1) => query
-}
-
-query = {
+elm-query = {
  ( environment-query // rim-query )
 }
 
 environment-query = (
-  &(artifact-type: 0) => coserv.artifact-type
-  &(environment-selector: 1) => coserv.environment-selector-map
+  &(profile: 0) => coserv.profile
+  &(artifact-type: 1) => coserv.artifact-type
+  &(environment-selector: 2) => coserv.environment-selector-map
 )
 
 rim-query = (
@@ -178,16 +174,14 @@ Content-Type: application/vnd.veraison.elm-v1+cbor
 -- body in EDN
 
 {
-  / profile / 0: "tag:arm.com,2025/example-profile",
-  / query /   1: {
-    / artifact-type / 0: 1 / trust-anchors /
-    / environment-selector / 1: {
-      / instance / 1: [ 
-        [ 550( h'01 ...' ) ],
-        [ 550( h'01 ...' ) ]
-      ]
-    },
-  }
+  / profile /              0: "tag:arm.com,2025/example-profile",
+  / artifact-type /        1: 1 / trust-anchors /
+  / environment-selector / 2: {
+    / instance / 1: [ 
+      [ 550( h'01 ...' ) ],
+      [ 550( h'01 ...' ) ]
+    ]
+  },
 }
 ```
 
@@ -210,14 +204,11 @@ Content-Type: application/vnd.veraison.elm-v1+cbor
 -- body in EDN
 
 {
-  / profile / 0: "tag:arm.com,2025/example-profile",
-  / query /   1: {
-    / rim-id selector / 3: [
-      [ / corim / 2, / CoRIM id / "corim-acme-gizmo-1.0.0" ],
-      [ / corim / 2, / CoRIM id / "corim-acme-gizmo-1.2.0" ],
-      [ / comid / 0, / CoMID id / "d7bd6c2c-4844-48e4-a794-eeafdff128df" ]
-    ]
-  }
+  / rim-id selector / 3: [
+    [ / corim / 2, / CoRIM id / "corim-acme-gizmo-1.0.0" ],
+    [ / corim / 2, / CoRIM id / "corim-acme-gizmo-1.2.0" ],
+    [ / comid / 0, / CoMID id / "d7bd6c2c-4844-48e4-a794-eeafdff128df" ]
+  ]
 }
 ```
 
