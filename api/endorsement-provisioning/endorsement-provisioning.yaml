@@ -71,7 +71,7 @@ paths:
       summary: Activate triples matching an endorsement lifecycle mgmt (ELM) query
       description: >
         Activates triples selected by a CBOR-encoded ELM query.
-        Operation is idempotent and atomic i.e., if any requested 
+        Operation is idempotent and atomic, i.e., if any requested 
         activation fails, no changes are applied.
       operationId: activateEndorsements
       requestBody:
@@ -97,7 +97,7 @@ paths:
       summary: Deactivate triples matching an ELM query
       description: >
         Deactivates triples selected by a CBOR-encoded ELM query.
-        Operation is idempotent and atomic i.e., if any requested 
+        Operation is idempotent and atomic, i.e., if any requested 
         deactivation fails, no changes are applied.
       operationId: deactivateEndorsements
       requestBody:

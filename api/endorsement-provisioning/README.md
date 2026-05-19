@@ -136,7 +136,7 @@ format is CoRIM.
 # Endorsement Lifecycle Management (ELM) Interface
 
 This interface can be used for activating/deactivating endorsements provisioned
-to the verifier. It allows using CoSERV base types to define an ELM query that 
+to the verifier. It uses the CoSERV base types to define an ELM query that 
 can be used to select endorsements using either (stateful) environments or one or
 more RIM identifiers.
 
@@ -166,7 +166,7 @@ Use the `environment-query` variant to deactivate two keys by `instance-id`.
 
 #### Request
 
-```
+```http
 POST /endorsement-provisioning/v1/deactivate
 Host: veraison.example
 Content-Type: application/vnd.veraison.elm-v1+cbor
@@ -175,19 +175,19 @@ Content-Type: application/vnd.veraison.elm-v1+cbor
 
 {
   / profile /              0: "tag:arm.com,2025/example-profile",
-  / artifact-type /        1: 1 / trust-anchors /
+  / artifact-type /        1: 1, / trust-anchors /
   / environment-selector / 2: {
     / instance / 1: [ 
       [ 550( h'01 ...' ) ],
       [ 550( h'01 ...' ) ]
     ]
-  },
+  }
 }
 ```
 
 #### Response
 
-```
+```http
 HTTP/1.1 204 No Content
 ```
 
@@ -196,7 +196,7 @@ Use the `rim-query` variant to activate two CoRIMs and one CoMID.
 
 #### Request
 
-```
+```http
 POST /endorsement-provisioning/v1/activate
 Host: veraison.example
 Content-Type: application/vnd.veraison.elm-v1+cbor
@@ -214,6 +214,6 @@ Content-Type: application/vnd.veraison.elm-v1+cbor
 
 #### Response
 
-```
+```http
 HTTP/1.1 204 No Content
 ```
