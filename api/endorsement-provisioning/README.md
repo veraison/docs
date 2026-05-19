@@ -132,3 +132,88 @@ format is CoRIM.
     "expiry": "2030-10-12T07:20:50.52Z"
   }
 ```
+
+# Endorsement Lifecycle Management (ELM) Interface
+
+This interface can be used for activating/deactivating endorsements provisioned
+to the verifier. It uses the CoSERV base types to define an ELM query that 
+can be used to select endorsements using either (stateful) environments or one or
+more RIM identifiers.
+
+## Query Format
+
+Following is the CDDL format for an ELM query:
+```
+elm-query = {
+ ( environment-query // rim-query )
+}
+
+environment-query = (
+  &(profile: 0) => coserv.profile
+  &(artifact-type: 1) => coserv.artifact-type
+  &(environment-selector: 2) => coserv.environment-selector-map
+)
+
+rim-query = (
+  &(rim-selector: 3) => [ + coserv.rim-selector-id ]
+)
+```
+
+## Examples
+
+### Deactivate keys
+Use the `environment-query` variant to deactivate two keys by `instance-id`.
+
+#### Request
+
+```http
+POST /endorsement-provisioning/v1/deactivate
+Host: veraison.example
+Content-Type: application/vnd.veraison.elm-v1+cbor
+
+-- body in EDN
+
+{
+  / profile /              0: "tag:arm.com,2025/example-profile",
+  / artifact-type /        1: 1, / trust-anchors /
+  / environment-selector / 2: {
+    / instance / 1: [ 
+      [ 550( h'01 ...' ) ],
+      [ 550( h'01 ...' ) ]
+    ]
+  }
+}
+```
+
+#### Response
+
+```http
+HTTP/1.1 204 No Content
+```
+
+### Activate RIMs
+Use the `rim-query` variant to activate two CoRIMs and one CoMID.
+
+#### Request
+
+```http
+POST /endorsement-provisioning/v1/activate
+Host: veraison.example
+Content-Type: application/vnd.veraison.elm-v1+cbor
+
+-- body in EDN
+
+{
+  / rim-id selector / 3: [
+    [ / corim / 2, / CoRIM id / "corim-acme-gizmo-1.0.0" ],
+    [ / corim / 2, / CoRIM id / "corim-acme-gizmo-1.2.0" ],
+    [ / comid / 0, / CoMID id / "d7bd6c2c-4844-48e4-a794-eeafdff128df" ]
+  ]
+}
+```
+
+#### Response
+
+```http
+HTTP/1.1 204 No Content
+```

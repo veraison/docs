@@ -26,6 +26,13 @@ components:
           type: string
           description: >
             Optional field to provide more details about the failure cause when provisioning status is `failed`
+    
+    ELMQuery:
+      type: string
+      format: binary
+      description: >
+        CBOR-encoded endorsement lifecycle management query object using the CoSERV data model.
+    
     Problem:
       required:
         - title
@@ -67,6 +74,32 @@ components:
             the problem.  It may or may not yield further information if
             dereferenced.
           example: https://veraison.example/v1/problems/404
+
+    ConciseProblem:
+      required:
+      - title
+      properties:
+        title:
+          type: string
+          description: >
+            A short, human-readable summary of the problem type.  It SHOULD NOT
+            change from occurrence to occurrence of the problem, except for
+            purposes of localization (e.g., using proactive content
+            negotiation; see [RFC7231], Section 3.4).
+          example: Not Found
+        detail:
+          type: string
+          description: >
+            A human-readable explanation specific to this occurrence
+            of the problem.
+          example: no active session could be located at the requested URL
+      additionalProperties: true
+      description: >
+          Problem Details object encoded as CBOR and carried in the
+          application/concise-problem-details+cbor media type as defined
+          by Appendix B of RFC 9290.
+          See: rfc-editor.org/rfc/rfc9290#name-basic-problem-details
+
   responses:
     Error:
       description: >
@@ -75,3 +108,10 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/Problem'
+    ConciseError:
+      description: >
+        Unexpected error
+      content:
+        application/concise-problem-details+cbor:
+          schema:
+            $ref: '#/components/schemas/ConciseProblem'

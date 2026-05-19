@@ -1,8 +1,8 @@
 openapi: '3.0.0'
 
 info:
-  title: attestation endorsement provisioning
-  description: API to provision endorsements. For further details, see datatracker.ietf.org/doc/draft-birkholz-rats-corim
+  title: Attestation endorsement provisioning and management
+  description: API to provision and manage endorsements. For further details, see datatracker.ietf.org/doc/draft-ietf-rats-corim/
   version: '1.0.0alpha'
 servers:
   - url: 'https://veraison.example/endorsement-provisioning/v1'
@@ -66,6 +66,57 @@ paths:
                 $ref: './schemas/components.yaml#/components/schemas/SessionResource'
         default:
           $ref: './schemas/components.yaml#/components/responses/Error'
+  /activate:
+    post:
+      summary: Activate triples matching an endorsement lifecycle mgmt (ELM) query
+      description: >
+        Activates triples selected by a CBOR-encoded ELM query.
+        Operation is idempotent and atomic, i.e., if any requested 
+        activation fails, no changes are applied.
+      operationId: activateEndorsements
+      requestBody:
+        required: true
+        content:
+          application/vnd.veraison.elm-v1+cbor:
+            schema:
+              $ref: './schemas/components.yaml#/components/schemas/ELMQuery'
+      responses:
+        '204':
+          description: Activation successful
+        '404':
+          description: No matching endorsements found
+          content:
+            application/concise-problem-details+cbor:
+              schema:
+                $ref: './schemas/components.yaml#/components/schemas/ConciseProblem'
+        default:
+          $ref: './schemas/components.yaml#/components/responses/ConciseError'
+
+  /deactivate:
+    post:
+      summary: Deactivate triples matching an ELM query
+      description: >
+        Deactivates triples selected by a CBOR-encoded ELM query.
+        Operation is idempotent and atomic, i.e., if any requested 
+        deactivation fails, no changes are applied.
+      operationId: deactivateEndorsements
+      requestBody:
+        required: true
+        content:
+          application/vnd.veraison.elm-v1+cbor:
+            schema:
+              $ref: './schemas/components.yaml#/components/schemas/ELMQuery'
+      responses:
+        '204':
+          description: Deactivation successful
+        '404':
+          description: No matching endorsements found
+          content:
+            application/concise-problem-details+cbor:
+              schema:
+                $ref: './schemas/components.yaml#/components/schemas/ConciseProblem'
+        default:
+          $ref: './schemas/components.yaml#/components/responses/ConciseError'
 components:
   parameters:
     SessionID:

@@ -11,6 +11,10 @@ components:
           $ref: '#/components/schemas/PublicKey'
           description:
             Public key and algorithm to be used to verify the Attestation Result
+        activate-on-submit:
+          type: boolean
+          description: >
+            Activate endorsements on submission
         media-types:
           type: array
           items:
