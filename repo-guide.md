@@ -19,12 +19,6 @@ Compilation of documentation for various Veraison projects into a reader-friendl
 [community](https://github.com/veraison/community)
 Veraison community files. Look here for introductory presentations to the project and CCC membership materials.
 
-[veraison](https://github.com/veraison/veraison)
-This repo is used for managing conversations about Veraison features.
-
-[.github](https://github.com/veraison/.github)
-Veraison org-level files.
-
 [veraison.github.io](https://github.com/veraison/veraison.github.io) 
 Veraison project web site.
 
