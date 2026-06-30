@@ -65,11 +65,6 @@ Evidence generation library in Rust.
 
 [cca-coserv-demo](https://github.com/veraison/cca-coserv-demo): CoSERV & Arm CCA end-to-end demo
 
-[ietf-110-hackathon-demo](https://github.com/veraison/ietf-110-hackathon-demo): docker compose based Attester / Verifier environment based on veraison components
-
-[ietf-115-hackathon](https://github.com/veraison/ietf-115-hackathon): IETF 115 hackathon work
-
-
 ## CLI tools 
 CLI tools for illustrative interactions with attestation tokens or a Veraison service. Used for demos & integration testing.
 
@@ -137,8 +132,6 @@ These libraries provide support for the standard information models used to conv
 
 [swid](https://github.com/veraison/swid) : SWID and CoSWID manipulation library
 
-[endorsement-store-protobuf-test](https://github.com/veraison/endorsement-store-protobuf-test): Prototyping endorsement store interface using protobufs.
-
 #### COSE
 [go-cose](https://github.com/veraison/go-cose): go library for CBOR Object Signing and Encryption (COSE)
 
@@ -194,7 +187,7 @@ VPF ---> CL
 
 ESTORE["<b>Endorsement Stores</b>
  <i>corim-store</i>
- <i>endorsement-store-protobuf-test</i>"]
+ "]
 ESTORE ---> VPF
 
 EF["<b>Evidence Formats</b> 
@@ -303,8 +296,6 @@ flowchart TD
 VD["
     <i>cca-coserv-demo</i>
     <i>enact-demo</i>
-    <i>ietf-110-hackathon-demo</i>
-    <i>ietf-115-hackathon</i>
     <i>keybroker-demo</i>"]
 subgraph Veraison["<b>Demos and Integration Examples</b>"]
 VD
