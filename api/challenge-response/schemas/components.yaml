@@ -8,11 +8,12 @@ components:
       properties:
         nonce:
           type: string
-          format: byte
+          pattern: '^[A-Za-z0-9_-]+={0,2}$'
           description:
-            base64 encoded random value. Must be between 8 and 64 bytes long in
-            its raw form (the base64 encoding must be no longer than 88 bytes).
-          example: MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=
+            URL-safe base64 encoded random value. Must be between 8 and 64
+            bytes long in its raw form (the base64 encoding must be no longer
+            than 88 bytes).
+          example: MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI
         expiry:
           type: string
           format: date-time
