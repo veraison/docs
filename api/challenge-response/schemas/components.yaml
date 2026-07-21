@@ -8,7 +8,7 @@ components:
       properties:
         nonce:
           type: string
-          pattern: '^[A-Za-z0-9_-]+={0,2}$'
+          format: base64url
           description:
             URL-safe base64 encoded random value. Must be between 8 and 64
             bytes long in its raw form (the base64 encoding must be no longer
