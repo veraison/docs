@@ -31,8 +31,8 @@ paths:
           description: >
             the API server should not generate a nonce for this session and
             instead use the one supplied by the client. The supplied nonce
-            MUST be URL-safe base64 encoded and must decode to a byte sequence
-            between 8 and 64 bytes long.
+            MUST be base64url encoded without padding and must decode to a byte
+            sequence between 8 and 64 bytes long.
           required: false
           schema:
             type: string
