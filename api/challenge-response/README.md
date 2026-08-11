@@ -59,7 +59,7 @@ session expiry has elapsed.
   Location: https://veraison.example/challenge-response/v1/session/1234567890
 
   {
-    "nonce": "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=",
+    "nonce": "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI",
     "expiry": "2030-10-12T07:20:50.52Z",
     "accept": [
       "application/psa-attestation-token"
@@ -68,9 +68,10 @@ session expiry has elapsed.
   }
 ```
 
-`nonceSize` must be between `8` and `64`. Analogously, `nonce` must be between
-8 and 64 bytes when decoded (which means the specified base64 string must be no
-longer than 88 bytes).
+`nonceSize` must be between `8` and `64`. Analogously, `nonce` must be
+base64url encoded without padding and between 8 and 64 bytes when decoded
+(which means the specified encoded string must be no longer than 86
+characters).
 
 ### Asynchronous verification
 
@@ -90,7 +91,7 @@ longer than 88 bytes).
   Content-format: application/vnd.veraison.challenge-response-session+json
 
   {
-    "nonce": "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=",
+    "nonce": "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI",
     "expiry": "2031-10-12T07:20:50.52Z",
     "accept": [
       "application/psa-attestation-token"
@@ -116,7 +117,7 @@ longer than 88 bytes).
   Content-format: application/vnd.veraison.challenge-response-session+json
 
   {
-    "nonce": "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=",
+    "nonce": "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI",
     "expiry": "2031-10-12T07:20:50.52Z",
     "accept": [
       "application/psa-attestation-token"
@@ -154,7 +155,7 @@ longer than 88 bytes).
   Content-format: application/vnd.veraison.challenge-response-session+json
 
   {
-    "nonce": "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=",
+    "nonce": "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI",
     "expiry": "2030-10-12T07:20:50.52Z",
     "accept": [
       "application/psa-attestation-token"
