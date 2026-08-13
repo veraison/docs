@@ -41,6 +41,9 @@ A library for the Arm Confidential Computing Architecture (CCA) Attestation Toke
 [rust-ccatoken](https://github.com/veraison/rust-ccatoken)
 Rust implementation of the Arm Confidential Computing Architecture (CCA) Attestation Token library.
 
+[rust-regl](https://github.com/veraison/rust-regl)
+Rust implementation of the RATS Evidence Generation Library (REGL) - collects attestation evidence from TEE platforms.
+
 [dice](https://github.com/veraison/dice): library providing support functions for manipulating various profiles of DICE.
 
 [parsec](https://github.com/veraison/parsec): Library support for handling the Parsec Key Attestation formats used in the attested TLS PoC.
@@ -153,6 +156,7 @@ EF["<b>Evidence Formats</b>
      <i>psatoken</i>
      <i>ccatoken</i>
      <i>rust-ccatoken</i>
+     <i>rust-regl</i>
      <i>enacttrust-tpm</i>
      <i>parsec (tpm, cca)</i>"]
 EF ---> CL
