@@ -73,6 +73,9 @@ Test case generator for CoRIM-related testing and validation
 [cca-realm-measurements](https://github.com/veraison/cca-realm-measurements)
 A tool to calculate Realm Initial Measurements and Realm Extended Measurements for Arm CCA
 
+[ccaguest](https://github.com/veraison/ccaguest)
+CLI that provides ARM CCA attestation capabilities, including evidence generation and verification (in local and remote modes), endorsement retrieval, policy fetching and submission, and display of attestation artifacts.
+
 ## Standards driven work
 The Veraison Project supports Attestation related working groups in standards bodies, in particular IETF & TCG. This set of repos provide test bed implementations for some of the standards work, as related to Veraison services.
 
@@ -167,7 +170,8 @@ SD["<b>Core Verifier repositories</b>
     <i>book</i>
     <i>ratsd</i>"]
 
-RP("Relying Party")
+RP["<b>Relying Party</b>
+    <i>ccaguest</i>"]
 style RP fill:#f9f,stroke:#333,stroke-width:4px
 
 AR["<b>Attestation Results</b> 
@@ -211,7 +215,8 @@ EVCLI ---> EF
 API ---> CMW
 Verifier ---> CMW
 POCLI["<b>Policy Mgmt CLI Tool</b>
-      <i>pocli</i>"]
+    <i>pocli</i>
+    <i>ccaguest</i>"]
 
 VO("Verifier Owner")
 style VO fill:#f9f,stroke:#333,stroke-width:4px
