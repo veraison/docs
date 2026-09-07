@@ -133,6 +133,40 @@ format is CoRIM.
   }
 ```
 
+## Endorsements Activation Policy
+
+A set of endorsements need to be "active" to be usable during verification and CoSERV queries. The provisioning service has 
+a default activation policy for all endorsements submitted at the `/submit` endpoint. A provisioning server's activation 
+policy can be seen by querying the well-known endpoint and looking for the `activate-on-submit` field in the response. 
+If this is set to `true`, it means that the endorsements are activated on submission. If it's `false`, the endorsements 
+are only submitted and not activated.
+
+The provisioning service's activation policy can be overriden by specifying a boolean query parameter `activate` in the URL.
+
+### Example
+
+```text
+>> Request:
+  POST /endorsement-provisioning/v1/submit?activate=false
+  Host: veraison.example
+  Content-Type: application/rim+cbor
+
+...CoRIM as binary data...
+  
+<< Response:
+  HTTP/1.1 201 Created
+  Content-Type: application/vnd.veraison.provisioning-session+json
+  Location: /endorsement-provisioning/v1/session/1234567890
+
+  {
+    "status": "processing",
+    "expiry": "2030-10-12T07:20:50.52Z"
+  }
+```
+
+Post-submission, the endorsements can be activated and deactivated using the Endorsement Lifecycle Management (ELM) 
+interface, which is described in the next section.
+
 # Endorsement Lifecycle Management (ELM) Interface
 
 This interface can be used for activating/deactivating endorsements provisioned
