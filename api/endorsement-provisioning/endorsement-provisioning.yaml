@@ -11,6 +11,15 @@ paths:
     post:
       description: >
         Submit a CoRIM payload containing the endorsements to be provisioned
+      parameters:
+        - name: activate
+          in: query
+          description: >
+            Whether to activate the endorsements on submission. This will override
+            the default activate-on-submit policy of the provisioning service.
+          required: false
+          schema:
+            type: boolean
       requestBody:
         required: true
         content:
