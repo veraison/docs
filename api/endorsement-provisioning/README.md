@@ -183,9 +183,9 @@ elm-query = {
 }
 
 environment-query = (
-  &(profile: 0) => coserv.profile
-  &(artifact-type: 1) => coserv.artifact-type
-  &(environment-selector: 2) => coserv.environment-selector-map
+  &(profile: 265) => coserv.profile
+  &(artifact-type: 0) => coserv.artifact-type
+  &(environment-selector: 1) => coserv.environment-selector-map
 )
 
 rim-query = (
@@ -208,9 +208,9 @@ Content-Type: application/vnd.veraison.elm-v1+cbor
 -- body in EDN
 
 {
-  / profile /              0: "tag:arm.com,2025/example-profile",
-  / artifact-type /        1: 1, / trust-anchors /
-  / environment-selector / 2: {
+  / profile /              265: "tag:arm.com,2025/example-profile",
+  / artifact-type /        0: 1, / trust-anchors /
+  / environment-selector / 1: {
     / instance / 1: [ 
       [ 550( h'01 ...' ) ],
       [ 550( h'01 ...' ) ]
