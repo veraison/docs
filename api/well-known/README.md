@@ -9,6 +9,7 @@ The information for the provisioning service has the following attributes:
 * The allowed provisioning media types;
 * The version of the provisioning service;
 * The current operational state of the service;
+* The default activation policy on submission of endorsements;
 * The exposed API endpoints and the corresponding URLs (relative to the request's base URL).
 
 ### Querying information about the Provisioning service
@@ -32,6 +33,7 @@ Content-format: application/vnd.veraison.discovery+json
   ],
   "version": "commit-a8056d0",
   "service-state": "READY",
+  "activate-on-submit": true,
   "api-endpoints": {
     "provisioningSubmit": "/endorsement-provisioning/v1/submit"
   }
