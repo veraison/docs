@@ -41,6 +41,9 @@ A library for the Arm Confidential Computing Architecture (CCA) Attestation Toke
 [rust-ccatoken](https://github.com/veraison/rust-ccatoken)
 Rust implementation of the Arm Confidential Computing Architecture (CCA) Attestation Token library.
 
+[rust-regl](https://github.com/veraison/rust-regl)
+Rust implementation of the RATS Evidence Generation Library (REGL) - collects attestation evidence from TEE platforms.
+
 [dice](https://github.com/veraison/dice): library providing support functions for manipulating various profiles of DICE.
 
 [parsec](https://github.com/veraison/parsec): Library support for handling the Parsec Key Attestation formats used in the attested TLS PoC.
@@ -88,6 +91,9 @@ CoRIM Verifier
 
 [go-gen-ref](https://github.com/veraison/go-gen-ref)
 Tool to generate reference values for the SEV-SNP scheme
+
+[ccaguest](https://github.com/veraison/ccaguest)
+CLI that provides ARM CCA attestation capabilities, including evidence generation and verification (in local and remote modes), endorsement retrieval, policy fetching and submission, and display of attestation artifacts.
 
 ## Standards driven work
 The Veraison Project supports Attestation related working groups in standards bodies, in particular IETF & TCG. This set of repos provide test bed implementations for some of the standards work, as related to Veraison services.
@@ -201,7 +207,8 @@ SD["<b>Core Verifier repositories</b>
     <i>book</i>
     <i>ratsd</i>"]
 
-RP("Relying Party")
+RP["<b>Relying Party</b>
+    <i>ccaguest</i>"]
 style RP fill:#f9f,stroke:#333,stroke-width:4px
 
 AR["<b>Attestation Results</b> 
@@ -260,7 +267,8 @@ EVCLI ---> EF
 API ---> CMW
 Verifier ---> CMW
 POCLI["<b>Policy Mgmt CLI Tool</b>
-      <i>pocli</i>"]
+    <i>pocli</i>
+    <i>ccaguest</i>"]
 
 VO("Verifier Owner")
 style VO fill:#f9f,stroke:#333,stroke-width:4px
