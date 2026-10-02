@@ -80,10 +80,10 @@ A tool to calculate Realm Initial Measurements and Realm Extended Measurements f
 CLI that provides ARM CCA attestation capabilities, including evidence generation and verification (in local and remote modes), endorsement retrieval, policy fetching and submission, and display of attestation artifacts.
 
 [cotl-cli](https://github.com/veraison/cotl-cli)
-CLI tool written in Go for interacting with CoTLs
+CLI tool written in Go for interacting with Concise Tag Lists (CoTLs)
 
 [cotlme](https://github.com/veraison/cotlme)
-CLI tool written in Rust for interacting with CoTLs
+CLI tool written in Rust for interacting with Concise Tag Lists (CoTLs)
 
 ## Standards driven work
 The Veraison Project supports Attestation related working groups in standards bodies, in particular IETF & TCG. This set of repos provide test bed implementations for some of the standards work, as related to Veraison services.
