@@ -64,6 +64,9 @@ CLI for handling attestation evidence
 [pocli](https://github.com/veraison/pocli) 
 CLI for Veraison services policy management client
 
+[corim-tool](https://github.com/veraison/corim-tool)
+CLI for working with CoRIMs based on corim-rs
+
 [gen-corim](https://github.com/veraison/gen-corim)
 CLI for generating CoRIM (containing Endorsements and Reference Values) using Evidence
 
@@ -76,12 +79,21 @@ A tool to calculate Realm Initial Measurements and Realm Extended Measurements f
 [ccaguest](https://github.com/veraison/ccaguest)
 CLI that provides ARM CCA attestation capabilities, including evidence generation and verification (in local and remote modes), endorsement retrieval, policy fetching and submission, and display of attestation artifacts.
 
+[cotl-cli](https://github.com/veraison/cotl-cli)
+CLI tool written in Go for interacting with Concise Tag Lists (CoTLs)
+
+[cotlme](https://github.com/veraison/cotlme)
+CLI tool written in Rust for interacting with Concise Tag Lists (CoTLs)
+
 ## Standards driven work
 The Veraison Project supports Attestation related working groups in standards bodies, in particular IETF & TCG. This set of repos provide test bed implementations for some of the standards work, as related to Veraison services.
 
 #### EAT
 [eat](https://github.com/veraison/eat) 
 Golang library for manipulating Entity Attestation Tokens (draft-ietf-rats-eat).
+
+[da](https://github.com/veraison/da)
+Go library provides types and utilities for working with Device Attestation (DA) tokens
 
 #### EAR
 These libraries provide functions for working with EAR (EAT Attestation Results), an EAT/JWT serialisation of the Attestation Result for Secure Interactions (AR4SI) information model - see draft-fv-rats-ear
@@ -104,7 +116,13 @@ These libraries provide support for the standard information models used to conv
 
 [corim-rs](https://github.com/veraison/corim-rs): Rust implementation of CoRIM and CoMID manipulation library
 
-[swid](https://github.com/veraison/swid) : SWID and CoSWID manipulation library
+[corim-store](https://github.com/veraison/corim-store): Endorsement store based on CoRIM, implemented on top of a relational DBMS
+
+[swid](https://github.com/veraison/swid): SWID and CoSWID manipulation library
+
+[cover](https://github.com/veraison/cover): CoRIM Verifier
+
+[coserv-rs](https://github.com/veraison/coserv-rs): Implementation of CoSERV data types and API bindings in Rust
 
 #### COSE
 [go-cose](https://github.com/veraison/go-cose): go library for CBOR Object Signing and Encryption (COSE)
