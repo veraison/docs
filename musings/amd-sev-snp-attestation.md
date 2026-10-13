@@ -183,12 +183,12 @@ The [AMD SEV-SNP CoRIM profile draft][snp-profile-repo] describes the report's
 CoMID representation. The [services revision documented here][services] and
 its pinned [`ReportToComid` converter][report-to-comid] use earlier draft
 conventions. In particular, the scheme registers
-`tag:amd.com,2024:snp-corim-profile`, while [draft revision `ebda88b` from
-2025-07-16][snp-profile-draft] specifies `tag:amd.com,2025:snp-corim-profile`.
+`tag:amd.com,2024:snp-corim-profile`, while [the draft][snp-profile-draft]
+specifies `tag:amd.com,2025:snp-corim-profile`.
 The latter identifier is not registered by this implementation.
 
-The following differences compare the implementation with that draft
-revision's **AMD SEV-SNP Evidence Translation to `reference-triple-record`**
+The following differences compare the implementation with the draft's
+**AMD SEV-SNP Evidence Translation to `reference-triple-record`**
 section. The draft's preceding measurement overview still contains older key
 numbers, so the two draft sections are not yet consistent.
 
