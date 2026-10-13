@@ -177,6 +177,43 @@ is used when constructing extracted claims; it is not the provisioning media
 type advertised by the wrapper. Provisioning uses the existing
 [Endorsement Provisioning API](../api/endorsement-provisioning/README.md).
 
+### Relationship to the Draft CoRIM Profile
+
+The [AMD SEV-SNP CoRIM profile draft][snp-profile-repo] describes the report's
+CoMID representation. The [services revision documented here][services] and
+its pinned [`ReportToComid` converter][report-to-comid] use earlier draft
+conventions. In particular, the scheme registers
+`tag:amd.com,2024:snp-corim-profile`, while [draft revision `ebda88b` from
+2025-07-16][snp-profile-draft] specifies `tag:amd.com,2025:snp-corim-profile`.
+The latter identifier is not registered by this implementation.
+
+The following differences compare the implementation with that draft
+revision's **AMD SEV-SNP Evidence Translation to `reference-triple-record`**
+section. The draft's preceding measurement overview still contains older key
+numbers, so the two draft sections are not yet consistent.
+
+| Aspect | Pinned Veraison implementation | Draft evidence translation |
+| --- | --- | --- |
+| Measurement keys | Uses earlier keys such as `1` for `GUEST_SVN`, `5` for `VMPL`, and `641` for `MEASUREMENT` | Uses bit-position keys such as `32`, `384`, and `1152`, respectively |
+| TCB representation | Encodes each TCB field as one packed SVN; the matcher compares four SPL components of `REPORTED_TCB` | Splits each TCB field into eight separate SPL measurements, each represented as an SVN |
+| Value types | Encodes `VMPL` and CPU family/model/stepping as raw bytes, and `ID_KEY_DIGEST` and `AUTHOR_KEY_DIGEST` as raw bytes | Uses `raw-int` for those numeric fields and `digests` for the identity-key digests |
+| Byte order | Re-encodes `POLICY` and `PLATFORM_INFO` as big-endian byte strings | Copies those byte strings directly from the little-endian report |
+| Reference lookup environment | Uses the launch digest as the `instance` for reference-value lookup | Identifies the target environment by chip or CSP, using a hardware ID or CSP ID as its `instance` |
+| Debug flag | Emits `POLICY` as raw bytes and skips it during built-in appraisal | Requires an unkeyed `flags-map` with `is-debug` derived from `POLICY` bit 19 |
+
+The reference lookup environment is distinct from the environment initially
+produced by the converter, which can contain `CHIP_ID`. The draft's VLEK
+translation also derives `CSP_ID` from the VLEK certificate; the pinned
+converter instead reads a `cspId` configuration value in its intended CSP
+branch and has the signing-key decoding limitation described under
+[Implementation Boundaries and Open Questions](#implementation-boundaries-and-open-questions).
+
+These differences affect both provisioning and appraisal. Changing only the
+profile identifier does not make draft reference values compatible: the
+converter, lookup rules, matcher, and provisioned values need a coordinated
+update. The measurement keys and examples below describe the pinned
+implementation, not conformance to the newer draft.
+
 ### Trust Anchor Selection
 
 `GetTrustAnchorIDs` reads the supplied ARK certificate and constructs a CoMID
@@ -379,6 +416,8 @@ enforcement.
 * [AMD SEV overview and specifications][amd-sev]
 * [SEV Secure Nested Paging Firmware ABI Specification, publication 56860][amd-abi]
 * [VCEK Certificate and KDS Interface Specification, publication 57230][amd-kds]
+* [AMD SEV-SNP CoRIM profile draft repository][snp-profile-repo] and
+  [draft revision used for the comparison][snp-profile-draft]
 * [Veraison services source revision used for this document][services]
 * [SEVSNP scheme implementation][scheme] and [CoRIM profile validation][corim]
 * [SEVSNP tests][scheme-tests], [endorsement fixtures][endorsement-fixtures],
@@ -389,6 +428,8 @@ enforcement.
 [amd-sev]: https://www.amd.com/en/developer/sev.html
 [amd-abi]: https://docs.amd.com/v/u/en-US/56860_PUB_SEV_SNP
 [amd-kds]: https://docs.amd.com/v/u/en-US/57230
+[snp-profile-repo]: https://github.com/deeglaze/draft-deeglaze-amd-sev-snp-corim-profile
+[snp-profile-draft]: https://github.com/deeglaze/draft-deeglaze-amd-sev-snp-corim-profile/blob/ebda88b36176082c7f876f35d55282657c00f1d3/draft-deeglaze-amd-sev-snp-corim-profile.md
 [services]: https://github.com/veraison/services/tree/9feadfecdab84c4e9c2d8d35eb77009991e7f99c
 [scheme]: https://github.com/veraison/services/blob/9feadfecdab84c4e9c2d8d35eb77009991e7f99c/scheme/sevsnp/scheme.go
 [corim]: https://github.com/veraison/services/blob/9feadfecdab84c4e9c2d8d35eb77009991e7f99c/scheme/sevsnp/corim.go
