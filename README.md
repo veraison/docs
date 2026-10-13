@@ -35,6 +35,7 @@
 ## Musings
 
 * [DICE notes](musings/dice.md)
+* [AMD SEV-SNP Attestation Details](musings/amd-sev-snp-attestation.md)
 * [Device and Supply-Chain Modelling](musings/device-and-supply-chain-modelling.md)
 * [Realm Instances - A Developer's Guide](musings/realm-instance.md)
 * [Assumptions about Attestation Evidence](musings/token-assumptions.md)
