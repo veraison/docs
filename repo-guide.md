@@ -61,6 +61,9 @@ CLI tools for illustrative interactions with attestation tokens or a Veraison se
 [evcli](https://github.com/veraison/evcli)
 CLI for handling attestation evidence
 
+[gen-ratsd-token](https://github.com/veraison/ratsd-token)
+CLI for packaging component evidence tokens into a signed RATSD v2 CBOR/COSE token.
+
 [pocli](https://github.com/veraison/pocli) 
 CLI for Veraison services policy management client
 
@@ -108,6 +111,8 @@ These libraries provide functions for working with EAR (EAT Attestation Results)
 [rust-cmw](https://github.com/veraison/rust-cmw): Rust implementation of RATS WG Conceptual Message Wrappers
 
 [ratsd](https://github.com/veraison/ratsd): A RATS conceptual message collection daemon
+
+[ratsd-token](https://github.com/veraison/ratsd-token): Go libraries for encoding and decoding RATSD evidence tokens, with legacy JSON support in the root module and CBOR/COSE support in the `v2` module. Also provides shared TSM report and NVIDIA GPU evidence payload types in the `tokens` package.
 
 ####  Verifier Provisioning 
 These libraries provide support for the standard information models used to convey data to a Verifier.
@@ -174,6 +179,7 @@ VPF ---> CL
 EF["<b>Evidence Formats</b> 
      <i>dice</i>
      <i>eat</i>
+     <i>ratsd-token</i>
      <i>psatoken</i>
      <i>ccatoken</i>
      <i>rust-ccatoken</i>
