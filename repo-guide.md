@@ -112,7 +112,7 @@ These libraries provide functions for working with EAR (EAT Attestation Results)
 
 [ratsd](https://github.com/veraison/ratsd): A RATS conceptual message collection daemon
 
-[ratsd-token](https://github.com/veraison/ratsd-token): Go libraries for encoding and decoding RATSD evidence tokens, with legacy JSON support in the root module and CBOR/COSE support in the `v2` module. Also provides shared TSM report and NVIDIA GPU evidence payload types in the `tokens` package.
+[ratsd-token](https://github.com/veraison/ratsd-token): Go libraries for encoding and decoding RATSD evidence tokens, with EAT support in the root module and CBOR/COSE support in the `v2` module. Also provides shared TSM report and NVIDIA GPU evidence payload types in the `tokens` package.
 
 ####  Verifier Provisioning 
 These libraries provide support for the standard information models used to convey data to a Verifier.
