@@ -93,7 +93,7 @@ The Veraison Project supports Attestation related working groups in standards bo
 
 #### EAT
 [eat](https://github.com/veraison/eat) 
-Golang library for manipulating Entity Attestation Tokens (draft-ietf-rats-eat).
+Golang library for manipulating Entity Attestation Tokens (RFC 9711).
 
 [da](https://github.com/veraison/da)
 Go library provides types and utilities for working with Device Attestation (DA) tokens

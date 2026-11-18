@@ -109,7 +109,7 @@ tcg-dice-MultiTcbInfo OBJECT IDENTIFIER ::= { tcg-dice 5 }
 DiceTcbInfoSeq ::= SEQUENCE SIZE (1..MAX) OF DiceTcbInfo
 ```
 
-Even though further extensions have been defined (for the full list see Section 6.1 of ["Attestation Architecture"](https://trustedcomputinggroup.org/resource/dice-attestation-architecture/) -- for example one that allows unsigned [EAT](https://datatracker.ietf.org/doc/draft-ietf-rats-eat/) claims to be embedded in an X.509 extension -- `DiceTcbInfo` is the (currently) preferred way.
+Even though further extensions have been defined (for the full list see Section 6.1 of ["Attestation Architecture"](https://trustedcomputinggroup.org/resource/dice-attestation-architecture/) -- for example one that allows unsigned [EAT](https://www.rfc-editor.org/rfc/rfc9711.html) claims to be embedded in an X.509 extension -- `DiceTcbInfo` is the (currently) preferred way.
 
 ### Open DICE Formats
 
@@ -131,7 +131,7 @@ OpenDiceInput ::= SEQUENCE {
 
 For further details regarding the Open DICE X.509 profile, see the [Certificate Details](https://pigweed.googlesource.com/open-dice/+/HEAD/docs/specification.md#certificate-details) section of the spec.
 
-Open DICE also allows encoding UDS and CDI certificates in [CBOR Web Tokens (CWT)](https://pigweed.googlesource.com/open-dice/+/HEAD/docs/specification.md#CBOR-UDS-Certificates) similar to [EAT](https://datatracker.ietf.org/doc/draft-ietf-rats-eat/).   It also allows for hybrid cert chains, with co-existing X.509 and CWT certs in the same logical chain, to support legacy component integrations.
+Open DICE also allows encoding UDS and CDI certificates in [CBOR Web Tokens (CWT)](https://pigweed.googlesource.com/open-dice/+/HEAD/docs/specification.md#CBOR-UDS-Certificates) similar to [EAT](https://www.rfc-editor.org/rfc/rfc9711.html).   It also allows for hybrid cert chains, with co-existing X.509 and CWT certs in the same logical chain, to support legacy component integrations.
 
 ## DICE from a Veraison's Perspective
 
